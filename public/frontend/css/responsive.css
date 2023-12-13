@@ -1,0 +1,716 @@
+@media (max-width: 1024px) and (min-width: 769px) {
+    header .headerAnimate {
+        background: #fff !important;
+        -webkit-backdrop-filter: blur(4px) !important;
+        backdrop-filter: blur(4px) !important;
+        box-shadow: none;
+    }
+    .navbar .navbar-brand img{
+        width: 140px;
+    }
+    .navbar .nav-link{
+        font-size: 13.5px;
+    }
+    .navbar-expand-lg .navbar-nav .nav-link{
+        padding: 10px 6px;
+    }
+    .navbar .sideMenu{
+        right: -107%;
+    }
+    .d-lg-block {
+        display: block!important;
+        width: 77%;
+        overflow: hidden;
+    }
+    .banner-hero .features-list{
+        justify-content: space-between;
+    }
+    .banner-homepage .banner-inner .row .block-banner {
+        padding-right: 0px;
+        padding-top: 40px;
+        text-align: center;
+    }
+    .about-services-box {
+        padding-right: 18px;
+        width: 262px;
+    }
+
+    .about-services-box .ab-serv-box-details {
+        margin-right: 0px;
+        padding: 13px;
+    }
+    .about-services-box .ab-serv-box-details .ab-box-title{
+        font-size: 18px;
+    }
+    .about-services-box .ab-serv-box-details .about-media {
+        position: absolute;
+        left: -21px;
+        top: -22px;
+        width: 70px;
+        height: 55px;
+    }
+    .about-services-box .ab-large-number {
+        font-size: 34px;
+        top: 3px;
+    }
+    .about-services-box .ab-serv-box-details p{font-size: 13px;}
+    .about-section{padding-bottom: 40px;}
+    .Services-Section {
+        padding-top: 75px;
+        padding-bottom: 60px;
+    }
+    .job-categories-block .twm-media [class*=flaticon-]{
+        top: 34%;
+    }
+    .job-categories-block .twm-content{
+        margin-top: 40px;
+    }
+    .requirements-section{
+        padding: 0 50px 0 50px;
+    }
+    .requirements-section .requirements-box{
+        padding: 10px;
+    }
+    .requirements-section .requirements-box .requir-content {
+        font-size: 16px;
+    }
+    .testimonial-section {
+        padding-top: 60px;
+        padding-bottom: 55px;
+    }
+    .Contact-section {
+        padding-top: 55px;
+        padding-bottom: 55px;
+    }
+    .footer-dark{
+        padding-top: 50px;
+    }
+    .side-bar .sidebar-filter .view-button {
+        display: block;
+    }
+    .side-bar{
+        padding: 15px 10px;
+    }
+    .side-bar .sidebar-filter ul li {
+        display: block;
+    }
+    .side-bar .sidebar-filter .view-button .clear,
+    .side-bar .sidebar-filter .view-button .confirm{
+        display: block;
+        margin-bottom: 15px;
+        text-align: center;
+        width: 100%;
+    }
+    .page-contact-section .contact-inner .contact-info {
+        margin-left: 45px;
+        margin-right: 0px;
+    }
+    .page-contact-section .contact-inner:after{
+        width: 370px;
+    }
+    .page-contact-section .contact-inner .contact-info .contact-details{
+        padding: 40px 20px;
+    }
+    .page-contact-section .contact-info-section .c-info-column h3{
+        font-size: 19px;
+    }
+    .page-contact-section .contact-info-section .c-info-column p{
+        margin-top: 10px;
+    }
+    .page-content{
+        padding: 40px 0;
+    }
+    .login-content{padding: 0;}
+    .trackOrder img{margin: 0 6%;}
+    .recruitmentVisa .recruit-tab .nav-link{
+        width: 48%;
+    }
+    .left-sidebar-content {
+        padding: 10px;
+    }
+    .profile-order-content{
+        padding: 15px;
+    }
+    .profile-order-content .view-button .download,
+    .profile-order-content .view-button .details{
+        display: block;
+        margin-bottom: 10px;
+    }
+    .profile-notification {
+        padding: 15px 10px;
+    }
+ }
+ @media (max-width: 768px) and (min-width: 426px) {
+    .navbar .sideMenu{
+        top: 79px;
+        padding: 20px 24px;
+    }
+    .navbar .sideMenu .sideMenuInner{
+        margin-top: 0px;
+    }
+    .navbar .navbar-brand img{
+        margin-top: 0;
+    }
+    header .headerAnimate {
+        background: #fff !important;
+        -webkit-backdrop-filter: blur(4px) !important;
+        backdrop-filter: blur(4px) !important;
+        box-shadow: none;
+    }
+    .section-box {
+        margin-top: 30px;
+        margin-bottom: 0px;
+        text-align: center;
+    }
+    .banner-hero .block-banner{
+        padding-left: 0;
+        padding-bottom: 30px;
+    }
+    .banner-hero .heading-banner{
+        font-size: 30px !important;
+    }
+    .banner-hero .banner-description {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    .about-section{
+        padding-top: 45px;
+        padding-bottom: 20px;
+    }
+    .about-services-box {
+        padding-right: 10px;
+    }
+    .about-services-box .ab-serv-box-details .about-media {
+        position: absolute;
+        left: -21px;
+        top: -33px;
+        width: 81px;
+        height: 62px;
+    }
+    .Services-Section {
+        padding-top: 45px;
+        padding-bottom: 60px;
+    }
+    .section-head.left.wt-small-separator-outer h2 {
+        margin-bottom: 0px;
+    }
+    .job-categories-block{
+        margin: auto;
+        width: 430px;
+    }
+    .job-categories-block .twm-media [class*=flaticon-]{
+        top: 34%;
+    }
+    .job-categories-block .twm-content{
+        margin-top: 40px;
+    }
+    .Countries-section {
+        padding-top: 50px;
+        padding-bottom: 12px;
+    }
+    .requirements-section {
+        padding: 50px 0 32px 0;
+    }
+    .requirements-section .section-title h3 {
+        font-size: 20px;
+        margin: 10px 0 35px 0;
+    }
+    .testimonial-section{
+        padding-top: 55px;
+        padding-bottom: 45px;
+    }
+    .Contact-section {
+        padding-top: 50px;
+        padding-bottom: 40px;
+    }
+    .Contact-section .Contact-map{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .Contact-section .Contact-block {
+        margin-left: 0px;
+    }
+    .side-bar,
+    .side-bar .sidebar-filter{background: #fff;}
+    .page-contact-section .contact-inner .contact-info {
+        margin-left: 45px;
+        margin-right: 0px;
+    }
+    .page-contact-section .contact-inner:after {
+        width: 582px;
+        margin-bottom: 30px;
+        height: 705px;
+    }
+    .page-contact-section .contact-form{
+        margin-top: 90px;
+    }
+    .page-contact-section .contact-inner .contact-form-title {
+        text-align: center;
+    }
+    .page-contact-section .contact-inner .contact-info .contact-details{
+        padding: 40px 20px;
+    }
+    .page-contact-section .contact-info-section .c-info-column p{
+        margin-top: 10px;
+    }
+    .page-content{
+        padding: 40px 0;
+    }
+    .login-content{margin: 0;}
+    .login-detail .login-logo{
+        padding-bottom: 15px;
+        margin-bottom: 0;
+    }
+    .login-detail .login-detail-inner .form-check-label a.site-text-primary{
+        padding-right: 85px;
+    }
+    .trackOrder form{
+        margin-top: 0;
+        padding: 10px;
+    }
+    .recruitmentVisa .recruit-tab .nav-link{
+        width: 48%;
+        padding: 15px 10px;
+    }
+    .Profile-section .profile-nav-list ul li {
+        display: inline-block;
+        width: 49%;
+    }
+    .profile-side-bar{
+        margin-bottom: 10px;
+    }
+    .profile-order-content{padding: 10px;}
+    .left-sidebar-content {
+        padding: 11px;
+    }
+    .Profile-section {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .status ol p{
+        font-size: 14px;
+    }
+    .Profile-section {
+        padding-top: 35px;
+        padding-bottom: 50px;
+    }
+    .page-services .job-categories-block{
+        width: 314px;
+        margin-bottom: 26px;
+    }
+ }
+ @media (max-width: 425px) and (min-width:321px) {
+    .navbar .sideMenu{
+        top: 79px;
+        padding: 20px 24px;
+    }
+    .navbar .navbar-brand img{
+        margin-top: 0;
+    }
+    header .headerAnimate {
+        background: #fff !important;
+        -webkit-backdrop-filter: blur(4px) !important;
+        backdrop-filter: blur(4px) !important;
+        box-shadow: none;
+    }
+    .banner-homepage .banner-inner .row .block-banner {
+        padding-top: 60px;
+    }
+    .banner-hero {
+        padding: 45px 8px 20px 8px;
+    }
+    .section-box {
+        margin-top: 30px;
+        margin-bottom: 0px;
+        text-align: center;
+    }
+    .banner-hero .block-banner{
+        padding-left: 0;
+        padding-bottom: 30px;
+    }
+    .banner-hero .heading-banner{
+        font-size: 20px !important;
+        margin-bottom: 0;
+    }
+    .banner-hero .heading-title{
+        margin-bottom: 0;
+    }
+    .banner-hero .features-list {
+        justify-content: center;
+    }
+    .banner-hero .features-list .feature-item{
+        margin-bottom: 20px;
+    }
+    .banner-homepage .btn.btn-default{
+        margin-left: 10px;
+    }
+    .banner-hero .banner-description {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    .about-section{
+        padding-top: 45px;
+        padding-bottom: 20px;
+    }
+    .about-services-box {
+        padding-right: 0px;
+        width: 345px;
+    }
+    .about-services-box .ab-serv-box-details .about-media {
+        position: absolute;
+        left: -21px;
+        top: -33px;
+        width: 81px;
+        height: 62px;
+ }
+ .Services-Section {
+    padding-top: 45px;
+    padding-bottom: 60px;
+}
+.section-head.left.wt-small-separator-outer h2 {
+    margin-bottom: 0px;
+    font-size: 18px;
+}
+.Countries-section {
+    padding-top: 50px;
+    padding-bottom: 12px;
+}
+.requirements-section {
+    padding: 50px 0 32px 0;
+}
+.requirements-section .section-title{
+    margin-left: 0 !important;
+}
+.requirements-section .section-title h3 {
+    font-size: 17px;
+    margin: 10px 0 20px 0;
+    text-align: center !important;
+}
+.requirements-section .requirements-box {
+    padding: 10px 12px;
+}
+.requirements-section .requirements-box .requir-content {
+    font-size: 15px;
+}
+.testimonial-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.testimonial-section .testimonial-title h2{
+    margin-bottom: 30px;
+}
+.Contact-section {
+    padding-top: 50px;
+    padding-bottom: 40px;
+}
+.Contact-section .Contact-map{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.Contact-section .Contact-block {
+    margin-left: 0px;
+}
+.side-bar,
+.side-bar .sidebar-filter{background: #fff;}
+.page-contact-section .contact-inner .contact-info {
+    margin-left: 45px;
+    margin-right: 0px;
+    width: 97%;
+}
+.page-contact-section .contact-inner{
+    padding-top: 50px;
+}
+.page-contact-section .contact-inner:after {
+    width: 346px;
+    margin-bottom: 30px;
+    height: 636px
+}
+.page-contact-section .contact-form{
+    margin-top: 90px;
+}
+.page-contact-section .contact-inner .contact-form-title {
+    text-align: center;
+}
+.page-contact-section .contact-inner .contact-info .contact-details{
+    padding: 40px 20px;
+}
+.page-contact-section .contact-info-section .c-info-column p{
+    margin-top: 10px;
+}
+.page-contact-section .contact-inner .contact-form-title h2 {
+    font-size: 39px;
+}
+.selectCustomerService {
+    margin-top: 15px;
+}
+.faq-section {
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+.faq-section .accordion-faq .accordion-item .accordion-button,
+.recruitmentVisa .accordion .accordion-item .accordion-button{
+    font-size: 16px !important;
+    padding: 8px 16px 8px 16px;
+}
+.faq-section .accordion-faq .accordion-body ul li p,
+.recruitmentVisa .accordion .accordion-body ul li p{
+    font-size: 15px;
+}
+.page-banner{height: 245px;}
+.page-banner .banner-content{
+    padding: 60px 0;
+}
+.page-banner .banner-title .banner-title-name h2{
+    font-size: 28px;
+}
+.page-banner .page-breadcrump li{
+    font-size: 15px;
+}
+.page-content{
+    padding: 40px 0;
+}
+
+.login-section .login-media-row{display: none;}
+.login-content{margin: 0;}
+.login-detail .login-logo{
+    padding-bottom: 15px;
+    margin-bottom: 0;
+}
+.login-detail .login-detail-inner .login-title span {
+    font-size: 27px;
+}
+.login-detail .login-detail-inner .form-check-label a.site-text-primary{
+    padding-right: 85px;
+}
+.trackOrder form{
+    margin-top: 0;
+    padding: 10px;
+}
+.trackorder-image{
+    margin-top: 25px;
+}
+.recruitmentVisa .recruit-tab .nav-link{
+    width: 46%;
+    padding: 15px 10px;
+}
+.recruitmentVisa .step{
+    padding: 10px;
+}
+.recruitmentVisa .secondaryTitle{
+    font-size: 18px;
+    line-height: 1.6
+}
+.Profile-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.profile-side-bar{
+    margin-bottom: 20px;
+}
+.left-sidebar-content {
+    padding: 10px;
+}
+.profile-order-content{
+    padding: 10px;
+}
+.profile-order-content .order-media .order-media-pic {
+    width: 100%;
+    height: 270px;
+}
+.status{
+    padding: 20px 0;
+}
+.status ol p{
+    font-size: 14px;
+}
+.profile-table thead th {
+    padding: 7px 5px;
+    font-size: 14px;
+}
+.profile-table tbody tr td {
+    padding: 10px 3px;
+    font-size: 14px;
+}
+.profile-edit {
+    padding: 20px 10px;
+    margin-top: 15px;
+}
+.Profile-section {
+    padding-top: 35px;
+    padding-bottom: 50px;
+}
+.page-services .job-categories-block{
+    margin-bottom: 26px;
+    margin-left: 0;
+    margin-right: 0;
+}
+ }
+
+ @media (max-width :375px) and (min-width: 320px){
+    .navbar .sideMenu{
+        top: 79px;
+        padding: 20px 24px;
+    }
+    .navbar .sideMenu{
+        right: -107%;
+    }
+    .banner-hero .heading-banner {
+        font-size: 16px !important;
+    }
+    .banner-homepage .btn{
+        display: block;
+    }
+    .banner-homepage .btn.btn-default{
+        margin-left: 0;
+        padding: 10px 28px;
+    }
+    .banner-hero .banner-description {
+        font-size: 14px;
+    }
+    .banner-hero .features-list .feature-item .feature__icon {
+        width: 55px;
+        height: 55px;
+        font-size: 27px;
+    }
+    .banner-hero .features-list .feature-item{
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+    .banner-hero .features-list .feature-item .feature__title{
+        font-size: 13px;
+    }
+    .about-services-box{
+        width: 302px;
+    }
+    .job-categories-block {
+        margin: 0px 3px;
+        width: 348px;
+    }
+    .job-categories-block .twm-media [class*=flaticon-]{
+        top: 34%;
+    }
+    .job-categories-block .twm-content{
+        margin-top: 40px;
+    }
+    .Countries-section .Countries-title h2{
+        font-size: 20px;
+    }
+    .testimonial-section .testimonial-title h2 {
+        margin-bottom: 10px;
+        font-size: 19px;
+    }
+    .Contact-section .Contact-title h2 {
+        font-size: 17px;
+        margin-bottom: 25px;
+    }
+    .footer-dark .logo-footer {
+        margin-bottom: 25px;
+        max-width: 174px;
+        margin: auto;
+        margin-bottom: 25px;
+    }
+    .footer-dark p{
+        width: 100%;
+    }
+    .side-bar,
+.side-bar .sidebar-filter{background: #fff;}
+.page-contact-section .contact-inner:after {
+    width: 297px;
+    margin-bottom: 30px;
+    height: 662px;
+}
+.page-contact-section .contact-inner .contact-form-title h2 {
+    font-size: 35px;
+}
+.page-content{
+    padding: 40px 0;
+}
+.login-section .login-media-row{display: none;}
+.login-content{margin: 0;}
+.login-detail .login-logo{
+    padding-bottom: 15px;
+    margin-bottom: 0;
+}
+.login-detail .login-detail-inner .login-title span {
+    font-size: 22px;
+}
+.login-detail .login-detail-inner {
+    padding: 20px 0px;
+}
+.login-detail .login-detail-inner .form-check-label a.site-text-primary{
+    padding-right: 40px;
+}
+.login-detail label.new-account a{
+    display: block;
+}
+.login-detail label.new-account a.login-href{
+    display: inline-block;
+}
+.trackOrder form{
+    margin-top: 0;
+    padding: 10px;
+}
+.trackorder-image{
+    display: none;
+}
+.recruitmentVisa .recruit-tab .nav-link{
+    width: 100%;
+    padding: 15px 10px;
+}
+.recruitmentVisa .step{
+    padding: 10px;
+}
+.recruitmentVisa .secondaryTitle{
+    font-size: 18px;
+    line-height: 1.6
+}
+.profile-order-content .view-button .download,
+.profile-order-content .view-button .details {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 20px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+.status{
+    padding: 20px 0;
+    overflow-x: scroll;
+    width: 100%;
+}
+.selectedCustomer .massage{
+    font-size: 19px;
+}
+.selectedCustomer .contactType{
+    display: inline-block;
+}
+.selectedCustomer .contactType .contact{
+    margin-bottom: 20px;
+}
+.profile-edit {
+    padding: 20px 10px;
+    margin-top: 15px;
+}
+.page-banner .banner-title .banner-title-name h2 {
+    color: #17171d;
+    font-size: 28px;
+}
+.Profile-section {
+    padding-top: 35px;
+    padding-bottom: 50px;
+}
+.page-services .job-categories-block{
+    width: 285px;
+    margin-bottom: 26px;
+    margin-left: 0;
+    margin-right: 0;
+}
+.daily-title h1{
+    font-size: 25px;
+    margin: 10px 0;
+  }
+  .daily-title p{
+    font-size: 15px;
+    margin: 5px 0 20px 0;
+  }
+ }

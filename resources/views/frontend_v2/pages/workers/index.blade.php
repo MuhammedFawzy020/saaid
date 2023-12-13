@@ -16,20 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
 </script>
-<style>
-    .worker-address {
-        font-size:15px !important;
-        font-weight:bold; 
-    }
-   .worker-address b{
-     font-size:12px;
-   }
 
-   .card-img{
-       max-height:200px;
-       width:auto;
-   }
-</style>
 @section('content')
     <div class="">
         <div class="row m-0 p-0 mb-4 p-4 text-center">
