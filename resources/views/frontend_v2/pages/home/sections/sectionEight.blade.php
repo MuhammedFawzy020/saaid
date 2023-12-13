@@ -75,7 +75,7 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="Contact-map">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3622.1268069399935!2d46.76249017900173!3d24.79111102118354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjTCsDQ3JzI4LjAiTiA0NsKwNDYnMDIuNSJF!5e0!3m2!1sen!2ssa!4v1701704321392!5m2!1sen!2ssa"
+                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3622.1268069399935!2d{{$setting->longitude}}!3d{{$setting->latitude}}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjTCsDQ3JzI4LjAiTiA0NsKwNDYnMDIuNSJF!5e0!3m2!1sen!2ssa!4v1701704321392!5m2!1sen!2ssa"
                             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
@@ -88,28 +88,29 @@
                         <div class="contact-link-icon"> <span><i class="bx bx-phone" style="color:white"></i></span></div>
                         <div class="contact-link-content">
                             <div class="contact-link-title">اتصل بنا </div>
-                            <div class="contact-link-text">+1 203-333-4444</div>
+                            <div class="contact-link-text">{{$setting->phone1}} - {{$setting->phone2}} - {{$setting->phone2}}</div>
                         </div>
                     </div>
                     <div class="contact-link">
                         <div class="contact-link-icon"> <span><i class="bx bxl-whatsapp" style="color:white"></i> </span></div>
                         <div class="contact-link-content">
                             <div class="contact-link-title">واتس اب</div>
-                            <div class="contact-link-text">+1 203-333-4400</div>
+                            <div class="contact-link-text">{{$setting->whatsapp}}</div>
                         </div>
                     </div>
                     <div class="contact-link">
                         <div class="contact-link-icon"> <span><i class="bx bxl-gmail" style="color:white"></i> </span></div>
                         <div class="contact-link-content">
                             <div class="contact-link-title">البريد الالكتروني</div>
-                            <div class="contact-link-text">info@saaid.com</div>
+                            <div class="contact-link-text">{{$setting->email1}} - {{$setting->email2}}</div>
+                           
                         </div>
                     </div>
                     <div class="contact-link">
                         <div class="contact-link-icon"> <span><i class="bx bx-pin" style="color:white"></i> </span></div>
                         <div class="contact-link-content">
                             <div class="contact-link-title">زيارة مكتبنا</div>
-                            <div class="contact-link-text">24 King St, Charleston, 29401 USA</div>
+                            <div class="contact-link-text">{{$setting->address1}}</div>
                         </div>
                     </div>
                 </div>

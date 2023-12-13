@@ -154,13 +154,13 @@
       
         <div class="mt-4">
           <!-- Facebook -->
-          <a type="button" class="btn btn-floating btn-light btn-lg"><i class="bx bxl-facebook-circle"></i></a>
+          <a href="{{$setting->facebook}}" class="btn btn-floating btn-light btn-lg"><i class="bx bxl-facebook-circle"></i></a>
           <!-- Dribbble -->
-          <a type="button" class="btn btn-floating btn-light btn-lg"><i class="bx bxl-instagram"></i></a>
+          <a href="{{$setting->instagram}}" class="btn btn-floating btn-light btn-lg"><i class="bx bxl-instagram"></i></a>
           <!-- Twitter -->
-          <a type="button" class="btn btn-floating btn-light btn-lg"><i class="bx bxl-twitter"></i></a>
+          <a href="{{$setting->twitter}}" class="btn btn-floating btn-light btn-lg"><i class="bx bxl-twitter"></i></a>
           <!-- Google + -->
-          <a type="button" class="btn btn-floating btn-light btn-lg"><i class="bx bxl-snapchat"></i></a>
+          <a href="{{$setting->snapchat}}" class="btn btn-floating btn-light btn-lg"><i class="bx bxl-snapchat"></i></a>
           <!-- Linkedin -->
         </div>
       </div>
@@ -172,13 +172,13 @@
 
         <ul class="fa-ul" style="margin-left: 1.65em;">
           <li class="mb-3" style="color:white;">
-            <span  style="color:white;"><i class="bx bx-home" style="color:white !important"></i></span><span class="ms-2" style="color:white !important">Warsaw, 00-967, Poland</span>
+            <span  style="color:white;"><i class="bx bx-home" style="color:white !important"></i></span><span class="ms-2" style="color:white !important">{{$setting->address1}}</span>
           </li>
           <li class="mb-3" style="color:white;">
-            <span  style="color:white;"><i class="bx bx-envelope" style="color:white !important"></i></span><span class="ms-2" style="color:white !important">contact@example.com</span>
+            <span  style="color:white;"><i class="bx bx-envelope" style="color:white !important"></i></span><span class="ms-2" style="color:white !important">{{$setting->email1}}</span>
           </li>
           <li class="mb-3" style="color:white;">
-            <span  style="color:white;"><i class="bx bx-phone" style="color:white !important"></i></span><span class="ms-2" style="color:white !important">+ 48 234 567 88</span>
+            <span  style="color:white;"><i class="bx bx-phone" style="color:white !important"></i></span><span class="ms-2" style="color:white !important">{{$setting->phone1}} - {{$setting->phone2}}</span>
           </li>
         </ul>
       </div>

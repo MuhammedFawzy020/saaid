@@ -16,7 +16,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
 </script>
+<style>
+    .worker-address {
+        font-size:15px !important;
+        font-weight:bold; 
+    }
+   .worker-address b{
+     font-size:12px;
+   }
 
+   .card-img{
+       max-height:200px;
+       width:auto;
+   }
+</style>
 @section('content')
     <div class="">
         <div class="row m-0 p-0 mb-4 p-4 text-center">
@@ -130,341 +143,97 @@
         </form>
 
         <div class="row m-0 p-0">
+       
             @foreach ($cvs as $cv)
-                <div class="col-md-4 mb-2">
-                    <div class="card" style="padding:3px;height:100%;border: 3px solid #5B79AF">
-
-
-                        <div class="card-header d-none" style="padding:0px !important;border:none !important;">
-                            <div class="card col-lg-12" style="border:none;">
-                                <div class="card-header " style="border:1px solid #5B79AF;border-radius:20px;">
-                                    <div class="row">
-                                        <div class="personal-image col-12 text-center" style="padding:0px;">
-                                            @if ($cv->cv_file)
-                                                <img src="{{ url('frontend/images/users/' . $cv->cv_file) }}"
-                                                    style="width:auto;height:65px; " alt="">
-                                            @else
-                                                <img src="{{ url('/') }}/frontend/images/comment-1-1.jpg"
-                                                    style="width:auto;height:45px " alt="">
-                                            @endif
-                                        </div>
-                                        <div class="personal-info text-center mt-2 mb-2 col-12">
-                                            <p class="name text-center"
-                                                style="padding:0px;margin:0px;text-align:right;font-size:15px;font-weight:bold;">
-                                                @if ($cv->name)
-                                                    {{ $cv->name }}
-                                                @else
-                                                    لا يوجد اسم
-                                                @endif
-                                            </p>
-                                            <div class="row">
-                                                <div class="col-4" style="padding:0px;font-size:7px;">المهنة :
-                                                    <p>{{ $cv->job?->title }}</p>
-                                                </div>
-                                                <div class="col-4" style="padding:0px;font-size:7px;">الراتب الشهري :
-                                                    <p>{{ $cv->salary }} ريال</p>
-                                                </div>
-                                                <div class="col-4" style="padding:0px;font-size:7px;">مده التعاقد :
-                                                    <p>{{ $cv->contract_period }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card col-lg-12" style="border:none;font-size:xx-small">
-                                <div class="card-header"
-                                    style="background-color:#5B79AF;text-align:center;border-radius:20px;margin-top:20px;padding:0px;color:white;font-weight:bold;">
-                                    <p style="padding:0px;margin:0px;color:white;">البيانات الشخصية</p>
-                                </div>
-                                <div class="card-body" style="font-size:xx-small;text-align:right">
-                                    <div class="row">
-                                        <div class="col-3" style="border-left:2px solid #5B79AF;padding-right:10px;">
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">الجنسية : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->nationalitie?->title }}</small>
-                                            </div>
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">الحالة الاجتماعية : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->social_type?->title }}</small>
-                                            </div>
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">الديانة : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->religion?->title }}</small>
-                                            </div>
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">التعليم : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->education }}</small>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-3" style="border-left:2px solid #5B79AF;padding-right:10px;">
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">الوزن : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->weight }}</small>
-                                            </div>
-
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">العمر : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->age }}</small>
-                                            </div>
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">عدد الاطفال : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->no_of_childrens }}</small>
-                                            </div>
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">الطول : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->height }}</small>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-3" style="border-left:2px solid #5B79AF;padding-right:10px;">
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <?php
-                                                $created_at = explode(' ', $cv->birthdate);
-                                                $birth_date = $created_at[0];
-                                                ?>
-                                                <p style="margin:0px;">تاريخ الميلاد : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->birthdate }}</small>
-                                            </div>
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">مكان الميلاد : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->birth_country }}</small>
-                                            </div>
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">رقم التواصل : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->phone_no }}</small>
-                                            </div>
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">اللغة الأم : </p>
-                                                <small
-                                                    style="font-weight:bolder;">{{ $cv->language_title?->title }}</small>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-3" style="padding-right:10px;">
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">سعر الستقدام : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->recruitment_price }}
-                                                    ريال</small>
-                                            </div>
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">الراتب : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->salary }} ريال</small>
-                                            </div>
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">الخبرة السابفة : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->type_of_experience }}</small>
-                                            </div>
-                                            <div class="row" style="margin-bottom:20px;">
-                                                <p style="margin:0px;">مدة الضمان : </p>
-                                                <small style="font-weight:bolder;">{{ $cv->warrenty_period }}
-                                                    شهور</small>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card col-lg-12" style="border:none;font-size:xx-small">
-                                <div class="card-header"
-                                    style="background-color:#5B79AF;text-align:center;border-radius:20px;margin-top:20px;padding:0px;color:white;font-weight:bold;">
-                                    <p style="padding:0px;margin:0px;color:white">تفاصيل الخبرة</p>
-                                </div>
-                                <div class="card-body" style="font-size:xx-small;text-align:center">
-                                    @if ($cv->experinces)
-                                        <table class="table" style="font-size:xx-small">
-                                            <thead>
-                                                <tr>
-                                                    <th>البلد</th>
-                                                    <th>المدة</th>
-                                                    <th>الوظيفة</th>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-
-
-                                                <tr>
-                                                    <th>{{ $cv->experince?->country?->title }}</th>
-                                                    <th>{{ $cv->experince?->exp_period }}</th>
-                                                    <th>{{ $cv->experince?->job?->title }}</th>
-                                                </tr>
-
-
-                                            </tbody>
-
-                                        </table>
-                                    @else
-                                        لا يوجد خبرة
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="card col-lg-12" style="border:none;font-size:xx-small">
-                                <div class="card-header"
-                                    style="background-color:#5B79AF;text-align:center;border-radius:20px;margin-top:20px;padding:0px;color:white;font-weight:bold;">
-                                    <p style="padding:0px;margin:0px;color:white">تفاصيل جواز السفر</p>
-                                </div>
-                                <div class="card-body" style="font-size:xx-small;text-align:right">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <table class="table" style="font-size:xx-small">
-                                                <tbody>
-                                                    <tr>
-                                                        <th>رقم الجواز :</th>
-                                                        <td class="text-bold">{{ $cv->passport_number }}</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>مكان الاصدار :</th>
-                                                        <td class="text-bold">{{ $cv->passport_city_name?->title }}
-                                                            </th>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <table class="table" style="font-size:xx-small">
-                                                <tbody>
-                                                    <tr>
-                                                        <?php
-                                                        $passport_created_at = explode(' ', $cv->passport_start);
-                                                        $passport_start = $passport_created_at[0];
-                                                        ?>
-                                                        <th>تاريخ الاصدار :</th>
-
-                                                        <td class="text-bold">{{ $passport_start }}</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <?php
-                                                        $passport_end_at = explode(' ', $cv->passport_end);
-                                                        $passport_end = $passport_end_at[0];
-                                                        ?>
-                                                        <th> تاريخ الانتهاء :</th>
-                                                        <td class="text-bold">{{ $passport_end }}</th>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <!-- <img src="{{ url('/') }}/frontend/images/Symbology-QR-code.svg"
-                                                                                                                                                                                                        style="width:100%;height:50px" alt=""> -->
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="{{ url('/') }}/frontend/images/logo/logoH.svg" alt="">
-                                    </div>
-                                    <div class="col-4">
-                                        <!-- <img src="{{ url('/') }}/frontend/images/Symbology-QR-code.svg"
-                                                                                                                                                                                                        style="width:100%;height:50px" alt=""> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
+            <div class="col-lg-6">
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        @if ($cv->cv_file)
+                            <a href="{{ url('frontend/images/users/' . $cv->cv_file) }}" data-fancybox data-caption="{{ $cv->name }}">
+                                <img src="{{ url('frontend/images/users/' . $cv->cv_file) }}" class="card-img"  />
+                            </a>
+                        @else
+                            <img src="{{ url('/') }}/frontend/images/comment-1-1.jpg" class="card-img"   alt="">
+                        @endif
+                    </div>
+                    <div class="col-md-8">
                         <div class="card-body">
-
-                            <div class="text-center mb-4">
-                                @if ($cv->cv_file)
-                                    <a href="{{ url('frontend/images/users/' . $cv->cv_file) }}" data-fancybox
-                                        data-caption="{{ $cv->name }}">
-                                        <img src="{{ url('frontend/images/users/' . $cv->cv_file) }}"
-                                            style="width:auto;height:120px;border-style: solid;
-    border-color: #5B79AF;
-    border-radius: 50%; " />
-                                    </a>
+                            <h5 class="card-title">
+                                @if ($cv->name)
+                                    {{ $cv->name }}
                                 @else
-                                    <img src="{{ url('/') }}/frontend/images/comment-1-1.jpg"
-                                        style="width:auto;height:120px " alt="">
+                                    لا يوجد اسم
                                 @endif
+                            </h5>
+                            <p class="card-text" style="padding-bottom:20px;"><small class="text-danger" style="font-size:10px">لا يتم دفع أي رسوم إلا من خلال مساند</small></p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="worker-address">{{ __('frontend.Nationality') }}
+                                        : <b>{{ $cv->nationalitie ? $cv->nationalitie->title : '' }} </b></p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="worker-address"> {{ __('frontend.Occupation') }} :
+                                        <b>{{ $cv->job ? $cv->job->title : '' }}</b>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="worker-content">
-                                <a href="#!" class="text-center" data-bs-toggle="modal" data-bs-target=".cvModal"
-                                    @isset($type) attr-type="{{ $type }}" @endisset
-                                    attr-id="{{ $cv->id }}" class="twm-job-title">
-                                    <h4> {{ $cv->name }} </h4>
-                                </a>
-                                <p class="text-center text-danger mb-2 mt-2">
-                                    <b class="text-danger">
-                                        لا يتم دفع أي رسوم إلا من خلال مساند
-                                    </b>
-                                </p>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <p class="worker-address">{{ __('frontend.Nationality') }}
-                                            : <b>{{ $cv->nationalitie ? $cv->nationalitie->title : '' }} </b></p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="worker-address"> {{ __('frontend.Occupation') }} :
-                                            <b>{{ $cv->job ? $cv->job->title : '' }}</b>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <p class="worker-address"> {{ __('frontend.Religion') }} :
-                                            <b>{{ $cv->religion ? $cv->religion->title : '' }}</b>
-                                        </p>
-                                    </div>
-                                    @if ($type == 'transport')
-                                        <div class="col-6">
-                                            <p class="worker-address">
-                                                سعر نقل الخدمات:
-                                                <b> {{ $cv->transfer_price ?? '' }} {{ __('frontend.SAR') }} </b>
-                                            </p>
-                                        </div>
-                                    @else
-                                        <div class="col-6">
-                                            <p class="worker-address">
-                                                {{ __('frontend.Recruitment price') }}:
-                                                <b>{{ $cv->nationalitie->recruitment_price }} {{ __('frontend.SAR') }}</b>
-                                            </p>
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <p class="worker-address">
-                                            {{ __('frontend.Practical experience') }} :
-                                            @if ($cv->type_of_experience == 'new')
-                                                <b>{{ $cv->type_of_experience ? 'قادم جديد' : '--' }}</b>
-                                            @else
-                                                <b>{{ $cv->type_of_experience ? 'لديه خبرة سابقة' : '--' }}</b>
-                                            @endif
-
-                                        </p>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <p class="worker-address"> {{ __('frontend.age') }} :<b> {{ $cv->age ?? '' }}
-                                                سنة</b>
-                                        </p>
-                                    </div>
-
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="worker-address"> {{ __('frontend.Religion') }} :
+                                        <b>{{ $cv->religion ? $cv->religion->title : '' }}</b>
+                                    </p>
                                 </div>
                                 @if ($type == 'transport')
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <p class="worker-address"> مدة العمل للكفيل السابق :
-                                                {{ $cv->periodservices ?? '' }} </p>
-                                        </li>
-
-                                        <li>
-                                            <p class="worker-address"> سبب النقل : {{ $cv->reasonservices ?? '' }} </p>
-                                        </li>
-                                    </ul>
+                                    <div class="col-6">
+                                        <p class="worker-address">
+                                            سعر نقل الخدمات:
+                                            <b> {{ $cv->transfer_price ?? '' }} {{ __('frontend.SAR') }} </b>
+                                        </p>
+                                    </div>
+                                @else
+                                    <div class="col-6">
+                                        <p class="worker-address">
+                                            {{ __('frontend.Recruitment price') }}:
+                                            <b>{{ $cv->nationalitie->recruitment_price }} {{ __('frontend.SAR') }}</b>
+                                        </p>
+                                    </div>
                                 @endif
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="worker-address">
+                                        {{ __('frontend.Practical experience') }} :
+                                        @if ($cv->type_of_experience == 'new')
+                                            <b>{{ $cv->type_of_experience ? 'قادم جديد' : '--' }}</b>
+                                        @else
+                                            <b>{{ $cv->type_of_experience ? 'لديه خبرة سابقة' : '--' }}</b>
+                                        @endif
 
+                                    </p>
+                                </div>
 
+                                <div class="col-6">
+                                    <p class="worker-address"> {{ __('frontend.age') }} :<b> {{ $cv->age ?? '' }}
+                                            سنة</b>
+                                    </p>
+                                </div>
+
+                            </div>
+                            @if ($type == 'transport')
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <p class="worker-address"> مدة العمل للكفيل السابق :
+                                            {{ $cv->periodservices ?? '' }} </p>
+                                    </li>
+
+                                    <li>
+                                        <p class="worker-address"> سبب النقل : {{ $cv->reasonservices ?? '' }} </p>
+                                    </li>
+                                </ul>
+                            @endif
+
+                            <div class="row">
                                 <div class="cv-comp text-center">
                                     <a href="{{ route('worker-details', $cv->id) }}"
                                         class="worker btn cvDetails btn btn-outline-secondary">
@@ -476,12 +245,16 @@
                                         احجز الان
 
                                     </a>
-
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
+            </div>
+            </div>
+           
+                
 
                 <!-- Modal -->
                 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"

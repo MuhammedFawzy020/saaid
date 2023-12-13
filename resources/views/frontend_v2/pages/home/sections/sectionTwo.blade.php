@@ -1,5 +1,5 @@
 <div class="container" style="position: relative; top: -85px;">
-    <div class="card">
+    <div class="card" style="z-index:1">
         <form method="get" action="{{ route('all-workers') }}">
             @csrf
             <div class="card-body">
