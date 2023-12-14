@@ -6,35 +6,42 @@
 @if (count($countries) > 0)
     <section class="Countries-section" id="Countries">
         <div class="container-fluid">
-            <h1 class="display-1">
-                ـــ دول الاستقدام
-            </h1>
-            <p class="text-muted">
-                تعرف علي الدول و اسعار الاستقدام الان
-            </p>
-            <br />
+            <div class="text-center">
+                <h1 class="display-1">
+                    دول الاستقدام
+                </h1>
+                <p class="text-muted">
+                    تعرف علي الدول و اسعار الاستقدام الان
+                </p>
+                <br />
+            </div>
             <div class="Countries-boxes">
                 <div class="row">
-                    @foreach ($countries as $key => $country)
-                        <div class="col-lg-3 col-md-6">
-                            <div class="Countries-block">
-                                <div class="Countries-media">
-                                    <div> <img src="{{ get_file($country->image) }}" alt="" /></div>
+                    <div class="swiper cards">
+                        <div class="swiper-wrapper">
+                            @foreach ($countries as $key => $country)
+                                <div class="swiper-slide m-2">
+                                    <div class="Countries-block">
+                                        <div class="Countries-media">
+                                            <div> <img src="{{ get_file($country->image) }}" alt="" /></div>
+                                        </div>
+                                        <div class="Countries-content">
+                                            <div class="count-content-title">{{ $country->title }}</div>
+                                            <p>{{ $country->price?->price }} ريال سعودي </p>
+                                            <a href="{{ route('all-workers', ['nationality' => $country->id]) }}"
+                                                class="defaultBtn">
+                                                اطلب الآن </a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="Countries-content">
-                                    <div class="count-content-title">{{ $country->title }}</div>
-                                    <p>{{ $country->price?->price }} ريال سعودي </p>
-                                    <a href="{{ route('all-workers', ['nationality' => $country->id]) }}"
-                                        class="defaultBtn">
-                                        اطلب الآن </a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
-                        @if ($key == 3 or $key == 7 or $key == 15)
-                            <div class="col-lg-2"></div>
-                        @endif
-                    @endforeach
-
+                    </div>
+                    <div class="col-12 text-end">
+                        <a href="{{ url('/countries') }}" class="btn btn-secondary">
+                            جميع دول الاستقدام
+                        </a>
+                    </div>
                 </div>
             </div>
 

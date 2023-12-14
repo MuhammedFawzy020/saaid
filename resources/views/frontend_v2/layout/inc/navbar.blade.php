@@ -9,25 +9,6 @@
                     </p>
                 </div>
                 <div class="col-md-6 text-end text-white">
-                    <!-- <a href="tel:0505777517" class="text-decoration-none text-white">
-                        <i class="bx bx-phone text-white"></i> 0505777517
-                    </a>
-                    -
-                    <a href="tel:0551085037" class="text-decoration-none text-white">
-                        <i class="bx bx-phone text-white"></i> 0551085037
-                    </a>
-                    -
-                    <a href="tel:0559626474" class="text-decoration-none text-white">
-                        <i class="bx bx-phone text-white"></i> 0559626474
-                    </a>
-                    -
-                    <a href="tel:0550072526" class="text-decoration-none text-white">
-                        <i class="bx bx-phone text-white"></i> 0550072526
-                    </a>
-                    -
-                    <a href="tel:0594456545" class="text-decoration-none text-white">
-                        <i class="bx bx-phone text-white"></i> 0594456545
-                    </a> -->
 
                     <a href="{{$setting->facebook}}" class="text-decoration-none ">
                         <i class="bx bxl-facebook-circle color-white font-size-20"></i>
@@ -62,7 +43,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('frontend') }}/images/logo/WhatsApp Image 2023-12-11 at 13.51.27_8a0b1f49.jpg" style="height:75px;" alt="">
+                <img src="{{ asset('frontend') }}/images/logo/logo.jpeg" style="height:75px;" alt="">
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"

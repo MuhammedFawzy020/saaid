@@ -2,12 +2,14 @@
     <section class="Countries-section" id="Countries">
         <div class="container-fluid">
 
-            <h1 class="display-1">
-                ـــ المدونة
-            </h1>
-            <p class="text-muted">
-                يمكنك قراءة المدونة الخاصة بنا لتتزود بكل المعلومات ...
-            </p>
+            <div class="text-center">
+                <h1 class="display-1">
+                    المدونة
+                </h1>
+                <p class="text-muted">
+                    يمكنك قراءة المدونة الخاصة بنا لتتزود بكل المعلومات ...
+                </p>
+            </div>
             <br />
             <div class="Countries-boxes mt-2">
                 <div class="row">

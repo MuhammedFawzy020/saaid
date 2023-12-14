@@ -1,7 +1,7 @@
 @if (count($statistics) == 4)
     <section class="statistics">
         <div class="container">
-            <div class="text-right">
+            <div class="text-center">
                 <h1 class="display-1">
                     ـــ {{ __('frontend.statistics') }}
                 </h1>

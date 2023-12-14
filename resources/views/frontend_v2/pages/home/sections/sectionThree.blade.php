@@ -1,10 +1,12 @@
 <div class="container-fluid">
-    <h1 class="display-1">
-        ـــ خدماتنا
-    </h1>
-    <p class="text-muted">
-        تعرف علي الخدمات التي نقدمها لعملائنا...
-    </p>
+    <div class="text-center">
+        <h1 class="display-1">
+            خدماتنا
+        </h1>
+        <p class="text-muted">
+            تعرف علي الخدمات التي نقدمها لعملائنا...
+        </p>
+    </div>
     <div class="wt-separator-two-part">
 
     </div>
