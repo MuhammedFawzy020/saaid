@@ -4,109 +4,23 @@
 <head>
     @include('frontend_v2.layout.header')
 </head>
+<?php 
+ $setting=App\Models\Setting::first();
 
+?>
 <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXKR56N9" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div class="preloader">
-        <div class="loader">
-            <svg class="pl" viewBox="0 0 128 128" width="128px" height="128px">
-                <defs>
-                    <linearGradient id="pl-grad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#000" />
-                        <stop offset="100%" stop-color="#fff" />
-                    </linearGradient>
-                    <mask id="pl-mask">
-                        <rect x="0" y="0" width="128" height="128" fill="url(#pl-grad)" />
-                    </mask>
-                </defs>
-                <g stroke-dasharray="32 32" stroke-dashoffset="-32" stroke-linecap="round" stroke-width="6">
-                    <g class="pl__layer">
-                        <g class="pl__lines" stroke="hsl(48,90%,50%)">
-                            <g class="pl__line-g" transform="rotate(0,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(30,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(60,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(90,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(120,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(150,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(180,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(210,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(240,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(270,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(300,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(330,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                        </g>
-                    </g>
-                    <g class="pl__layer" mask="url(#pl-mask)">
-                        <g class="pl__lines" stroke="hsl(18,90%,50%)">
-                            <g class="pl__line-g" transform="rotate(0,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(30,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(60,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(90,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(120,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(150,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(180,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(210,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(240,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(270,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(300,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                            <g class="pl__line-g" transform="rotate(330,64,64) translate(0,-28)">
-                                <polyline class="pl__line" points="64 32,64 64" />
-                            </g>
-                        </g>
-                    </g>
-                </g>
-            </svg>
+       <!-- Preloader -->
+       <div class="preloader-bg"></div>
+        <div id="preloader">
+            <div id="preloader-status">
+                <div class="preloader-position loader"> <span></span> </div>
+            </div>
         </div>
-    </div>
+   
     @include('frontend_v2.layout.inc.navbar')
 
     <!-- <div class="social-icons shadow">
@@ -248,10 +162,11 @@
 
     <script>
         $(window).on('load', function() {
-
-            const preloader = document.querySelector(".preloader");
-            preloader.style.display = "none";
+            // Preloader
+            $("#preloader").fadeOut(900);
+            $(".preloader-bg").delay(800).fadeOut(900);
             new WOW().init();
+          
         });
     </script>
 
