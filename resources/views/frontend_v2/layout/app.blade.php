@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
-<head>
-    @include('frontend_v2.layout.header')
-</head>
 <?php
 $setting = App\Models\Setting::first();
 
 ?>
+
+<head>
+    @include('frontend_v2.layout.header')
+</head>
+
 
 <body>
     <!-- Google Tag Manager (noscript) -->
