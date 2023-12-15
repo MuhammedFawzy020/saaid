@@ -1773,7 +1773,7 @@ header .navbar .navbar-nav .defaultBtn:hover {
     animation: hero-thumb-sm-2-animation 4s linear infinite alternate;
 }
 
-.about-section {
+/* .about-section {
     background: #fff;
     position: relative;
     padding-top: 120px;
@@ -1834,7 +1834,7 @@ header .navbar .navbar-nav .defaultBtn:hover {
     height: 28px;
     line-height: 28px;
     border-radius: 50%;
-}
+} */
 
 .about-services .row [class*=col-]:nth-child(odd) {
     margin-top: -30px;
@@ -1941,7 +1941,7 @@ header .navbar .navbar-nav .defaultBtn:hover {
     background-color: #8be3c6;
 }
 
-.about-section .aboutImg {
+/* .about-section .aboutImg {
     max-width: 500px;
     height: 400px;
     margin: auto;
@@ -1966,7 +1966,7 @@ header .navbar .navbar-nav .defaultBtn:hover {
     background-color: #ffd700;
     z-index: -1;
     border-radius: 100px 0 100px 0;
-}
+} */
 
 .Services-Section {
     position: relative;
@@ -6870,5 +6870,72 @@ textarea.valid {
         transform: rotate(360deg);
     }
 }
+
+.about-section{
+    background: url("../images/s2.webp") no-repeat;
+    background-size: 65%;
+    background-color: #fdfdfd;
+    overflow: hidden;
+    padding: 50px 0px;
+    
+}
+
+.inner-container{
+    width: 55%;
+    float: right;
+    background-color: #fdfdfd;
+    padding: 50px;
+}
+
+.inner-container h1{
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.text{
+    font-size: 13px;
+    color: #545454;
+    line-height: 30px;
+    text-align: justify;
+    margin-bottom: 40px;
+}
+
+.skills{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+@media screen and (max-width:1200px){
+    .inner-container{
+        padding: 80px;
+    }
+}
+
+@media screen and (max-width:1000px){
+    .about-section{
+        background-size: 100%;
+        padding: 100px 40px;
+    }
+    .inner-container{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:600px){
+    .about-section{
+        padding: 0;
+    }
+    .inner-container{
+        padding: 60px;
+    }
+}
+
+
+
+
+
 
 
