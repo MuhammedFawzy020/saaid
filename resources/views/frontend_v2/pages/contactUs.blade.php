@@ -169,7 +169,7 @@
      <div class="page-contact-map">
          <div class="google-map">
              <iframe class="googleMap wow fadeInUp "
-                 src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3622.1268069399935!2d46.76249017900173!3d24.79111102118354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjTCsDQ3JzI4LjAiTiA0NsKwNDYnMDIuNSJF!5e0!3m2!1sen!2ssa!4v1701704321392!5m2!1sen!2ssa"
+                 src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3622.1268069399935!2d{{ $setting->longitude }}!3d{{ $setting->latitude }}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjTCsDQ3JzI4LjAiTiA0NsKwNDYnMDIuNSJF!5e0!3m2!1sen!2ssa!4v1701704321392!5m2!1sen!2ssa"
                  width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                  referrerpolicy="no-referrer-when-downgrade"></iframe>
 
