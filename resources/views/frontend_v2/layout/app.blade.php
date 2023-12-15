@@ -117,7 +117,7 @@ $setting = App\Models\Setting::first();
             <!-- Copyright -->
             <div class="text-center p-3" style="color:white;">
                 © حفوف النشر 2024:
-                <a class="text-white" href="https://mdbootstrap.com/" style="color:white;">شركة الساعد للاستقدام</a>
+                <a class="text-white" href="#" style="color:white;">شركة الساعد للاستقدام</a>
             </div>
             <!-- Copyright -->
         </footer>
@@ -128,11 +128,10 @@ $setting = App\Models\Setting::first();
 
 
     <div class="sbuttons">
-        <a href="https://wa.me/+966551085037" target="_blank" class="sbutton whatsapp" tooltip="واتساب"><i
+        <a href="#" target="_blank" class="sbutton whatsapp" tooltip="واتساب"><i
                 class="bx bxl-whatsapp text-white"></i></a>
 
-        <a href="tel:+966551085037" target="_blank" class="sbutton fb" tooltip="اتصال"><i
-                class="bx bx-phone text-white"></i></a>
+        <a href="#" target="_blank" class="sbutton fb" tooltip="اتصال"><i class="bx bx-phone text-white"></i></a>
 
 
 
@@ -195,7 +194,20 @@ $setting = App\Models\Setting::first();
                 delay: 2500,
                 disableOnInteraction: false,
             },
-
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 40,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 50,
+                },
+            },
         });
     </script>
     <script>

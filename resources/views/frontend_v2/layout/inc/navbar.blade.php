@@ -4,36 +4,35 @@
             <div class="row m-0 p-0">
                 <div class="col-md-6">
                     <p class="text-white m-0" style="font-size:16px !important;">
-                        <i class="bx bx-map-pin text-white"></i> 2085 طريق الامام عبدالله بن سعود حي اشبيليه مقابل اطياف
-                        مول مول الدور الاول مكتب رقم 45
+                        <i class="bx bx-map-pin text-white"></i> {{ $setting->address1 }}
                     </p>
                 </div>
                 <div class="col-md-6 text-end text-white">
 
-                    <a href="{{$setting->facebook}}" class="text-decoration-none ">
+                    <a href="{{ $setting->facebook }}" class="text-decoration-none ">
                         <i class="bx bxl-facebook-circle color-white font-size-20"></i>
                     </a>
                     |
-                    <a href="{{$setting->twitter}}" class="text-decoration-none">
+                    <a href="{{ $setting->twitter }}" class="text-decoration-none">
                         <i class="bx bxl-twitter color-white font-size-20"></i>
                     </a>
                     |
-                    <a href="{{$setting->youtube}}" class="text-decoration-none">
+                    <a href="{{ $setting->youtube }}" class="text-decoration-none">
                         <i class="bx bxl-youtube color-white font-size-20"></i>
                     </a>
                     |
-                    <a href="{{$setting->tiktok}}" class="text-decoration-none">
+                    <a href="{{ $setting->tiktok }}" class="text-decoration-none">
                         <i class="bx bxl-tiktok color-white font-size-20"></i>
                     </a>
                     |
-                    <a href="{{$setting->snapchat}}" class="text-decoration-none ">
+                    <a href="{{ $setting->snapchat }}" class="text-decoration-none ">
                         <i class="bx bxl-snapchat color-white font-size-20"></i>
                     </a>
                     |
-                    <a href="{{$setting->instagram}}" class="text-decoration-none ">
+                    <a href="{{ $setting->instagram }}" class="text-decoration-none ">
                         <i class="bx bxl-instagram color-white font-size-20"></i>
                     </a>
-                  
+
 
 
                 </div>
@@ -71,10 +70,7 @@
                         <a class="nav-link" href="{{ route('track_order_view') }}">
                             {{ __('frontend.Track your order') }}</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            {{ __('frontend.Common questions') }}</a>
-                    </li> --}}
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/contact-us') }}">{{ __('frontend.contactUs') }}</a>
                     </li>
