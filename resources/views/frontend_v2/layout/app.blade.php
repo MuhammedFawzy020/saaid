@@ -39,11 +39,12 @@ $setting = App\Models\Setting::first();
                 <div class="row mt-4">
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-                        <h5 class="text-uppercase mb-4 text-bold" style="color:white;">شركة الساعد للاستقدام</h5>
 
+                        <h5 class="text-uppercase mb-4 text-bold" style="color:white;">{{ $setting->title }}</h5>
+                        <img src="{{ get_file($settings->footer_logo) }}" style="width: auto; height:75px"
+                            class="d-block mt-2 mb-2" />
                         <p style="color:white;">
-                            سرعة وصول العامله أو المستقدم ليس أنجاز للمكاتب , بل الأختيار الموفق والضمان الأطول والدعم
-                            اللوجستي
+                            {{ $setting->header_desc }}
                         </p>
 
 
@@ -99,7 +100,7 @@ $setting = App\Models\Setting::first();
             <!-- Copyright -->
             <div class="text-center p-3" style="color:white;">
                 © حفوف النشر 2024:
-                <a class="text-white" href="#" style="color:white;">شركة الساعد للاستقدام</a>
+                <a class="text-white" href="#" style="color:white;">{{ $setting->title }}</a>
             </div>
             <!-- Copyright -->
         </footer>

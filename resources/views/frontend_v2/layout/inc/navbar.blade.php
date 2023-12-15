@@ -42,7 +42,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('frontend') }}/images/logo/logo.jpeg" style="height:75px;" alt="">
+                <img src="{{ get_file($settings->header_logo) }}" style="width:auto; height:75px;" alt="">
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
