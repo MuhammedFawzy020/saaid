@@ -2088,6 +2088,7 @@ header .navbar .navbar-nav .defaultBtn:hover {
     transition: 0.5s all ease;
     height: 200px;
     width: 100%;
+
     flex-direction: column;
     margin: 30px 0;
 }
