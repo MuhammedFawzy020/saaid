@@ -77,16 +77,7 @@
                                              <p><a
                                                      href="{{ 'tel:' . $settings->phone7 }}">{{ $settings->phone7 ?? '+' }}</a>
                                              </p>
-                                             <p>
 
-                                                 <a href="tel:+966502907107">
-
-
-                                                     0502907107
-
-
-                                                 </a>
-                                             </p>
 
                                          </div>
                                          <div class="c-info-column">
