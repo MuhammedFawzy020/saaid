@@ -3,31 +3,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <title>
-    شركة ساعد للاستقدام - @yield('title')
+    {{ $setting->title }} - @yield('title')
 </title>
 
-<meta name="description"
-    content="أحد أعرق شركات الاستقدام في المملكة منذ أكثر منذ ثلاثون عاما ولدينا عشرة فروع خارج المملكة لجلب أفضل العمالة المدربة والماهرة طبقا للمعايير الدولية ارضاءا لعملائنا" />
 
-<meta property="og:title" content="شركة ساعد للاستقدام">
-<meta property="og:image"
-    content="{{ asset('frontend') }}/images/logo/WhatsApp Image 2023-12-11 at 13.51.27_8a0b1f49.jpg">
-<meta property="og:image:secure_url"
-    content="{{ asset('frontend') }}/images/logo/WhatsApp Image 2023-12-11 at 13.51.27_8a0b1f49.jpg" />
-<meta property="og:image:type" content="svg" />
+<meta property="og:title" content="{{ $setting->title }}">
+<meta property="og:image" content="{{ get_file($settings->header_logo) }}">
+<meta property="og:image:secure_url" content="{{ get_file($settings->header_logo) }}" />
+<meta property="og:image:type" content="jpg" />
 <meta property="og:image:width" content="400" />
 <meta property="og:image:height" content="300" />
-<meta property="og:description"
-    content="أحد أعرق شركات الاستقدام في المملكة منذ أكثر منذ ثلاثون عاما ولدينا عشرة فروع خارج المملكة لجلب أفضل العمالة المدربة والماهرة طبقا للمعايير الدولية ارضاءا لعملائنا">
-<meta property="og:url" content="{{ url('/') }}">
-<meta name="twitter:card"
-    content="{{ asset('frontend') }}/images/logo/WhatsApp Image 2023-12-11 at 13.51.27_8a0b1f49.jpg">
 
 
-
-<title>ساعد | أفضل شركة استقدام عمالة منزلية بالسعودية </title> <!-- favicon -->
-<link rel="icon" type="image/x-icon"
-    href="{{ asset('frontend') }}/images/logo/WhatsApp Image 2023-12-11 at 13.51.27_8a0b1f49.jpg">
+<!-- favicon -->
+<link rel="icon" type="image/x-icon" href="{{ get_file($settings->header_logo) }}">
 
 
 

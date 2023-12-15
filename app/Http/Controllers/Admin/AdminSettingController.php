@@ -29,7 +29,7 @@ class AdminSettingController extends Controller
         if (!checkPermission(3))
             return view('admin.permission');
         $settings = Setting::firstOrNew();
-                $countries=Nationalitie::latest()->take(7)->get();
+        $countries=Nationalitie::latest()->take(7)->get();
 
         return view('admin.settings.index', [
             'settings' => $settings,
@@ -89,14 +89,18 @@ class AdminSettingController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        //return $request->form_type;
         $setting = Setting::findOrFail($id);
         // <input type="hidden" name="form_type" value="family">
         if ($request->form_type == "main") {
              $data =$this->updateMain($request);
         } elseif ($request->form_type == "logo") {
             $data = $this->updateLogo($setting, $request);
+            
         } elseif ($request->form_type == "banner") {
             $data = $this->updateBanner($setting, $request);
+             $data = $this->updateLogo($setting, $request);
         }
         elseif ($request->form_type == "contact") {
              $data =$this->updateContact($request);

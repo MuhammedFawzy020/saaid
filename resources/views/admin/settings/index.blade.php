@@ -2,7 +2,7 @@
 @section('styles')
     <!-- include summernote css/js -->
     <link href="summernote-bs5.css" rel="stylesheet">
-    {{--    <link href="{{asset('dashboard/summernote/summernote-bs4.css')}}">--}}
+    {{--    <link href="{{asset('dashboard/summernote/summernote-bs4.css')}}"> --}}
     <style>
         .dropify-font-upload:before,
         .dropify-wrapper .dropify-message span.file-icon:before {
@@ -16,9 +16,7 @@
             text-align: center;
             font-size: 15px;
         }
-
     </style>
-
 @endsection
 
 @section('page-title')
@@ -31,130 +29,107 @@
         <div class="row">
             <div class="col-xl-2 col-sm-3">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    {{----------------------------------}}
+                    {{-- ------------------------------ --}}
                     <a class="nav-link active" id="v-pills-main-tab" data-bs-toggle="pill" href="#v-pills-main"
-                       role="tab" aria-controls="v-pills-main" aria-selected="true">
+                        role="tab" aria-controls="v-pills-main" aria-selected="true">
                         <i class="bx bx-info-circle d-block check-nav-icon mt-1 mb-1"></i>
                         <p class="fw-bold mb-4">المعلومات الرئيسية</p>
                     </a>
 
-{{--                    <a class="nav-link" id="v-pills-logo-t" data-bs-toggle="pill" href="#v-banner" role="tab"--}}
-{{--                       aria-controls="v-pills-logo" aria-selected="false">--}}
-{{--                        <i class="bx bx-image-alt d-block check-nav-icon mt-1 mb-1"></i>--}}
-{{--                        <p class="fw-bold mb-4">اللوحة الاعلانية</p>--}}
-{{--                    </a>--}}
 
-                    {{----------------------------------}}
                     <a class="nav-link" id="v-pills-logo-t" data-bs-toggle="pill" href="#v-pills-logo" role="tab"
-                       aria-controls="v-pills-logo" aria-selected="false">
+                        aria-controls="v-pills-logo" aria-selected="false">
                         <i class="bx bx-image-alt d-block check-nav-icon mt-1 mb-1"></i>
                         <p class="fw-bold mb-4">اللوجو</p>
                     </a>
 
-                    {{----------------------------------}}
+                    {{-- ------------------------------ --}}
                     <a class="nav-link" id="v-pills-contact-tab" data-bs-toggle="pill" href="#v-pills-contact"
-                       role="tab" aria-controls="v-pills-contact" aria-selected="false">
+                        role="tab" aria-controls="v-pills-contact" aria-selected="false">
                         <i class="bx bx-book-content d-block check-nav-icon mt-1 mb-1"></i>
                         <p class="fw-bold mb-4">معلومات التواصل</p>
                     </a>
-                    {{----------------------------------}}
+                    {{-- ------------------------------ --}}
                     <a class="nav-link" id="v-pills-social-tab" data-bs-toggle="pill" href="#v-pills-social" role="tab"
-                       aria-controls="v-pills-social" aria-selected="false">
+                        aria-controls="v-pills-social" aria-selected="false">
                         <i class="bx bx-like d-block check-nav-icon mt-1 mb-1"></i>
                         <p class="fw-bold mb-4">مواقع التواصل الإجتماعى</p>
                     </a>
-                    {{----------------------------------}}
+                    {{-- ------------------------------ --}}
                     <a class="nav-link" id="v-pills-step-ta" data-bs-toggle="pill" href="#v-pills-step" role="tab"
-                       aria-controls="v-pills-step" aria-selected="false">
+                        aria-controls="v-pills-step" aria-selected="false">
                         <i class="bx bx-list-ol d-block check-nav-icon mt-1 mb-1"></i>
                         <p class="fw-bold mb-4">خطوات الاستقدام</p>
                     </a>
-                    {{----------------------------------}}
+                    {{-- ------------------------------ --}}
                     <a class="nav-link" id="v-pills-about-ta" data-bs-toggle="pill" href="#v-pills-about" role="tab"
-                       aria-controls="v-pills-about" aria-selected="false">
+                        aria-controls="v-pills-about" aria-selected="false">
                         <i class="bx bxs-comment-dots d-block check-nav-icon mt-1 mb-1"></i>
                         <p class="fw-bold mb-4">نبذة عن </p>
                     </a>
-                    {{----------------------------------}}
 
-{{--                    <a class="nav-link" id="v-pills-family-ta" data-bs-toggle="pill" href="#v-pills-family" role="tab"--}}
-{{--                       aria-controls="v-pills-family" aria-selected="false">--}}
-{{--                        <i class="bx bxs-quote-single-left d-block check-nav-icon mt-1 mb-1"></i>--}}
-{{--                        <p class="fw-bold mb-4">جزء العائلة فى الرئيسية </p>--}}
-{{--                    </a>--}}
-                    {{----------------------------------}}
                 </div>
             </div>
             <div class="col-xl-10 col-sm-9">
-                {{----------------------------------}}
+                {{-- ------------------------------ --}}
                 <div class="card">
                     <div class="card-body">
 
 
                         <div class="tab-content" id="v-pills-tabContent">
-                            {{----------------------------------}}
+                            {{-- ------------------------------ --}}
 
                             <div class="tab-pane fade show active" id="v-pills-main" role="tabpanel"
-                                 aria-labelledby="v-pills-main-tab">
-                                   @include("admin.settings.parts.main")
+                                aria-labelledby="v-pills-main-tab">
+                                @include('admin.settings.parts.main')
                             </div>
 
-                            <div class="tab-pane fade" id="v-banner" role="tabpanel"
-                                 aria-labelledby="v-pills-logo-t">
-                                @include("admin.settings.parts.banner")
-                            </div>
-
-
-                            {{----------------------------------}}
-
-                            <div class="tab-pane fade" id="v-pills-logo" role="tabpanel"
-                                 aria-labelledby="v-pills-logo-t">
-                                @include("admin.settings.parts.logo")
+                            <div class="tab-pane fade" id="v-banner" role="tabpanel" aria-labelledby="v-pills-logo-t">
+                                @include('admin.settings.parts.banner')
                             </div>
 
 
-                            {{----------------------------------}}
+                            {{-- ------------------------------ --}}
+
+                            <div class="tab-pane fade" id="v-pills-logo" role="tabpanel" aria-labelledby="v-pills-logo-t">
+                                @include('admin.settings.parts.logo')
+                            </div>
+
+
+                            {{-- ------------------------------ --}}
 
                             <div class="tab-pane fade" id="v-pills-contact" role="tabpanel"
-                                 aria-labelledby="v-pills-contact-tab">
-                                @include("admin.settings.parts.contact")
+                                aria-labelledby="v-pills-contact-tab">
+                                @include('admin.settings.parts.contact')
                             </div>
 
-                            {{----------------------------------}}
+                            {{-- ------------------------------ --}}
 
                             <div class="tab-pane fade" id="v-pills-social" role="tabpanel"
-                                 aria-labelledby="v-pills-social-tab">
-                                @include("admin.settings.parts.social")
+                                aria-labelledby="v-pills-social-tab">
+                                @include('admin.settings.parts.social')
                             </div>
 
-                            {{----------------------------------}}
+                            {{-- ------------------------------ --}}
 
-                            <div class="tab-pane fade" id="v-pills-step" role="tabpanel"
-                                 aria-labelledby="v-pills-step-ta">
-                                @include("admin.settings.parts.step")
+                            <div class="tab-pane fade" id="v-pills-step" role="tabpanel" aria-labelledby="v-pills-step-ta">
+                                @include('admin.settings.parts.step')
                             </div>
 
-                            {{----------------------------------}}
+                            {{-- ------------------------------ --}}
 
                             <div class="tab-pane fade" id="v-pills-about" role="tabpanel"
-                                 aria-labelledby="v-pills-about-ta">
-                                @include("admin.settings.parts.about")
+                                aria-labelledby="v-pills-about-ta">
+                                @include('admin.settings.parts.about')
                             </div>
 
-                            {{----------------------------------}}
 
-{{--                            <div class="tab-pane fade" id="v-pills-family" role="tabpanel"--}}
-{{--                                 aria-labelledby="v-pills-family-ta">--}}
-{{--                                @include("admin.settings.parts.family")--}}
-{{--                            </div>--}}
-
-                            {{----------------------------------}}
                         </div>
 
 
                     </div>
                 </div>
-                {{----------------------------------}}
+                {{-- ------------------------------ --}}
 
             </div>
         </div>
@@ -162,12 +137,10 @@
 @endsection
 
 @section('js')
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.0.0/tinymce.min.js"
-            integrity="sha512-XQOOk3AOZDpVgRcau6q9Nx/1eL0ATVVQ+3FQMn3uhMqfIwphM9rY6twWuCo7M69rZPdowOwuYXXT+uOU91ktLw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        integrity="sha512-XQOOk3AOZDpVgRcau6q9Nx/1eL0ATVVQ+3FQMn3uhMqfIwphM9rY6twWuCo7M69rZPdowOwuYXXT+uOU91ktLw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -185,8 +158,7 @@
     </script>
 
     <script>
-
-        $(document).on('submit', 'form#Form_about', function (e) {
+        $(document).on('submit', 'form#Form_about', function(e) {
             e.preventDefault();
             var myForm = $("#Form_about")[0]
             var formData = new FormData(myForm)
@@ -194,7 +166,7 @@
             sendAjax(url, formData);
         });
 
-        $(document).on('submit', 'form#Form_contact', function (e) {
+        $(document).on('submit', 'form#Form_contact', function(e) {
             e.preventDefault();
             var myForm = $("#Form_contact")[0]
             var formData = new FormData(myForm)
@@ -202,7 +174,7 @@
             sendAjax(url, formData);
         });
 
-        $(document).on('submit', 'form#Form_family', function (e) {
+        $(document).on('submit', 'form#Form_family', function(e) {
             e.preventDefault();
             var myForm = $("#Form_family")[0]
             var formData = new FormData(myForm)
@@ -210,7 +182,7 @@
             sendAjax(url, formData);
         });
 
-        $(document).on('submit', 'form#Form_logo', function (e) {
+        $(document).on('submit', 'form#Form_logo', function(e) {
             e.preventDefault();
             var myForm = $("#Form_logo")[0]
             var formData = new FormData(myForm)
@@ -218,7 +190,7 @@
             sendAjax(url, formData);
         });
 
-        $(document).on('submit', 'form#Form_main', function (e) {
+        $(document).on('submit', 'form#Form_main', function(e) {
             e.preventDefault();
             var myForm = $("#Form_main")[0]
             var formData = new FormData(myForm)
@@ -226,7 +198,7 @@
             sendAjax(url, formData);
         });
 
-        $(document).on('submit', 'form#Form_social', function (e) {
+        $(document).on('submit', 'form#Form_social', function(e) {
             e.preventDefault();
             var myForm = $("#Form_social")[0]
             var formData = new FormData(myForm)
@@ -234,7 +206,7 @@
             sendAjax(url, formData);
         });
 
-        $(document).on('submit', 'form#Form_step', function (e) {
+        $(document).on('submit', 'form#Form_step', function(e) {
             e.preventDefault();
             var myForm = $("#Form_step")[0]
             var formData = new FormData(myForm)
@@ -247,14 +219,14 @@
                 url: url,
                 type: 'POST',
                 data: formData,
-                beforeSend: function () {
+                beforeSend: function() {
                     $('.loader-ajax').show()
                 },
-                complete: function () {
+                complete: function() {
 
 
                 },
-                success: function (data) {
+                success: function(data) {
                     $('.loader-ajax').hide()
                     $(".logo_basic").attr("src", data.logo);
                     cuteToast({
@@ -263,7 +235,7 @@
                         timer: 3000
                     });
                 },
-                error: function (data) {
+                error: function(data) {
                     $('.loader-ajax').hide()
                     if (data.status === 500) {
                         cuteToast({
@@ -276,9 +248,9 @@
                     }
                     if (data.status === 422) {
                         var errors = $.parseJSON(data.responseText);
-                        $.each(errors, function (key, value) {
+                        $.each(errors, function(key, value) {
                             if ($.isPlainObject(value)) {
-                                $.each(value, function (key, value) {
+                                $.each(value, function(key, value) {
                                     cuteToast({
                                         type: "error", // or 'info', 'error', 'warning'
                                         message: value,
@@ -292,15 +264,12 @@
                             }
                         });
                     }
-                },//end error method
+                }, //end error method
 
                 cache: false,
                 contentType: false,
                 processData: false
             });
         }
-
-
     </script>
-
 @endsection
