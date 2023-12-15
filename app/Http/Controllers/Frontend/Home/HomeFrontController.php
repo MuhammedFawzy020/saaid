@@ -24,7 +24,7 @@ class HomeFrontController extends Controller
 
     public function index()
     {
-        //$sliders = Slider::latest()->take(4)->get();
+        $sliders = Slider::latest()->take(4)->get();
         $ourServices = OurService::latest()->take(5)->get();
         $statistics = Statistic::latest()->take(4)->get();
         $sponsors = Sponsor::latest()->take(5)->get();
@@ -40,6 +40,7 @@ class HomeFrontController extends Controller
             ->take(5)->get();
         $setting=Setting::first();
 
+        
         $customerServies = $customerServies = \App\Models\Admin::whereHas('roles', function($query) {
         $query->where('role_id', 4);
         })->get();
@@ -50,7 +51,7 @@ class HomeFrontController extends Controller
         //frontend.pages.home.home
         
         return view('frontend_v2.pages.home.index',[
-            //'sliders'=>$sliders,
+            'sliders'=>$sliders,
             'ourServices'=>$ourServices,
             'statistics'=>$statistics,
             'sponsors'=>$sponsors,

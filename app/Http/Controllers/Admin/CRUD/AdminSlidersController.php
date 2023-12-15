@@ -90,21 +90,12 @@ class AdminSlidersController extends Controller
     {
         $data = $this->validate($request,[
             'image'=>'required|file|image',
-//            'title'=>'required|array',
-//            'title.*'=>'required',
-//            'desc'=>'required|array',
-//            'desc.*'=>'required',
+            'title'=>'required',
+           'desc'=>'required',
         ]);
-        //$data = $request->except(['title','desc']);
-//        $name = [];
-//        $desc = [];
-//        foreach (Language::where('is_active','active')->get() as $index=>$language){
-//            $name[$language->title] = $request->title[$index];
-//            $desc[$language->title] = $request->desc[$index];
-//        }
-//        $data['title'] = $name;
-//        $data['desc'] = $desc;
+
         $data ['image'] = $this->uploadFiles('sliders',$request->file('image'),null );
+
         Slider::create($data);
         return response()->json(1,200);
 
@@ -152,9 +143,9 @@ class AdminSlidersController extends Controller
         $slider = Slider::findOrFail($id);
         $data = $this->validate($request,[
             'image'=>'nullable|file|image',
-//            'title'=>'required|array',
+            'title'=>'required',
 //            'title.*'=>'required',
-//            'desc'=>'required|array',
+            'desc'=>'required',
 //            'desc.*'=>'required',
         ]);
         try{
