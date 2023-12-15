@@ -90,25 +90,7 @@ $setting = App\Models\Setting::first();
                     </div>
                     <!--Grid column-->
 
-                    <!--Grid column-->
-                    <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                        <h5 class="text-uppercase mb-4 text-bold" style="color:white;">مواقيت العمل</h5>
 
-                        <table class="table text-center text-white">
-                            <tbody class="fw-normal">
-                                <tr>
-                                    <td style="color:white;">الاربعاء - السبت:</td>
-                                    <td style="color:white;">8am - 9pm</td>
-                                </tr>
-                                <tr>
-                                    <td style="color:white;">الخميس - الجمعة:</td>
-                                    <td style="color:white;">8am - 1am</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <!--Grid column-->
                 </div>
                 <!--Grid row-->
             </div>
@@ -128,10 +110,11 @@ $setting = App\Models\Setting::first();
 
 
     <div class="sbuttons">
-        <a href="#" target="_blank" class="sbutton whatsapp" tooltip="واتساب"><i
+        <a href="https://wa.me/{{ $setting->phone1 }}" target="_blank" class="sbutton whatsapp" tooltip="واتساب"><i
                 class="bx bxl-whatsapp text-white"></i></a>
 
-        <a href="#" target="_blank" class="sbutton fb" tooltip="اتصال"><i class="bx bx-phone text-white"></i></a>
+        <a href="tel:{{ $setting->phone1 }}" target="_blank" class="sbutton fb" tooltip="اتصال"><i
+                class="bx bx-phone text-white"></i></a>
 
 
 
