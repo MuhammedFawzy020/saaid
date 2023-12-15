@@ -321,6 +321,7 @@ class WorkerFrontController extends Controller
 
 //        $this->send_support_reply_email_to_user($user, $order);
 
+
         return redirect()->route('success-order', $order->order_code);
     }//end fun
 
