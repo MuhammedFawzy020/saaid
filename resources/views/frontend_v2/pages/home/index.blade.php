@@ -2,10 +2,7 @@
 @section('title')
     الرئيسية
 @endsection
-@section('keywords')
-    <meta name="keywords"
-        content="استقدام,عمالة منزلية,سائق,سائقين,مساند,مكتب استقدام,استقدام سائق خاص,استقدام عماله منزليه,مكتب استقدام الرياض,مكتب استقدام جدة,مكتب استقدام عماله منزلية,مكتب استقدام سائق,خدمات الاستقدام,روافد للاستقدام,مواقع مكاتب الاستقدام,مساند مكاتب استقدام,مساند للاستقدام,استقدام عاملة منزلية,استقدام الرياض,منصة مساند,ارخص مكتب استقدام,افضل مكتب استقدام,تقديم شغالات,استقدام عامل منزلي,اقرب مكتب استقدام من موقعي,اسعار تقديم الخادمات,شروط استقدام سائق خاص,شروط استقدام عامل منزلي,شروط الاستقدام,مكاتب الاستقدام المعتمدة,مكاتب الاستقدام المعتمدة من وزارة العمل,مكتب استقدام سائق خاص,مكاتب استقدام من الفلبين بالرياض,اسعار استقدام العاملات المنزلية,أفضل مكتب استقدام في الرياض,مكتب استقدام شمال الرياض,استقدام خادمة سيرلانكية,مكتب استقدام كينيا الرياض,مكاتب استقدام فلبينيات بالرياض">
-@endsection
+
 
 @section('content')
     <canvas id="pupples" style="width:100%"></canvas>
@@ -13,16 +10,16 @@
     @include('frontend_v2.pages.home.sections.sectionTwo')
     @include('frontend_v2.pages.home.sections.sectionFour')
     @include('frontend_v2.pages.home.sections.sectionThree')
-   
-   
-  
+
+
+
     @include('frontend_v2.pages.home.sections.sectionFive')
     @include('frontend_v2.pages.home.sections.aboutus')
     @include('frontend_v2.pages.home.sections.sectionNine')
     @include('frontend_v2.pages.home.sections.sectionSix')
-    
+
     @include('frontend_v2.pages.home.sections.sectionEight')
-    
+
     @include('frontend_v2.pages.home.sections.sectionTen')
 @endsection
 

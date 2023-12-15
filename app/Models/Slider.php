@@ -11,5 +11,6 @@ class Slider extends Model
     use HasFactory;
     use HasTranslations;
     protected $guarded = [];
-    public $translatable = ['title',"desc"];
+    public $translatable = [];
+    protected $fillable = ['image','title','desc'];
 }

@@ -1,8 +1,8 @@
  <section class="Countries-section" id="Countries">
      <div class="container-fluid">
-         <div class="text-right">
+         <div class="text-center">
              <h1 class="display-1">
-                 ـــ خدمة العملاء
+                 خدمة العملاء
              </h1>
              <p class="text-muted">
                  يمكنك الان التواصل مع خدمة العملاء في اي وقت

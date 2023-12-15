@@ -1,5 +1,5 @@
-<div class="container" style="position: relative; top: -85px;">
-    <div class="card" style="z-index:1">
+<div class="container mt-4">
+    <div class="card">
         <form method="get" action="{{ route('all-workers') }}">
             @csrf
             <div class="card-body">
@@ -80,8 +80,8 @@
                     <div class="col-md-12 text-center">
                         <div class="form-group mb-2">
 
-                            <input type="submit" class="btn btn-secondary w-25 mt-4" style="background-color:#B9AE80"name="submit"
-                                value="{{ __('إبحث') }}">
+                            <input type="submit" class="btn btn-secondary w-25 mt-4"
+                                style="background-color:#B9AE80"name="submit" value="{{ __('إبحث') }}">
                         </div>
                     </div>
                 </div>

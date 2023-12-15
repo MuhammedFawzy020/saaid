@@ -315,11 +315,12 @@ class WorkerFrontController extends Controller
         $order = Order::create($order_data);
         $order_id = $order->id;
 
-        $this->sendSms($user->phone, "  تم ارسال طلبك بنجاح ف انتظار تواصلك مع خدمة العملاء علي رقم الجوال "."0".$admin->phone);
+      //  $this->sendSms($user->phone, "  تم ارسال طلبك بنجاح ف انتظار تواصلك مع خدمة العملاء علي رقم الجوال "."0".$admin->phone);
 
-         $this->sendSms($admin->phone,"تم استقبال طلب استقدام من العميل ".$user->name."برقم جوال".$user->phone);
+        // $this->sendSms($admin->phone,"تم استقبال طلب استقدام من العميل ".$user->name."برقم جوال".$user->phone);
 
 //        $this->send_support_reply_email_to_user($user, $order);
+
 
         return redirect()->route('success-order', $order->order_code);
     }//end fun

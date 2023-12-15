@@ -3,89 +3,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <title>
-    شركة ساعد للاستقدام - @yield('title')
+    {{ $setting->title }} - @yield('title')
 </title>
 
-<meta name="description"
-    content="أحد أعرق شركات الاستقدام في المملكة منذ أكثر منذ ثلاثون عاما ولدينا عشرة فروع خارج المملكة لجلب أفضل العمالة المدربة والماهرة طبقا للمعايير الدولية ارضاءا لعملائنا" />
 
-<meta property="og:title" content="شركة ساعد للاستقدام">
-<meta property="og:image" content="{{ asset('frontend') }}/images/logo/WhatsApp Image 2023-12-11 at 13.51.27_8a0b1f49.jpg">
-<meta property="og:image:secure_url" content="{{ asset('frontend') }}/images/logo/WhatsApp Image 2023-12-11 at 13.51.27_8a0b1f49.jpg" />
-<meta property="og:image:type" content="svg" />
+<meta property="og:title" content="{{ $setting->title }}">
+<meta property="og:image" content="{{ get_file($settings->header_logo) }}">
+<meta property="og:image:secure_url" content="{{ get_file($settings->header_logo) }}" />
+<meta property="og:image:type" content="jpg" />
 <meta property="og:image:width" content="400" />
 <meta property="og:image:height" content="300" />
-<meta property="og:description"
-    content="أحد أعرق شركات الاستقدام في المملكة منذ أكثر منذ ثلاثون عاما ولدينا عشرة فروع خارج المملكة لجلب أفضل العمالة المدربة والماهرة طبقا للمعايير الدولية ارضاءا لعملائنا">
-<meta property="og:url" content="{{ url('/') }}">
-<meta name="twitter:card" content="{{ asset('frontend') }}/images/logo/WhatsApp Image 2023-12-11 at 13.51.27_8a0b1f49.jpg">
 
 
-<meta name="robots" content="index, follow">
-<meta name="description"
-    content="شركة ساعد للاستقدام | شركة استقدام عمالة منزلية - استقدم سائق خاص - كينيا - سريلانكا - الفلبين - اوغندا | معتمد من مساند" />
-
-@yield('keywords')
-<meta name="twitter:card" content="ساعد  | أفضل شركة استقدام عمالة منزلية بالسعودية">
-<meta name="twitter:site"
-    content="شركة استقدام,استقدام سائق خاص,استقدام عماله منزليه,شركة استقدام الرياض,شركة استقدام جدة,شركة استقدام عماله منزلية,شركة استقدام سائق,خدمات الاستقدام,ساعد للاستقدام,مواقع مكاتب الاستقدام,مساند مكاتب استقدام,مساند للاستقدام,استقدام عاملة منزلية,استقدام الرياض,منصة مساند,ارخص شركة استقدام,افضل شركة استقدام,تقديم شغالات,استقدام عامل منزلي,اقرب شركة استقدام من موقعي,اسعار تقديم الخادمات,شروط استقدام سائق خاص,شروط استقدام عامل منزلي,شروط الاستقدام,مكاتب الاستقدام المعتمدة,مكاتب الاستقدام المعتمدة من وزارة العمل,شركة استقدام سائق خاص,مكاتب استقدام من الفلبين بالرياض,اسعار استقدام العاملات المنزلية,أفضل شركة استقدام في الرياض,شركة استقدام شمال الرياض,استقدام خادمة سيرلانكية,شركة استقدام كينيا الرياض,مكاتب استقدام فلبينيات بالرياض">
-<meta name="twitter:title" content="ساعد  | أفضل شركة استقدام عمالة منزلية بالسعودية">
-<meta name="twitter:description"
-    content="شركة ساعد للاستقدام | شركة استقدام عمالة منزلية - استقدم سائق خاص - كينيا - سريلانكا - الفلبين - اوغندا | معتمد من مساندشركة ساعد للاستقدام | شركة استقدام عمالة منزلية - استقدم سائق خاص - كينيا - سريلانكا - الفلبين - اوغندا | معتمد من مساند">
-<meta name="twitter:creator" content="ساعد  | أفضل شركة استقدام عمالة منزلية بالسعودية">
-<meta name="twitter:image" content="{{ asset('frontend') }}/images/logo/WhatsApp Image 2023-12-11 at 13.51.27_8a0b1f49.jpg>">
-<!-- Open Graph data -->
-<meta property="og:title" content="ساعد  | أفضل شركة استقدام عمالة منزلية بالسعودية" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.mawtenrec.sa" />
-<meta property="og:image" content="{{ asset('frontend') }}/images/logo/WhatsApp Image 2023-12-11 at 13.51.27_8a0b1f49.jpg"/>
-<meta property="og:description"
-    content="شركة ساعد للاستقدام | شركة استقدام عمالة منزلية - استقدم سائق خاص - كينيا - سريلانكا - الفلبين - اوغندا | معتمد من مساند" />
-<meta property="og:site_name" content="ساعد  للاستقدام" />
-<meta property="og:title" content="ساعد  | أفضل شركة استقدام عمالة منزلية بالسعودية" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="{{ url('/') }}" />
-<meta property="og:image" content="{{ asset('frontend') }}/images/logo/WhatsApp Image 2023-12-11 at 13.51.27_8a0b1f49.jpg" />
-<meta property="og:description"
-    content="شركة ساعد للاستقدام | شركة استقدام عمالة منزلية - استقدم سائق خاص - كينيا - سريلانكا - الفلبين - اوغندا | معتمد من مساند" />
-<meta property="og:site_name" content="ساعد  للاستقدام" /> <!-- title -->
-<title>ساعد | أفضل شركة استقدام عمالة منزلية بالسعودية </title> <!-- favicon -->
-<link rel="icon" type="image/x-icon" href="{{ asset('frontend') }}/images/logo/WhatsApp Image 2023-12-11 at 13.51.27_8a0b1f49.jpg">
+<!-- favicon -->
+<link rel="icon" type="image/x-icon" href="{{ get_file($settings->header_logo) }}">
 
 
-<!-- Google Tag Manager -->
-<script>
-    (function(w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-            'gtm.start': new Date().getTime(),
-            event: 'gtm.js'
-        });
-        var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-WXKR56N9');
-</script>
-<!-- End Google Tag Manager -->
 
-<script>
-    var botmanWidget = {
-        aboutText: 'شركة ساعد للاستقدام',
-        introMessage: "مرحبا بكـ كيف يمكنني مساعدتك اليوم ؟",
-        title: 'تواصل معنا',
-        bubbleBackground: '#5B79AF',
-        headerTextColor: '#fff',
-        placeholderText: 'إكتب رسالتك هنا',
-        aboutLink: 'https:\\mawtenrec.sa',
 
-    };
-</script>
-<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
-<link rel="stylesheet" type="text/css" href="{{ url('/frontend/css/bot.css') }}">
 
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css" />
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/responsive.css" />
@@ -133,7 +68,6 @@
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css" />
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/responsive.css" />
 {{-- here el mafrod nne2lha l style --}}
-
 
 
 
