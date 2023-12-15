@@ -17,7 +17,7 @@
             </div>
             <div class="Countries-boxes">
                 <div class="row">
-                    <div class="swiper cards">
+                    <div class="swiper newCards">
                         <div class="swiper-wrapper">
                             @foreach ($countries as $key => $country)
                                 <div class="swiper-slide m-2">

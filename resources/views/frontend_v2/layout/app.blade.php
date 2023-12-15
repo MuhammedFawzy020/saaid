@@ -187,24 +187,28 @@ $setting = App\Models\Setting::first();
         });
 
         //Categories Slider
-        var referencesSlider = new Swiper(".cards", {
-            slidesPerView: 4,
+        var newCards = new Swiper(".newCards", {
+            slidesPerView: 5,
             loop: true,
             autoplay: {
                 delay: 2500,
                 disableOnInteraction: false,
             },
             breakpoints: {
+                200: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
                 640: {
                     slidesPerView: 1,
                     spaceBetween: 20,
                 },
                 768: {
-                    slidesPerView: 3,
+                    slidesPerView: 1,
                     spaceBetween: 40,
                 },
                 1024: {
-                    slidesPerView: 3,
+                    slidesPerView: 4,
                     spaceBetween: 50,
                 },
             },

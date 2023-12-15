@@ -101,7 +101,7 @@
 	background-image: url("https://4.bp.blogspot.com/-1J75Et4_5vc/WAYhWRVuMiI/AAAAAAAAArE/gwa-mdtq0NIqOrlVvpLAqdPTV4VAahMsQCPcB/s1600/barrel-we-love-subscribers-img.png");
 } */
 * {
-  
+
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -867,6 +867,7 @@ canvas {
 .sbutton.whatsapp {
     background: #00e676;
 }
+
 content {
     width: 100%;
     min-height: 50vh;
@@ -2086,7 +2087,7 @@ header .navbar .navbar-nav .defaultBtn:hover {
     overflow: hidden;
     transition: 0.5s all ease;
     height: 200px;
-    width: 380px;
+    width: 100%;
     flex-direction: column;
     margin: 30px 0;
 }
@@ -7624,14 +7625,17 @@ canvas {
     background: #fff;
     z-index: 999999;
 }
+
 #preloader {
     display: table;
     table-layout: fixed;
 }
+
 #preloader-status {
     display: table-cell;
     vertical-align: middle;
 }
+
 .preloader-position {
     position: relative;
     margin: 0 auto;
@@ -7642,6 +7646,7 @@ canvas {
     -o-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 .loader {
     position: relative;
     width: 60px;
@@ -7662,6 +7667,7 @@ canvas {
     -o-border-radius: 50%;
     border-radius: 50%;
 }
+
 .loader span {
     position: absolute;
     width: 60px;
@@ -7676,21 +7682,23 @@ canvas {
     -o-border-radius: 50%;
     border-radius: 50%;
 }
+
 @-webkit-keyframes rotate {
     0% {
         -webkit-transform: rotate(0deg);
     }
+
     100% {
         -webkit-transform: rotate(360deg);
     }
 }
+
 @keyframes rotate {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
 }
-
-
