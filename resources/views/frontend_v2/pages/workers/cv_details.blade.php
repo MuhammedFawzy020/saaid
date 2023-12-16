@@ -105,10 +105,10 @@
                     <div class="card-body">      
                         <div class="card mb-3">
                             <div class="row g-0">
-                                <div class="col-md-4 content-head" >
+                                <div class="col-md-3 content-head" >
                                   <h1 style="text-align:center;padding:20px;">البيانات الشخصية</h1>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-4">
@@ -204,10 +204,10 @@
                         </div>
                         <div class="card mb-3">
                             <div class="row g-0">
-                                <div class="col-md-4 content-head" >
+                                <div class="col-md-3 content-head" >
                                   <h1 style="text-align:center;padding:20px;">الخبرات السابقة</h1>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <div class="card-body">
                                       @if ($cv->experinces) 
                                         <div class="row">
@@ -242,10 +242,10 @@
                         </div>
                         <div class="card mb-3">
                             <div class="row g-0">
-                                <div class="col-md-4 content-head">
+                                <div class="col-md-3 content-head">
                                   <h1 style="text-align:center;padding:20px;">المهــارات</h1>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <div class="card-body">
                                     @forelse($cv->skills as $skill)
                                     <button class="btn btn-outline-secondary m-2">
@@ -262,10 +262,10 @@
                         </div>
                         <div class="card mb-3">
                             <div class="row g-0">
-                                <div class="col-md-4 content-head" >
+                                <div class="col-md-3 content-head" >
                                 <h1 style="text-align:center;padding:20px;">تفاصيل جاوز السفر</h1>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="row" >
