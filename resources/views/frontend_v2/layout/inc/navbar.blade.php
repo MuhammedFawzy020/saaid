@@ -25,7 +25,7 @@
                         <i class="bx bxl-tiktok color-white font-size-20"></i>
                     </a>
                     |
-                    <a href="{{ $setting->snapchat }}" class="text-decoration-none ">
+                    <a href="{{ $setting->snapchat_ghost }}" class="text-decoration-none ">
                         <i class="bx bxl-snapchat color-white font-size-20"></i>
                     </a>
                     |
