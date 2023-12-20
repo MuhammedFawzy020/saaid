@@ -14,7 +14,7 @@
 
 
     @include('frontend_v2.pages.home.sections.sectionFive')
-    @include('frontend_v2.pages.home.sections.sectionSeven')
+    @include('frontend_v2.pages.home.sections.aboutus')
     @include('frontend_v2.pages.home.sections.sectionNine')
     @include('frontend_v2.pages.home.sections.sectionSix')
 
