@@ -61,7 +61,7 @@ $setting = App\Models\Setting::first();
                             <a href="{{ $setting->twitter }}" class="btn btn-floating btn-light btn-lg"><i
                                     class="bx bxl-twitter"></i></a>
                             <!-- Google + -->
-                            <a href="{{ $setting->snapchat }}" class="btn btn-floating btn-light btn-lg"><i
+                            <a href="{{ $setting->snapchat_ghost }}" class="btn btn-floating btn-light btn-lg"><i
                                     class="bx bxl-snapchat"></i></a>
                             <!-- Linkedin -->
                         </div>
