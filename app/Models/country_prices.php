@@ -10,11 +10,11 @@ class country_prices extends Model
     use HasFactory;
 
     protected $fillable = [
-        'city_id' ,'price'
+        'country_id' ,'price'
     ];
 
 
     public function country(){
-        return $this->hasOne(Nationalitie::class , 'id', 'city_id');
+        return $this->hasOne(Nationalitie::class , 'id', 'country_id');
     }
 }
