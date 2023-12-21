@@ -50,7 +50,7 @@
 
                                          </div>
 
-                                         <div class="c-info-column">
+                                         <div class="c-info-column d-none">
                                              <div class="c-info-icon custome-size"><i class="bx bx-phone"></i></div>
 
                                              <h3 class="twm-title">رقم الجوال الرئيسي </h3>
@@ -60,7 +60,7 @@
                                              </p>
 
                                          </div>
-                                         <div class="c-info-column">
+                                         <div class="c-info-column d-none">
                                              <div class="c-info-icon custome-size"><i class="bx bx-user"></i></div>
 
                                              <h3 class="twm-title"> قسم المبيعات </h3>
