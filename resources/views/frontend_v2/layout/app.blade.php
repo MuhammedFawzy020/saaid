@@ -51,9 +51,7 @@ $setting = App\Models\Setting::first();
 
 
                         <div class="mt-4">
-                            <!-- Facebook -->
-                            <a href="{{ $setting->facebook }}" class="btn btn-floating btn-light btn-lg"><i
-                                    class="bx bxl-facebook-circle"></i></a>
+
                             <!-- Dribbble -->
                             <a href="{{ $setting->instagram }}" class="btn btn-floating btn-light btn-lg"><i
                                     class="bx bxl-instagram"></i></a>
