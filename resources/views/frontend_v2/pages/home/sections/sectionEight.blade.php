@@ -41,7 +41,11 @@
                             </span></div>
                         <div class="contact-link-content">
                             <div class="contact-link-title">واتس اب</div>
-                            <div class="contact-link-text">{{ $setting->whatsapp }}</div>
+                            <div class="contact-link-text">
+                                <a href="https://wa.me/{{ $setting->phone3 }}">
+                                    {{ $setting->phone3 }}
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="contact-link">
