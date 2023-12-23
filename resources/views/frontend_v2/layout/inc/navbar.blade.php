@@ -9,10 +9,7 @@
                 </div>
                 <div class="col-md-6 text-end text-white">
 
-                    <a href="{{ $setting->facebook }}" class="text-decoration-none ">
-                        <i class="bx bxl-facebook-circle color-white font-size-20"></i>
-                    </a>
-                    |
+
                     <a href="{{ $setting->twitter }}" class="text-decoration-none">
                         <i class="bx bxl-twitter color-white font-size-20"></i>
                     </a>
