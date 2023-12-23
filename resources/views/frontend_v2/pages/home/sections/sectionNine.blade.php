@@ -6,7 +6,7 @@
                 @foreach ($sponsors as $sponsor)
                     <div class="swiper-slide">
                         <div class="referenceLogo ">
-                            <img src="{{ get_file($sponsors->image) }}" alt="">
+                            <img src="{{ get_file($sponsor->image) }}" alt="">
                         </div>
                     </div>
                 @endforeach
