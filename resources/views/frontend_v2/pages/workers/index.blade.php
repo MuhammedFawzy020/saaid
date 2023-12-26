@@ -222,7 +222,7 @@
 
                             <div class="row">
                                 <div class="cv-comp text-center">
-                                    <a href="{{ route('worker-details', $cv->id) }}"
+                                    <!-- <a href="{{ route('worker-details', $cv->id) }}"
                                         class="worker btn cvDetails btn btn-outline-secondary">
 
                                         التفاصيل
@@ -231,7 +231,15 @@
                                     <a href="{{ route('frontend.show.worker', $cv->id) }}" class="btn btn-secondary">
                                         احجز الان
 
-                                    </a>
+                                    </a> -->
+
+                                     <a id="downloadPdfBtn2" class="btn btn-danger d-none">
+                                            تحميل السيفي
+                                     </a>
+                                     <a href="{{ route('frontend.show.worker', $cv->id) }}" class="btn btn-secondary">
+                                        احجز الان
+                                     </a>
+                                     
                                 </div>
                             </div>
 

@@ -64,7 +64,7 @@
                         <div id="vertical-example" class="vertical-wizard">
 
                             <!-- Seller Details -->
-                            <h3>البيانات الرئيسية </h3>
+                            <!-- <h3>البيانات الرئيسية </h3>
                             <section>
 
                                 <div class="row">
@@ -77,29 +77,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 p-2">
-                                        <div class="row">
-                                            <div class="col-8">
-                                                <div class="form-group">
-                                                    <label for="profile_picture"> ارفق صور الشخصية </label>
-                                                    <input type="file" class="form-control " id="profile_picture"
-                                                        name="cv_file" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <img src="{{ url('frontend/images/users/' . $biography->cv_file) }}"
-                                                    style="width:100%;height:100px" alt="">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="user">اسم الشخص</label>
-                                            <input data-validation="required" value="{{ $biography->name }}" required
-                                                type="text" class="form-control" value="" id="user"
-                                                name="name" placeholder="">
-                                        </div>
-                                    </div>
+                                       
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="recruitment_office_id"> مكاتب السيرة الذاتيه </label>
@@ -174,12 +152,34 @@
                                 </div>
 
 
-                            </section>
+                            </section> -->
                             <!-- Company Document -->
                             <h3>البيانات الشخصية</h3>
                             <section>
 
                                 <div class="row">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <label for="profile_picture"> ارفق صور الشخصية </label>
+                                                <input type="file" class="form-control " id="profile_picture"
+                                                    name="cv_file" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <img src="{{ url('frontend/images/users/' . $biography->cv_file) }}"
+                                                style="width:100%;height:100px" alt="">
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                        <div class="form-group">
+                                            <label for="user">اسم الشخص</label>
+                                            <input data-validation="required" value="{{ $biography->name }}" required
+                                                type="text" class="form-control" value="" id="user"
+                                                name="name" placeholder="">
+                                        </div>
+                                    </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="passport_number">الجنسية </label>
@@ -205,7 +205,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="passport_number"> الحالة الاجتماعية</label>
                                             <select name="social_type_id" class="form-control select2Users">
@@ -216,7 +216,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
@@ -231,7 +231,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="education">التعليم</label>
                                             <select id="cvTypeSelect" name="education" class="form-control select2Users">
@@ -251,9 +251,9 @@
                                                     حاصل علي دكتوراه</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
 
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="reasonservices">الوزن</label>
                                             <input data-validation="optional" type="text" class="form-control"
@@ -271,7 +271,7 @@
                                                 placeholder="">
                                         </div>
 
-                                    </div>
+                                    </div> -->
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="age">العمر </label>
@@ -281,7 +281,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="age">عدد الطفال </label>
                                             <input type="number" class="form-control"
@@ -313,9 +313,9 @@
                                                 value="{{ $biography->phone_no }}" id="phone_no" name="phone_no"
                                                 placeholder="رقم التواصل">
                                         </div>
-                                    </div>
+                                    </div> -->
 
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="passport_number">اللغة التى يتحدث بها العامل</label>
                                             <select name="language_title_id" class="form-control select2Users">
@@ -326,7 +326,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
 
 
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
@@ -367,23 +367,22 @@
                                     </div>
 
 
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
 
                                             <label for="warrenty_period">مدة الضمان</label>
-                                            <input data-validation="optional" type="text" class="form-control"
-                                                value="{{ $biography->warrenty_period }}" id="warrenty_period"
+                                            <input data-validation="optional" type="text" class="form-control" value="{{ $biography->warrenty_period }}" id="warrenty_period"
                                                 name="warrenty_period" placeholder=" ">
 
                                         </div>
 
-                                    </div>
+                                    </div> -->
 
 
 
                                 </div>
                             </section>
-                            <h3>الخبرة السابقة</h3>
+                            <!-- <h3>الخبرة السابقة</h3>
                             <section>
 
                                 <div class="row-template">
@@ -432,9 +431,9 @@
                                 </div>
 
 
-                            </section>
+                            </section> -->
                             <!-- Company Document -->
-                            <h3>تفاصيل اكثر </h3>
+                            <!-- <h3>تفاصيل اكثر </h3>
                             <section>
 
                                 <div class="row">
@@ -511,7 +510,7 @@
                                     </div>
 
                                 </div>
-                            </section>
+                            </section> -->
                             <!-- Seller Details -->
 
                         </div>
