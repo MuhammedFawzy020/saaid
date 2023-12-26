@@ -181,7 +181,7 @@ class AdminOrderController extends Controller
 
                 })
                 ->addColumn('nationalitie_id', function ($row) {
-                    return (isset($row->biography->nationalitie->title)) ? $row->biography->nationalitie->title : "غير محدد ";
+                    return (isset($row->biography->nationalitie?->title)) ? $row->biography->nationalitie?->title : "غير محدد ";
                 })
                 ->addColumn('passport_number', function ($row) {
                     return (isset($row->biography->passport_number)) ? $row->biography->passport_number : "غير محدد ";
@@ -197,7 +197,7 @@ class AdminOrderController extends Controller
                     return (isset($row->admin->name)) ? $row->admin->name : "غير محدد ";
                 })
                 ->editColumn('recruitment_office_id', function ($row) {
-                    return $row->biography->recruitment_office->title;
+                    return $row->biography->recruitment_office?->title;
                 })
                 ->editColumn('type', function ($row) {
                     if ($row->biography->type == 'admission')

@@ -61,24 +61,13 @@
                     <form id="Form" method="post" action="{{ route('biographies.store') }}"
                         enctype="multipart/form-data">
                         @csrf
-                        <div id="vertical-example" class="vertical-wizard">
+                        <div class="vertical-wizard">
 
-
-                            <!-- Seller Details -->
-                            <h3>البيانات الرئيسية </h3>
                             <section>
-
                                 <div class="row">
                                     <div class="col-12 p-2">
                                         <div class="form-group">
-                                            <input type="checkbox" value="0" id="display" name="display">
-                                            <label for="display">إخفاء المعلومات داخل السايت</label>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="profile_picture"> ارفق صور الشخصية </label>
+                                            <label for="profile_picture"> ارفق السيرة الذاتية </label>
                                             <input type="file" data-validation="required" class="form-control "
                                                 id="cv_file" name="cv_file" placeholder="">
                                         </div>
@@ -90,76 +79,6 @@
                                                 value="" id="user" name="name" placeholder="">
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="recruitment_office_id"> مكاتب السيرة الذاتيه </label>
-                                            <select data-validation="required" required name="recruitment_office_id"
-                                                id="recruitment_office_id" class="form-control">
-                                                @foreach ($recruitment_office as $one)
-                                                    <option value="{{ $one->id }}">{{ $one->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="passport_number">رقم جواز السفر </label>
-                                            <input data-validation="required" required type="text" class="form-control"
-                                                value="" id="passport_number" name="passport_number" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="passport_start">تاريخ إصدار جواز السفر </label>
-                                            <input required type="date" class="form-control" value=""
-                                                id="passport_start" name="passport_start" placeholder="">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="passport_end">تاريخ إنتهاء جواز السفر </label>
-                                            <input required type="date" class="form-control" value=""
-                                                id="passport_end" name="passport_end" placeholder="">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="passport_city">مكان إصدار جواز السفر </label>
-                                            <select name="passport_city" class="form-control select2Users">
-                                                @foreach ($cities as $city)
-                                                    <option value="{{ $city->id }}">{{ $city->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="passport_number">المهارات </label>
-                                            <select multiple name="skills[]" class="form-control select2Users">
-                                                @foreach ($skills as $skill)
-                                                    <option value="{{ $skill->id }}">{{ $skill->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-
-
-
-                                </div>
-
-
-                            </section>
-                            <!-- Company Document -->
-                            <h3>البيانات الشخصية</h3>
-                            <section>
-
-                                <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="passport_number">الجنسية </label>
@@ -180,18 +99,6 @@
                                             </select>
                                         </div>
                                     </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="passport_number"> الحالة الاجتماعية</label>
-                                            <select name="social_type_id" class="form-control select2Users">
-                                                @foreach ($social_type as $one)
-                                                    <option value="{{ $one->id }}">{{ $one->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="passport_number">ديانة العامل </label>
@@ -202,38 +109,6 @@
                                             </select>
                                         </div>
                                     </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="education">التعليم</label>
-                                            <select name="education" class="form-control select2Users">
-                                                <option value="-">دون تعليم</option>
-                                                <option value="مرحلة ابتدائية">مرحلة ابتدائية</option>
-                                                <option value="تعليم متوسط">تعليم متوسط</option>
-                                                <option value="حاصل علي بكالوريوس">حاصل علي بكالوريوس</option>
-                                                <option value="حاصل علي دكتوراه">حاصل علي دكتوراه</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-
-                                            <label for="reasonservices">الوزن</label>
-                                            <input data-validation="optional" type="text" class="form-control"
-                                                value="" id="reasonservices" name="weight" placeholder="">
-                                        </div>
-
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-
-                                            <label for="reasonservices">الطول</label>
-                                            <input data-validation="optional" type="text" class="form-control"
-                                                value="" id="reasonservices" name="height" placeholder="">
-                                        </div>
-
-                                    </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="age">العمر </label>
@@ -241,54 +116,12 @@
                                                 name="age" placeholder="العمر">
                                         </div>
                                     </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="age">عدد الطفال </label>
-                                            <input type="number" class="form-control" value=""
-                                                id="no_of_childrens" name="no_of_childrens" placeholder="عدد الاطفال">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="birthdate">تاريخ الميلاد</label>
-                                            <input type="date" class="form-control" value="" id="birthdate"
-                                                name="birthdate" placeholder="تاريخ الميلاد">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="birth_country">مكان الميلاد</label>
-                                            <input placeholder="مكان الميلاد" type="text" name="birth_country"
-                                                class="form-control" id="birth_country" />
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="phone_no">رقم التواصل</label>
-                                            <input type="text" class="form-control" value="" id="phone_no"
-                                                name="phone_no" placeholder="رقم التواصل">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="passport_number">اللغة التى يتحدث بها العامل</label>
-                                            <select name="language_title_id" class="form-control select2Users">
-                                                @foreach ($language_title as $one)
-                                                    <option value="{{ $one->id }}">{{ $one->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
 
                                             <label for="recruitment_price">سعر الاستقدام </label>
-                                            <input type="number" class="form-control" value=""
-                                                id="recruitment_price" name="recruitment_price" placeholder=" ">
+                                            <input type="number" class="form-control" value="" id="recruitment_price"
+                                                name="recruitment_price" placeholder=" ">
 
                                         </div>
 
@@ -297,14 +130,12 @@
                                         <div class="form-group">
 
                                             <label for="salary">الراتب</label>
-                                            <input data-validation="required" required type="number"
-                                                class="form-control" value="" id="salary" name="salary"
-                                                placeholder=" ">
+                                            <input data-validation="required" required type="number" class="form-control"
+                                                value="" id="salary" name="salary" placeholder=" ">
 
                                         </div>
 
                                     </div>
-
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="passport_number">الخبرة السابقة</label>
@@ -314,148 +145,13 @@
                                             </select>
                                         </div>
                                     </div>
-
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-
-                                            <label for="warrenty_period">مدة الضمان</label>
-                                            <input data-validation="optional" type="text" class="form-control"
-                                                value="" id="warrenty_period" name="warrenty_period"
-                                                placeholder=" ">
-
-                                        </div>
-
+                                    <div class="col-md-6">
+                                        <input id="submit_button"
+                                            style="border: none !important;background-color: #556ee6;border-radius: 4px;padding: 8px 15px;color: #fff;"
+                                            type="submit" value="حفظ" />
                                     </div>
-
-
-
                                 </div>
                             </section>
-                            <h3>الخبرة السابقة</h3>
-                            <section>
-
-                                <div class="row-template">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="exp_job_id">المهنة </label>
-                                            <select name="exp_job_id" class="form-control select2Users">
-                                                <option value=" " selected>لا يوجد خبرة سابقة</option>
-                                                @foreach ($job as $one)
-                                                    <option value="{{ $one->id }}">{{ $one->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <label for="city_id">البلد</label>
-                                            <select name="exp_city_id" class="form-control select2Users">
-                                                <option value=" " selected>لا يوجد خبرة سابقة</option>
-                                                @foreach ($cities as $city)
-                                                    <option value="{{ $city->id }}">{{ $city->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                        <div class="form-group">
-                                            <div id="" class="">
-                                                <label for="exp_period">المدة</label>
-                                                <input data-validation="optional" type="text" class="form-control"
-                                                    value="" id="exp_period" name="exp_period" placeholder=" ">
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-
-                                </div>
-
-
-                            </section>
-                            <!-- Company Document -->
-                            <h3>تفاصيل اكثر </h3>
-                            <section>
-
-                                <div class="row">
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-
-                                            <label for="contract_period">مدة التعاقد</label>
-                                            <input data-validation="optional" type="text" class="form-control"
-                                                value="" id="contract_period" name="contract_period"
-                                                placeholder=" ">
-
-                                        </div>
-
-                                    </div>
-
-
-
-
-
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <label for="passport_number">نوع السيرة الذاتية</label>
-                                            <select required name="type" class="form-control select2Users">
-                                                <option value="admission">استقدام</option>
-                                                <option value="transport">نقل خدمات</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-
-
-
-
-
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <div id="showtransporttwo" class="transferReason">
-                                                <label for="reasonservices">سبب التنازل </label>
-                                                <input data-validation="optional" type="text" class="form-control"
-                                                    value="" id="reasonservices" name="reasonservices"
-                                                    placeholder="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <div id="showtransportone" class="transferReason">
-                                                <label for="periodservices">مدة العمل عند الكفيل السابق</label>
-                                                <input data-validation="optional" type="text" class="form-control"
-                                                    value="" id="periodservices" name="periodservices"
-                                                    placeholder=" ">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <div id="showtransportthree" class="transferReason">
-                                                <label for="transfer_price">سعر نقل الخدمات </label>
-                                                <input data-validation="optional" type="number" class="form-control"
-                                                    value="" id="transfer_price" name="transfer_price"
-                                                    placeholder=" ">
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </section>
-
-
-
-
-
                         </div>
 
                     </form>
@@ -553,11 +249,11 @@
             width: '100%'
         });
 
-        $(".dropify").dropify()
+        // $(".dropify").dropify()
 
-        $('.input-images-1').imageUploader({
-            'imagesInputName': "images",
-        });
+        // $('.input-images-1').imageUploader({
+        //   'imagesInputName': "images",
+        //});
 
 
         $(document).ready(function() {
