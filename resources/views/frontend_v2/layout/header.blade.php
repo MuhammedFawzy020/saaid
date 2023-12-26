@@ -70,6 +70,11 @@
 {{-- here el mafrod nne2lha l style --}}
 
 
+<style>
+    .fancybox__container {
+        z-index: 99999 !important;
+    }
+</style>
 
 
 {{-- <meta name="facebook-domain-verification" content="xzriovd2wahlxglii9zvaqy6xbfv9c" /> --}}
