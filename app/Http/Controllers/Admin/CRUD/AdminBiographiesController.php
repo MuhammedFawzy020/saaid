@@ -131,7 +131,7 @@ class AdminBiographiesController extends Controller
 
                 })
                 ->editColumn('nationalitie_id', function ($row) {
-                    return $row->nationalitie->title;
+                    return $row->nationalitie?->title;
                 })
                 ->editColumn('type_of_experience', function ($row) {
                     if ($row->type_of_experience == 'new') {
@@ -142,7 +142,7 @@ class AdminBiographiesController extends Controller
                     //return $row->nationalitie->type_of_experience;
                 })
                 ->editColumn('recruitment_office_id', function ($row) {
-                    return $row->recruitment_office->title;
+                    return $row->recruitment_office?->title;
                 })
                 ->editColumn('type', function ($row) {
                     if ($row->type == 'admission')

@@ -15,6 +15,6 @@ class Nationalitie extends Model
 
 
     public function price() {
-        return $this->hasOne('\App\Models\country_prices','city_id','id');
+        return $this->hasOne('\App\Models\country_prices','country_id','id');
     }
 }
