@@ -130,126 +130,130 @@
         </form>
 
         <div class="row m-0 p-0">
-       
+
             @foreach ($cvs as $cv)
-            <div class="col-lg-6">
-            <div class="card mb-3">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        @if ($cv->cv_file)
-                            <a href="{{ url('frontend/images/users/' . $cv->cv_file) }}" data-fancybox data-caption="{{ $cv->name }}">
-                                <img src="{{ url('frontend/images/users/' . $cv->cv_file) }}" class="card-img"  />
-                            </a>
-                        @else
-                            <img src="{{ url('/') }}/frontend/images/comment-1-1.jpg" class="card-img"   alt="">
-                        @endif
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                @if ($cv->name)
-                                    {{ $cv->name }}
-                                @else
-                                    لا يوجد اسم
-                                @endif
-                            </h5>
-                            <p class="card-text" style="padding-bottom:20px;"><small class="text-danger" style="font-size:10px">لا يتم دفع أي رسوم إلا من خلال مساند</small></p>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="worker-address">{{ __('frontend.Nationality') }}
-                                        : <b>{{ $cv->nationalitie ? $cv->nationalitie->title : '' }} </b></p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="worker-address"> {{ __('frontend.Occupation') }} :
-                                        <b>{{ $cv->job ? $cv->job->title : '' }}</b>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="worker-address"> {{ __('frontend.Religion') }} :
-                                        <b>{{ $cv->religion ? $cv->religion->title : '' }}</b>
-                                    </p>
-                                </div>
-                                @if ($type == 'transport')
-                                    <div class="col-6">
-                                        <p class="worker-address">
-                                            سعر نقل الخدمات:
-                                            <b> {{ $cv->transfer_price ?? '' }} {{ __('frontend.SAR') }} </b>
-                                        </p>
-                                    </div>
-                                @else
-                                    <div class="col-6">
-                                        <p class="worker-address">
-                                            {{ __('frontend.Recruitment price') }}:
-                                            <b>{{ $cv->nationalitie->recruitment_price }} {{ __('frontend.SAR') }}</b>
-                                        </p>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="worker-address">
-                                        {{ __('frontend.Practical experience') }} :
-                                        @if ($cv->type_of_experience == 'new')
-                                            <b>{{ $cv->type_of_experience ? 'قادم جديد' : '--' }}</b>
-                                        @else
-                                            <b>{{ $cv->type_of_experience ? 'لديه خبرة سابقة' : '--' }}</b>
-                                        @endif
-
-                                    </p>
-                                </div>
-
-                                <div class="col-6">
-                                    <p class="worker-address"> {{ __('frontend.age') }} :<b> {{ $cv->age ?? '' }}
-                                            سنة</b>
-                                    </p>
-                                </div>
-
-                            </div>
-                            @if ($type == 'transport')
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <p class="worker-address"> مدة العمل للكفيل السابق :
-                                            {{ $cv->periodservices ?? '' }} </p>
-                                    </li>
-
-                                    <li>
-                                        <p class="worker-address"> سبب النقل : {{ $cv->reasonservices ?? '' }} </p>
-                                    </li>
-                                </ul>
-                            @endif
-
-                            <div class="row">
-                                <div class="cv-comp text-center">
-                                    <!-- <a href="{{ route('worker-details', $cv->id) }}"
-                                        class="worker btn cvDetails btn btn-outline-secondary">
-
-                                        التفاصيل
-
+                <div class="col-lg-6">
+                    <div class="card mb-3">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                @if ($cv->cv_file)
+                                    <a href="{{ url('frontend/images/users/' . $cv->cv_file) }}" data-fancybox
+                                        data-caption="{{ $cv->name }}">
+                                        <img src="{{ url('frontend/images/users/' . $cv->cv_file) }}" class="card-img" />
                                     </a>
-                                    <a href="{{ route('frontend.show.worker', $cv->id) }}" class="btn btn-secondary">
-                                        احجز الان
+                                @else
+                                    <img src="{{ url('/') }}/frontend/images/comment-1-1.jpg" class="card-img"
+                                        alt="">
+                                @endif
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        @if ($cv->name)
+                                            {{ $cv->name }}
+                                        @else
+                                            لا يوجد اسم
+                                        @endif
+                                    </h5>
+                                    <p class="card-text" style="padding-bottom:20px;"><small class="text-danger"
+                                            style="font-size:10px">لا يتم دفع أي رسوم إلا من خلال مساند</small></p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="worker-address">{{ __('frontend.Nationality') }}
+                                                : <b>{{ $cv->nationalitie ? $cv->nationalitie->title : '' }} </b></p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="worker-address"> {{ __('frontend.Occupation') }} :
+                                                <b>{{ $cv->job ? $cv->job->title : '' }}</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="worker-address"> {{ __('frontend.Religion') }} :
+                                                <b>{{ $cv->religion ? $cv->religion->title : '' }}</b>
+                                            </p>
+                                        </div>
+                                        @if ($type == 'transport')
+                                            <div class="col-6">
+                                                <p class="worker-address">
+                                                    سعر نقل الخدمات:
+                                                    <b> {{ $cv->transfer_price ?? '' }} {{ __('frontend.SAR') }} </b>
+                                                </p>
+                                            </div>
+                                        @else
+                                            <div class="col-6">
+                                                <p class="worker-address">
+                                                    {{ __('frontend.Recruitment price') }}:
+                                                    <b>{{ $cv->nationalitie->price?->price }} {{ __('frontend.SAR') }}</b>
+                                                </p>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="worker-address">
+                                                {{ __('frontend.Practical experience') }} :
+                                                @if ($cv->type_of_experience == 'new')
+                                                    <b>{{ $cv->type_of_experience ? 'قادم جديد' : '--' }}</b>
+                                                @else
+                                                    <b>{{ $cv->type_of_experience ? 'لديه خبرة سابقة' : '--' }}</b>
+                                                @endif
 
-                                    </a> -->
+                                            </p>
+                                        </div>
 
-                                     <a id="downloadPdfBtn2" class="btn btn-danger d-none">
-                                            تحميل السيفي
-                                     </a>
-                                     <a href="{{ route('frontend.show.worker', $cv->id) }}" class="btn btn-secondary">
-                                        احجز الان
-                                     </a>
-                                     
+                                        <div class="col-6">
+                                            <p class="worker-address"> {{ __('frontend.age') }} :<b> {{ $cv->age ?? '' }}
+                                                    سنة</b>
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                    @if ($type == 'transport')
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <p class="worker-address"> مدة العمل للكفيل السابق :
+                                                    {{ $cv->periodservices ?? '' }} </p>
+                                            </li>
+
+                                            <li>
+                                                <p class="worker-address"> سبب النقل : {{ $cv->reasonservices ?? '' }} </p>
+                                            </li>
+                                        </ul>
+                                    @endif
+
+                                    <div class="row">
+                                        <div class="cv-comp text-center">
+                                            <!-- <a href="{{ route('worker-details', $cv->id) }}"
+                                            class="worker btn cvDetails btn btn-outline-secondary">
+
+                                            التفاصيل
+
+                                        </a>
+                                        <a href="{{ route('frontend.show.worker', $cv->id) }}" class="btn btn-secondary">
+                                            احجز الان
+
+                                        </a> -->
+
+                                            <a id="downloadPdfBtn2" class="btn btn-danger d-none">
+                                                تحميل السيفي
+                                            </a>
+                                            <a href="{{ route('frontend.show.worker', $cv->id) }}"
+                                                class="btn btn-secondary">
+                                                احجز الان
+                                            </a>
+
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-            </div>
-            </div>
-           
-                
+
+
 
                 <!-- Modal -->
                 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
@@ -265,8 +269,8 @@
                             <div class="modal-body">
                                 <div class="card" style="padding:3px;">
                                     <!-- <div class="card-image">
-                                                                                                                                                                                                    <img src="{{ get_file($cv->cv_file) }}" alt="">
-                                                                                                                                                                                                </div> -->
+                                                                                                                                                                                                        <img src="{{ get_file($cv->cv_file) }}" alt="">
+                                                                                                                                                                                                    </div> -->
 
                                     <div class="card-header" style="padding:0px !important;border:none !important;">
                                         <div class="card col-lg-12" style="border:none;">
@@ -508,7 +512,7 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <!-- <img src="{{ url('/') }}/frontend/images/Symbology-QR-code.svg"
-                                                                                                                                                                                                                    style="width:100%;height:50px" alt=""> -->
+                                                                                                                                                                                                                        style="width:100%;height:50px" alt=""> -->
                                                 </div>
                                                 <div class="col-4">
                                                     <img src="{{ url('/') }}/frontend/images/logo/logoH.svg"
@@ -516,7 +520,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <!-- <img src="{{ url('/') }}/frontend/images/Symbology-QR-code.svg"
-                                                                                                                                                                                                                    style="width:100%;height:50px" alt=""> -->
+                                                                                                                                                                                                                        style="width:100%;height:50px" alt=""> -->
                                                 </div>
                                             </div>
                                         </div>
