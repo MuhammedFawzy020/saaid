@@ -10,7 +10,7 @@
                         </div>
                         <h5 class="font-size-15 mb-1"><a href="javascript: void(0);" class="text-dark">{{$contact->name}}</a></h5>
                         <p class="text-muted">{{$contact->email}}</p>
-
+                        <p class="text-muted">{{ $contact->phone }}</p>
                         <div>
                           <p>{{$contact->message}}</p>
                             <br>
