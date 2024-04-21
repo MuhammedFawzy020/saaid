@@ -62,7 +62,7 @@
                         @csrf
                         @method('PUT')
                         <div class="vertical-wizard">
-
+                            
                             <!-- Seller Details -->
                             <!-- <h3>البيانات الرئيسية </h3>
                                         <section>
@@ -158,6 +158,20 @@
                             <section>
 
                                 <div class="row">
+                                    <div class="col-lg-12"style="padding:30px;">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="mySwitch" name="display_or_hide" value="1" {{$biography->display_or_hide == 1 ? "checked" : ""}}>
+                                            <label class="form-check-label" for="mySwitch">إظهار السيرة الذاتية؟</label>
+                                            <input type="hidden" name="display_or_hide" value="0"> <!-- Hidden input field for the unchecked state -->
+                                        </div>
+                                        <!-- <div class="form-group col-md-4">
+                                            <label for="inputState">إظهار السيره الزاتية ؟</label>
+                                            <select id="inputState" class="form-control" name="display_or_hide">
+                                                <option value="1" {{$biography->display_or_hide== 1 ? "selected" : ""}}>نعم</option>
+                                                <option value="0" {{$biography->display_or_hide== 0 ? "selected" : ""}}>لا</option>
+                                            </select>
+                                        </div> -->
+                                    </div>
                                     <div class="row">
                                         <div class="col-8">
                                             <div class="form-group">
@@ -709,4 +723,16 @@
 
         });
     </script>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#mySwitch').on('change', function() {
+            // Check if the checkbox is checked or not
+            var isChecked = $(this).is(':checked');
+
+            // Set the value of the hidden input field based on the checkbox state
+            $('input[name="display_or_hide"]').val(isChecked ? 1 : 0);
+        });
+    });
+</script>
 @endsection

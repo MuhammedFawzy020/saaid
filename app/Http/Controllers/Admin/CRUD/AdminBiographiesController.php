@@ -207,6 +207,7 @@ class AdminBiographiesController extends Controller
             'birth_country' => 'nullable' ,
             'phone_no' => 'nullable' ,
             'cv_file' => 'nullable|image|mimes:jpeg,png,jpg',
+            'display_or_hide' => 'nullable' ,
           
         ]);
 
@@ -369,6 +370,7 @@ class AdminBiographiesController extends Controller
             'phone_no' => 'nullable',
         //    'cv_file' => 'required|image|mimes:jpeg,png,jpg',
             'display' => 'nullable',
+            'display_or_hide' => 'nullable' ,
         ]);
     
         try {
