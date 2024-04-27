@@ -56,7 +56,7 @@
                                 <input type="text" class="form-control" id="passport_key" name="passport_key"
                                     @isset($passport_key) value="{{ $passport_key }}"
                                        @endisset
-                                    placeholder="ابحث برقم جواز السفر">
+                                    placeholder="ابحث برقم التسلسلي ">
                             </div>
                         </div>
                         <div class="col-md-2 ">
@@ -181,7 +181,7 @@
                                         style=" width: 50% !important;height: 50% !important;"></i>
                                 </a>
                             </th>
-
+                            <th>الرقم التسلسلي</th>
                             <th>الصورة</th>
                             <th>الحالة</th>
                             <th>الجنسية</th>
@@ -287,6 +287,11 @@
                     searchable: false
                 },
                 {
+                    "data": "sec_id",
+                    orderable: false,
+                    searchable: true
+                },
+                {
                     "data": "image",
                     orderable: false,
                     searchable: false
@@ -301,6 +306,7 @@
                     orderable: false,
                     searchable: true
                 },
+
                 {
                     "data": "passport_number",
                     orderable: false,

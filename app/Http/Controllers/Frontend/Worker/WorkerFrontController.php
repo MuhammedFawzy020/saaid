@@ -165,6 +165,7 @@ class WorkerFrontController extends Controller
 
         $cvs = Biography::where('status', 'new')
             ->where('order_type', 'normal')
+            ->where('display_or_hide', 1)
             ->FilterByAge($request->age)
             ->FilterByJob($request->job)
             ->FilterByNationality($request->nationality)->where('type', $type)

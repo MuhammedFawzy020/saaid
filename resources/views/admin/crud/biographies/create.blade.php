@@ -65,6 +65,22 @@
 
                             <section>
                                 <div class="row">
+                                    <div class="col-lg-12"style="padding:30px;">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="mySwitch"
+                                                name="display_or_hide" value="1">
+                                            <label class="form-check-label" for="mySwitch">إظهار السيرة الذاتية؟</label>
+                                            <input type="hidden" name="display_or_hide" value="0">
+                                            <!-- Hidden input field for the unchecked state -->
+                                        </div>
+                                    </div>
+                                    <div class="col-3 p-2">
+                                        <div class="form-group">
+                                            <label for="profile_picture"> الرقم التسلسلي </label>
+                                            <input type="number" data-validation="required" class="form-control "
+                                                id="sec_id" name="sec_id" placeholder="">
+                                        </div>
+                                    </div>
                                     <div class="col-12 p-2">
                                         <div class="form-group">
                                             <label for="profile_picture"> ارفق السيرة الذاتية </label>
@@ -314,6 +330,7 @@
                     $('.loader-ajax').hide()
                     $('#submit_button').html(`حفظ`)
                     $('#submit_button').attr('disabled', false)
+                    console.log(data);
                     if (data.status === 500) {
                         cuteToast({
                             type: "error", // or 'info', 'error', 'warning'
@@ -347,6 +364,18 @@
                 processData: false
             });
 
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#mySwitch').on('change', function() {
+                // Check if the checkbox is checked or not
+                var isChecked = $(this).is(':checked');
+
+                // Set the value of the hidden input field based on the checkbox state
+                $('input[name="display_or_hide"]').val(isChecked ? 1 : 0);
+            });
         });
     </script>
 @endsection

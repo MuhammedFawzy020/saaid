@@ -65,7 +65,7 @@ class AdminBiographiesController extends Controller
             $biographies = Biography::query()->where("order_type", "normal")->orderBy("id", "DESC");
 
             if ($request->passport_key != null) {
-                $biographies = $biographies->where('passport_number', $passport_key);
+                $biographies = $biographies->where('sec_id', $passport_key);
 
             }
 
@@ -106,6 +106,9 @@ class AdminBiographiesController extends Controller
                 })
                 ->editColumn('created_at', function ($row) {
                     return date('Y/m/d', strtotime($row->created_at));
+                })
+                ->addColumn('sec_id', function ($row) {
+                    return $row->sec_id;
                 })
                 ->addColumn('delete_all', function ($row) {
                     return "<input type='checkbox' class=' delete-all form-check-input' data-tablesaw-checkall name='delete_all' id='" . $row->id . "'>";
@@ -159,7 +162,8 @@ class AdminBiographiesController extends Controller
                         $delete = 'hidden';
                     return "<a $edit href='" . route('biographies.edit', $row->id) . "'  class='btn btn-info editButton' id='" . $row->id . "'> <i class='fa fa-edit'></i></button>
                    <a $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2' id='" . $row->id . "'><i class='fa fa-trash'></i> </a>";
-                })->rawColumns(['actions', 'image', 'delete_all', 'nationalitie_id', 'type_of_experience', 'recruitment_office_id', 'type', 'status','date'])->make(true);
+                })->rawColumns(['actions','sec_id', 'image', 'delete_all', 'nationalitie_id', 'type_of_experience',
+                'recruitment_office_id', 'type', 'status','date'])->make(true);
         }
         return view('admin.crud.biographies.index', compact('natinalities', 'nationality_id', 'social_type', 'social_type_id', 'booking_status', 'recruitment_office', 'recruitment_office_id', 'type','date'));
     }
@@ -207,6 +211,8 @@ class AdminBiographiesController extends Controller
             'birth_country' => 'nullable' ,
             'phone_no' => 'nullable' ,
             'cv_file' => 'nullable|image|mimes:jpeg,png,jpg',
+            'display_or_hide' => 'nullable' ,
+            'sec_id' => 'required|min:1|unique:biographies,sec_id'
           
         ]);
 
@@ -369,6 +375,7 @@ class AdminBiographiesController extends Controller
             'phone_no' => 'nullable',
         //    'cv_file' => 'required|image|mimes:jpeg,png,jpg',
             'display' => 'nullable',
+            'display_or_hide' => 'nullable' ,
         ]);
     
         try {
