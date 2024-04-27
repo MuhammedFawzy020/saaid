@@ -65,7 +65,7 @@ class AdminBiographiesController extends Controller
             $biographies = Biography::query()->where("order_type", "normal")->orderBy("id", "DESC");
 
             if ($request->passport_key != null) {
-                $biographies = $biographies->where('sec_id', $passport_key);
+                $biographies = $biographies->where('passport_number', $passport_key);
 
             }
 
@@ -212,7 +212,7 @@ class AdminBiographiesController extends Controller
             'phone_no' => 'nullable' ,
             'cv_file' => 'nullable|image|mimes:jpeg,png,jpg',
             'display_or_hide' => 'nullable' ,
-            'sec_id' => 'required|min:1|unique:biographies,sec_id'
+            
           
         ]);
 

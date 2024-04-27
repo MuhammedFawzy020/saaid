@@ -65,27 +65,28 @@
 
                             <section>
                                 <div class="row">
-                                    <div class="col-lg-12"style="padding:30px;">
+                                    <div class="col-lg-12 d-none"style="padding:30px; display:none">
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" id="mySwitch"
                                                 name="display_or_hide" value="1">
                                             <label class="form-check-label" for="mySwitch">إظهار السيرة الذاتية؟</label>
-                                            <input type="hidden" name="display_or_hide" value="0">
+                                            <input type="hidden" name="display_or_hide" value="1">
                                             <!-- Hidden input field for the unchecked state -->
                                         </div>
                                     </div>
-                                    <div class="col-3 p-2">
-                                        <div class="form-group">
-                                            <label for="profile_picture"> الرقم التسلسلي </label>
-                                            <input type="number" data-validation="required" class="form-control "
-                                                id="sec_id" name="sec_id" placeholder="">
-                                        </div>
-                                    </div>
+
                                     <div class="col-12 p-2">
                                         <div class="form-group">
                                             <label for="profile_picture"> ارفق السيرة الذاتية </label>
                                             <input type="file" data-validation="required" class="form-control "
                                                 id="cv_file" name="cv_file" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                        <div class="form-group">
+                                            <label for="user">رقم جواز السفر</label>
+                                            <input data-validation="required" required type="text" class="form-control"
+                                                value="" id="passport_number" name="passport_number" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
@@ -330,7 +331,6 @@
                     $('.loader-ajax').hide()
                     $('#submit_button').html(`حفظ`)
                     $('#submit_button').attr('disabled', false)
-                    console.log(data);
                     if (data.status === 500) {
                         cuteToast({
                             type: "error", // or 'info', 'error', 'warning'
