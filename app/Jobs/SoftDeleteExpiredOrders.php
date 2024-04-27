@@ -18,8 +18,13 @@ class SoftDeleteExpiredOrders implements ShouldQueue
     {
         $threshold = Carbon::now()->subDay(); // 24 hours ago
 
-        Order::where('created_at', '<=', $threshold)
-            ->where('status', 'under_work')
-            ->delete();
+        $orders = Order::where('created_at', '<=', $threshold)
+            ->where('status', 'under_work')->update(["status" => "canceled"]);
+
+        foreach($orders as $order) {
+            Biography::where("id", $order->biography_id)->update(["status" => "new", "admin_id" => null, "user_id" =>
+            null]);
+        }
+        
     }
 }
