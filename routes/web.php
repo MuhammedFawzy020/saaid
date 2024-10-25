@@ -109,7 +109,7 @@ Route::group(
     Route::get('visaIssuance',[\App\Http\Controllers\Frontend\RecruitmentTripController::class,'visaIssuance'])->name('frontend.visaIssuance');
 
 
-    Route::get('all-workers/{type?}',[\App\Http\Controllers\Frontend\Worker\WorkerFrontController::class,'showAllWorkers'])->name('all-workers');
+    Route::get('all-workers/{type?}/{value?}',[\App\Http\Controllers\Frontend\Worker\WorkerFrontController::class,'showAllWorkers'])->name('all-workers');
     Route::get('/worker-details/{id}' ,'\App\Http\Controllers\Frontend\Worker\WorkerFrontController@worker_details')->name('worker-details');
     Route::get('/pdf-download/{id}' ,'\App\Http\Controllers\Frontend\Worker\WorkerFrontController@downloadPDF')->name('downloadPDF');
     Route::get('worker/{id}',[\App\Http\Controllers\Frontend\Worker\WorkerFrontController::class,'show'])->name('frontend.show.worker');

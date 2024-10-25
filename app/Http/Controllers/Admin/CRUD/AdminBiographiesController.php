@@ -40,8 +40,16 @@ class AdminBiographiesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $value = null)
     {
+        $rental = 0;
+       
+        if($value == 'rental') {
+            $rental = 1;
+        }
+
+        
+
         if (!checkPermission(18))
             return view('admin.permission');
 
@@ -62,8 +70,8 @@ class AdminBiographiesController extends Controller
 
 
         if ($request->ajax()) {
-            $biographies = Biography::query()->where("order_type", "normal")->orderBy("id", "DESC");
-
+            $biographies = Biography::query()->where("order_type", "normal")->where('is_rental', $rental)->orderBy("id", "DESC");
+            
             if ($request->passport_key != null) {
                 $biographies = $biographies->where('passport_number', $passport_key);
 
@@ -165,7 +173,8 @@ class AdminBiographiesController extends Controller
                 })->rawColumns(['actions','sec_id', 'image', 'delete_all', 'nationalitie_id', 'type_of_experience',
                 'recruitment_office_id', 'type', 'status','date'])->make(true);
         }
-        return view('admin.crud.biographies.index', compact('natinalities', 'nationality_id', 'social_type', 'social_type_id', 'booking_status', 'recruitment_office', 'recruitment_office_id', 'type','date'));
+        return view('admin.crud.biographies.index', compact('natinalities', 'nationality_id', 'social_type',
+        'social_type_id', 'booking_status', 'recruitment_office', 'recruitment_office_id', 'type','date','value'));
     }
 
     /**
@@ -174,7 +183,7 @@ class AdminBiographiesController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request , $value = null)
     {
         $this->validate($request, [
           
@@ -228,6 +237,9 @@ class AdminBiographiesController extends Controller
 
         $biography = Biography::create($data);
         $biography->cv_file = $imageName;
+        if($value == "rental") {
+            $biography->is_rental =1 ;
+        }
         $biography->save();
         //skills
         if (isset($request->skills)) {
@@ -269,7 +281,7 @@ class AdminBiographiesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request , $value = null)
     {
         $data = [
             'languages' => Language::where('is_active', 'active')->get(),
@@ -282,6 +294,7 @@ class AdminBiographiesController extends Controller
             'language_title' => LanguageTitle::get(),
             'cities' => City::get(),
             'users' => User::get(),
+            'value' => $value
         ];
         return view('admin.crud.biographies.create', $data);
     }//end fun
@@ -292,7 +305,7 @@ class AdminBiographiesController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $value = null)
     {
 
     }
@@ -303,7 +316,7 @@ class AdminBiographiesController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit(Request $request, $id, $value = null)
     {
         $biography = Biography::with('images', 'skills')->findOrFail($id);
 
@@ -341,7 +354,7 @@ class AdminBiographiesController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $value = null)
     {
         $this->validate($request, [
             'cv_file' => 'nullable',

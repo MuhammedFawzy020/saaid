@@ -160,12 +160,17 @@ class WorkerFrontController extends Controller
     }
 
 
-    public function showAllWorkers(Request $request, $type = 'admission')
+    public function showAllWorkers(Request $request, $type = 'admission', $value = null)
     {
 
+        $rental = 0;
+        if($value == "retnal") {
+            $rental = 1;
+        }
         $cvs = Biography::where('status', 'new')
             ->where('order_type', 'normal')
             ->where('display_or_hide', 1)
+            ->where('is_rental', $rental)
             ->FilterByAge($request->age)
             ->FilterByJob($request->job)
             ->FilterByNationality($request->nationality)->where('type', $type)
@@ -183,7 +188,7 @@ class WorkerFrontController extends Controller
         if ($request->ajax()) {
 
             $returnHTML = view('frontend.pages.all-workers.worker.workers_page')
-                ->with(['cvs' => $cvs, 'type' => $type])->render();
+                ->with(['cvs' => $cvs, 'type' => $type, 'value' => $value])->render();
             return response()->json([
                 'success' => true,
                 'html' => $returnHTML,
@@ -210,6 +215,7 @@ class WorkerFrontController extends Controller
             'current_page' => $current_page,
             'last_page' => $last_page,
             'type' => $type,
+            'value' => $value
         ]);
     }//end fun
 

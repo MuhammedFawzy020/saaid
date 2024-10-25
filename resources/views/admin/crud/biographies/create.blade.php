@@ -48,7 +48,7 @@
 @endsection
 
 @section('page-title')
-    إضافة سيرة ذاتية جديدة
+    {{ $value == 'rental' ? 'إضافة سيرة ذاتية جديدة للايجار' : 'إضافة سيرة ذاتية جديدة' }}
 @endsection
 
 
@@ -58,7 +58,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">إضافة سيرة ذاتية جديدة</h4>
-                    <form id="Form" method="post" action="{{ route('biographies.store') }}"
+                    <form id="Form" method="post" action="{{ route('biographies.store', $value) }}"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="vertical-wizard">
@@ -323,7 +323,7 @@
                             message: "تمت العملية بنجاح",
                             timer: 3000
                         })
-                        window.location.href = '{{ route('biographies.index') }}';
+                        window.location.href = '{{ route('biographies.index', $value) }}';
                         $('.loader-ajax').hide()
                     }, 20);
                 },

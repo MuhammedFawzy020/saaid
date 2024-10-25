@@ -30,6 +30,13 @@
                             <span key="t-dashboards"> طلبات الاستقدام</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin-orders.index', 'rental') }}" class="waves-effect">
+                            <i class="bx bxs-file"></i>
+                            <span class="badge rounded-pill bg-info float-end"></span>
+                            <span key="t-dashboards"> طلبات الاستقدام للايجار</span>
+                        </a>
+                    </li>
                 @endif
                 {{--  Cv --}}
                 @if (checkPermission(18))
@@ -38,6 +45,13 @@
                             <i class="bx bxs-file-find"></i>
                             <span class="badge rounded-pill bg-info float-end"></span>
                             <span key="t-dashboards"> السير الذاتية </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('biographies.index', 'rental') }}" class="waves-effect">
+                            <i class="bx bxs-file-find"></i>
+                            <span class="badge rounded-pill bg-info float-end"></span>
+                            <span key="t-dashboards"> السير الذاتية للايجار </span>
                         </a>
                     </li>
                 @endif

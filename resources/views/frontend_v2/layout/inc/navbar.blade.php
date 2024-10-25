@@ -9,7 +9,6 @@
                 </div>
                 <div class="col-md-6 text-end text-white">
 
-
                     <a href="{{ $setting->twitter }}" class="text-decoration-none">
                         <i class="bx bxl-twitter color-white font-size-20"></i>
                     </a>
@@ -54,6 +53,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('all-workers') }}">
                             طلب الاستقدام </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ route('all-workers', ['value' => 'retnal', 'type' => 'admission']) }}">
+                            طلب الايجار </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/services') }}">

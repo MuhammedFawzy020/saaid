@@ -46,8 +46,13 @@ class AdminOrderController extends Controller
 
 
      */
-    public function index(Request $request)
+    public function index(Request $request, $value = null)
     {
+
+        $rental = 0 ;
+        if($value == "rental") {
+            $rental =1 ;
+        }
         if (!checkPermission(31))
             return view('admin.permission');
 
@@ -77,19 +82,27 @@ class AdminOrderController extends Controller
 
             if (admin()->user()->admin_type == 0) {
                 if ($count > 0) {
-                    $dataTables = Order::query()->orderBy("id", "DESC");
+                    $dataTables = Order::query()->whereHas('biography', function ($q)  use ($rental) {
+                    $q->where('is_rental', $rental);
+                    })->orderBy("id", "DESC");
 
                 } else {
-                    $dataTables = Order::query()->where('admin_id', $admin->id)->orderBy("id", "DESC");
+                    $dataTables = Order::query()->whereHas('biography', function ($q) use ($rental) {
+                    $q->where('is_rental', $rental);
+                    })->where('admin_id', $admin->id)->orderBy("id", "DESC");
 
                 }
             } else {
 
                 if ($count > 0) {
-                    $dataTables = Order::query()->where("admin_id",)->orderBy("id", "DESC");
+                    $dataTables = Order::query()->whereHas('biography', function ($q) use ($rental) {
+                    $q->where('is_rental', $rental);
+                    })->where("admin_id",)->orderBy("id", "DESC");
 
                 } else {
-                    $dataTables = Order::query()->where('admin_id', $admin->id)->orderBy("id", "DESC");
+                    $dataTables = Order::query()->whereHas('biography', function ($q) use ($rental) {
+                    $q->where('is_rental', $rental);
+                    })->where('admin_id', $admin->id)->orderBy("id", "DESC");
 
                 }
 
@@ -275,7 +288,7 @@ class AdminOrderController extends Controller
                      'user', 'admin', 'recruitment_office_id', 'type', 'actions'
                 ])->make(true);
         }
-        return view('admin.crud.order.admin', compact('natinalities', 'nationality_id', 'social_type', 'social_type_id', 'booking_status', 'recruitment_office', 'recruitment_office_id', 'type','date'));
+        return view('admin.crud.order.admin', compact('natinalities', 'nationality_id', 'social_type', 'social_type_id', 'booking_status', 'recruitment_office', 'recruitment_office_id', 'type','date', 'value'));
     }
 
     /**
@@ -328,7 +341,7 @@ class AdminOrderController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $value = null)
     {
         $order = Order::where("id", $id)->first();
         Order::where("id", $id)->update(["status" => "canceled"]);
@@ -359,7 +372,7 @@ class AdminOrderController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $value = null)
     {
         $order = Order::where("id", $id)->first();
         Order::where("id", $id)->update(["status" => $request->status]);

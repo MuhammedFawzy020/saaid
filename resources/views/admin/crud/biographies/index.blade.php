@@ -29,7 +29,7 @@
 @endsection
 
 @section('page-title')
-    السير الذاتية
+    {{ $value == 'rental' ? 'السير الذاتية للايجار' : 'السير الذاتية' }}
 @endsection
 
 
@@ -151,7 +151,7 @@
                         </div>
                         <div class="col-md-2 text-end">
                             @if (checkPermission(19))
-                                <a href="{{ route('biographies.create') }}" id="addButton" type="button"
+                                <a href="{{ route('biographies.create', $value) }}" id="addButton" type="button"
                                     class="btn btn-success  waves-effect waves-light mb-2 me-2">
                                     أضف جديد </a>
                             @endif
@@ -255,6 +255,7 @@
         /*======================================================*/
         /*======================================================*/
 
+
         let datatable_selector;
         datatable_selector = $('#Datatable').DataTable({
             dom: 'Bfrtip',
@@ -266,7 +267,7 @@
             "searching": false,
             'iDisplayLength': 20,
             "ajax": {
-                url: "{{ route('biographies.index') }}",
+                url: "{{ route('biographies.index', $value) }}",
                 data: function(d) {
                     d.passport_key = $('#passport_key').val(),
                         d.social_type = $('#social_type').val(),

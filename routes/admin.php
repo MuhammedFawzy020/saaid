@@ -173,7 +173,16 @@ Route::group(['prefix' => 'admin'], function () {
                 ->name('statistics.delete.bulk');
 
             // -------------------------------------
-            Route::resource('biographies', 'AdminBiographiesController');
+            //Route::resource('biographies/{value?}', 'AdminBiographiesController');
+            Route::get('/biographies/create/{value?}', 'AdminBiographiesController@create')->name('biographies.create');
+            Route::get('/biographies/index/{value?}', 'AdminBiographiesController@index')->name('biographies.index');
+            Route::get('/biographies/edit/{id}/{value?}', 'AdminBiographiesController@edit')->name('biographies.edit');
+            Route::put('/biographies/update/{id}/{value?}', 'AdminBiographiesController@update')->name('biographies.update');
+            Route::post('/biographies/store/{value?}', 'AdminBiographiesController@store')->name('biographies.store');
+            Route::delete('/biographies/delete/{id}/{value?}', 'AdminBiographiesController@destroy')->name('biographies.destroy');
+
+
+
             Route::delete('biographies/delete/bulk', 'AdminBiographiesController@delete_all')
                 ->name('biographies.delete.bulk');
 
@@ -183,7 +192,12 @@ Route::group(['prefix' => 'admin'], function () {
                 ->name('biographies-special.delete.bulk');
 
             // -------------------------------------
-            Route::resource('admin-orders', 'AdminOrderController');
+          //  Route::resource('admin-orders', 'AdminOrderController');
+
+            Route::get('/admin-orders/{value?}','AdminOrderController@index')->name('admin-orders.index');
+            Route::delete('/admin-orders/destroy/{id}','AdminOrderController@destroy')->name('admin-orders.destroy');
+            Route::put('/admin-orders/update/{id}/{value?}','AdminOrderController@update')->name('admin-orders.update');
+            
             Route::delete('admin-orders/delete/bulk', 'AdminOrderController@delete_all')
                 ->name('admin-orders.delete.bulk');
 
