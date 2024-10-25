@@ -10,7 +10,7 @@ class country_prices extends Model
     use HasFactory;
 
     protected $fillable = [
-        'country_id' ,'price'
+        'country_id' ,'price', 'none_muslim'
     ];
 
 

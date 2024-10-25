@@ -216,7 +216,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 
-            Route::get('/country-price/{countryy_id}','CountryPricesController@get_price')->name('get_price');
+            Route::get('/country-price/{countryy_id}/{religon_id}','CountryPricesController@get_price')->name('get_price');
 
         });
 

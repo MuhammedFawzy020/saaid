@@ -119,7 +119,7 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="passport_number">ديانة العامل </label>
-                                            <select name="religion_id" class="form-control select2Users">
+                                            <select id="religion_id" name="religion_id" class="form-control select2Users">
                                                 @foreach ($religion as $one)
                                                     <option value="{{ $one->id }}">{{ $one->title }}</option>
                                                 @endforeach
@@ -276,19 +276,27 @@
         $(document).ready(function() {
 
             var id = $('.nationality').val();
-
-            $.get("{{ url('/admin/country-price') }}/" + id, function(response) {
+            var religion_id = $("#religion_id").val();
+            $.get("{{ url('/admin/country-price') }}/" + id + "/" + religion_id, function(response) {
                 $('#recruitment_price').val(response);
             });
         });
 
         $(".nationality").change(function() {
             var id = $(this).val();
-
-            $.get("{{ url('/admin/country-price') }}/" + id, function(response) {
+            var religion_id = $("#religion_id").val();
+            $.get("{{ url('/admin/country-price') }}/" + id + "/" + religion_id, function(response) {
                 $('#recruitment_price').val(response);
             });
 
+        });
+
+        $(document).on('change', '#religion_id', function() {
+            var id = $(".nationality").val();
+            var religion_id = $(this).val();
+            $.get("{{ url('/admin/country-price') }}/" + id + "/" + religion_id, function(response) {
+                $('#recruitment_price').val(response);
+            });
         });
 
         $(document).on('submit', 'form#Form', function(e) {

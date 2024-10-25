@@ -14,9 +14,14 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleInputEmail1">السعر</label>
+            <label for="exampleInputEmail1">السعر للمسلمين</label>
             <input type="number" required name="price" value="{{ $obj->price }}" class="form-control"
-                placeholder="أدخل السعر">
+                placeholder="أدخل السعر للمسلمين">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">السعر لغير المسلمين</label>
+            <input type="number" required name="none_muslim" value="{{ $obj->none_muslim }}" class="form-control"
+                placeholder="أدخل السعر لغير المسلمين">
         </div>
 
     </div>

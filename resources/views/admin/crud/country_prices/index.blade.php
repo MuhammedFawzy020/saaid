@@ -61,7 +61,8 @@
                         <tr>
                             <th>#</th>
                             <th>الاسم</th>
-                            <th>السعر</th>
+                            <th>السعر للمسلمين</th>
+                            <th>السعر لغير المسلمين</th>
                             <th>التحكم</th>
                         </tr>
                     </thead>
@@ -148,6 +149,11 @@
                 },
                 {
                     data: 'price',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'none_muslim',
                     orderable: false,
                     searchable: false
                 },
