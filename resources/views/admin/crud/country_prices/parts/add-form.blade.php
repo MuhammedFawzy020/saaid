@@ -17,9 +17,20 @@
             <input type="number" required name="price" class="form-control" placeholder="أدخل السعر للمسلمين">
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">السعر للديانة الغير مسلم</label>
+            <label for="exampleInputEmail1">السعر لغير المسلم</label>
             <input type="number" required name="none_muslim" class="form-control"
                 placeholder="أدخل السعر لغير المسلمين">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">سعر الايجار للمسلمين</label>
+            <input type="number" required name="rent_muslim_price" class="form-control"
+                placeholder="أدخل سعر الايجار للمسلمين ">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">سعر الايجار لغير المسلمين</label>
+            <input type="number" required name="rent_none_muslim_price" class="form-control"
+                placeholder="أدخل السعر الايجار لغير المسلمين">
         </div>
 
     </div>

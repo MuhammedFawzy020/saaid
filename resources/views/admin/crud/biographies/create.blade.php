@@ -285,18 +285,20 @@
         $(".nationality").change(function() {
             var id = $(this).val();
             var religion_id = $("#religion_id").val();
-            $.get("{{ url('/admin/country-price') }}/" + id + "/" + religion_id, function(response) {
-                $('#recruitment_price').val(response);
-            });
+            $.get("{{ url('/admin/country-price') }}/" + id + "/" + religion_id + "/{{ $value }}",
+                function(response) {
+                    $('#recruitment_price').val(response);
+                });
 
         });
 
         $(document).on('change', '#religion_id', function() {
             var id = $(".nationality").val();
             var religion_id = $(this).val();
-            $.get("{{ url('/admin/country-price') }}/" + id + "/" + religion_id, function(response) {
-                $('#recruitment_price').val(response);
-            });
+            $.get("{{ url('/admin/country-price') }}/" + id + "/" + religion_id + "/{{ $value }}",
+                function(response) {
+                    $('#recruitment_price').val(response);
+                });
         });
 
         $(document).on('submit', 'form#Form', function(e) {

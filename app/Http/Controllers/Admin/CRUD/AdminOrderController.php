@@ -236,9 +236,13 @@ class AdminOrderController extends Controller
 //                        return "<a style='margin-right: 10px;' href='#' class='btn btn-danger mr-2' id=''> لا يوجد اجراء </a>";
 //                    }
 //                })
-                ->addColumn('actions', function ($row) {
+                ->addColumn('actions', function ($row) use ($rental) {
                     $status = '';
                     $delete = '';
+                    $back = 'hidden';
+                    if($rental == 1) {
+                        $back = '';
+                    }
 
 
                     if ($row->status == "new" || $row->status == "under_work") {
@@ -246,7 +250,11 @@ class AdminOrderController extends Controller
                         $text = "إتمام التعاقد";
                         return "
                     <a href='#' $status data-status='" . $status . "' class='btn btn-info update-status' id='" . $row->id . "'> " . $text . "  </a>
-                   <a  $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2' id='" . $row->id . "'><i class='fa fa-trash'></i> </a>";
+                     <a  $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2' id='" . $row->id . "'><i class='fa fa-trash'></i> </a>
+                      <a $back data-status='new' style='margin-right: 10px;' href='#'
+                          class='btn btn-warning  update-status mr-2'
+                          id='" . $row->id . "'><i class='fa fa-arrow-left'></i>
+                      </a>";
 
 
                     } elseif ($row->status == "contract") {
@@ -254,27 +262,47 @@ class AdminOrderController extends Controller
                         $text = "الربط في مساند";
                         return "
                     <a href='#' $status data-status='" . $status . "' class='btn btn-info update-status' id='" . $row->id . "'> " . $text . "  </a>
-                   <a  $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2' id='" . $row->id . "'><i class='fa fa-trash'></i> </a>";
+                   <a $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2'
+                       id='" . $row->id . "'><i class='fa fa-trash'></i> </a> <a $back data-status='new'
+                       style='margin-right: 10px;' href='#' class='btn btn-warning  update-status mr-2'
+                       id='" . $row->id . "'><i class='fa fa-arrow-left'></i>
+                   </a>";
                     } elseif ($row->status == "musaned") {
                         $status = "traning";
                         $text = "تحت الاجراء";
                         return "
                     <a href='#' $status data-status='" . $status . "' class='btn btn-info update-status' id='" . $row->id . "'> " . $text . "  </a>
-                   <a  $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2' id='" . $row->id . "'><i class='fa fa-trash'></i> </a>";
+                   <a $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2'
+                       id='" . $row->id . "'><i class='fa fa-trash'></i> </a> <a $back data-status='new'
+                       style='margin-right: 10px;' href='#' class='btn btn-warning  update-status mr-2'
+                       id='" . $row->id . "'><i class='fa fa-arrow-left'></i>
+                   </a>";
                     } elseif ($row->status == "traning") {
                         $status = "visa";
                         $text = "ختم التأشيرة";
                         return "
                     <a href='#' $status data-status='" . $status . "' class='btn btn-info update-status' id='" . $row->id . "'> " . $text . "  </a>
-                   <a  $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2' id='" . $row->id . "'><i class='fa fa-trash'></i> </a>";
+                   <a $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2'
+                       id='" . $row->id . "'><i class='fa fa-trash'></i> </a> <a $back data-status='new'
+                       style='margin-right: 10px;' href='#' class='btn btn-warning  update-status mr-2'
+                       id='" . $row->id . "'><i class='fa fa-arrow-left'></i>
+                   </a>";
                     } elseif ($row->status == "visa") {
                         $status = "finished";
                         $text = "وصول العمالة";
                         return "
                     <a href='#' $status data-status='" . $status . "' class='btn btn-info update-status' id='" . $row->id . "'> " . $text . "  </a>
-                   <a  $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2' id='" . $row->id . "'><i class='fa fa-trash'></i> </a>";
+                   <a $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2'
+                       id='" . $row->id . "'><i class='fa fa-trash'></i> </a> <a $back data-status='new'
+                       style='margin-right: 10px;' href='#' class='btn btn-warning  update-status mr-2'
+                       id='" . $row->id . "'><i class='fa fa-arrow-left'></i>
+                   </a>";
                     } elseif ($row->status == "finished") {
-                        return "                   <a  $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2' id='" . $row->id . "'><i class='fa fa-trash'></i> </a>";
+                        return " <a $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2'
+                            id='" . $row->id . "'><i class='fa fa-trash'></i> </a><a $back data-status='new'
+                            style='margin-right: 10px;' href='#' class='btn btn-warning  update-status mr-2'
+                            id='" . $row->id . "'><i class='fa fa-arrow-left'></i>
+                        </a>";
 
 
                     } else {
@@ -282,6 +310,8 @@ class AdminOrderController extends Controller
 
 
                     }
+
+
 
                 })
                 ->rawColumns(['image', 'created_at', 'status', 'nationalitie_id', 'passport_number',
@@ -375,7 +405,11 @@ class AdminOrderController extends Controller
     public function update(Request $request, $id, $value = null)
     {
         $order = Order::where("id", $id)->first();
-        Order::where("id", $id)->update(["status" => $request->status]);
+        //Order::where("id", $id)->update(["status" => $request->status]);
+       
+        if($request->status == 'new' && $value == 'rental') {
+            Order::where("id", $id)->update(["status" => "canceled"]);
+        }
         Biography::where("id", $order->biography_id)->update(["status" => $request->status]);
         $biography = Biography::find($order->biography_id);
         $status = [];
@@ -396,10 +430,10 @@ class AdminOrderController extends Controller
 
         if ($request->status == "contract" or $request->status == "musaned" or $request->status == "traning" or $request->status == "visa" or $request->status == "finished" or $request->status == "canceled") {
 
-            $user = User::find($order->user_id);
-            if (!empty($user)) {
-                $this->sendSMS($user->phone, $status[$request->status]);
-            }
+            // $user = User::find($order->user_id);
+            // if (!empty($user)) {
+            //     $this->sendSMS($user->phone, $status[$request->status]);
+            // }
         }
     }
 

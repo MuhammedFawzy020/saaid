@@ -16,7 +16,7 @@ class CountryPricesController extends Controller
         $countries = country_prices::get();
         $cities = Nationalitie::get();
         if ($request->ajax()) {
-            $data = country_prices::select('id', 'country_id', 'price','none_muslim')->latest()->get();
+            $data = country_prices::latest()->get();
     
             return DataTables::of($data)
             ->addColumn('country' , function($row){
@@ -55,7 +55,9 @@ class CountryPricesController extends Controller
         $request->validate([
             'country_id' => 'required',
             'price' => 'required',
-            'none_muslim' => 'required'
+            'none_muslim' => 'required',
+            'rent_muslim_price' => 'nullable',
+            'rent_none_muslim_price' => 'nullable',
            
         ]);
         $country = new country_prices( $request->all());
@@ -89,7 +91,8 @@ class CountryPricesController extends Controller
             'country_id' => 'nullable',
             'price' => 'nullable',
             'none_muslim' => 'nullable', 
-           
+            'rent_muslim_price' => 'nullable',
+           'rent_none_muslim_price' => 'nullable',
         ]);
         $country = country_prices::findOrFail($request->id);
         $country->update($request->all());
@@ -109,15 +112,20 @@ class CountryPricesController extends Controller
         return response()->json(1,200);
     }
 
-    public function get_price($id, $religon_id) {
+    public function get_price($id, $religon_id, $value = null) {
+
+        $rental = 0;
+        if($value == 'rental') {
+            $rental = 1;
+        }
         $price = country_prices::where('country_id', $id)->first();
         if($price == null) {
             return 0;
         } else {
             if($religon_id == 1) {
-                 return $price->price;
+                 return $rental == 1 ? $price->rent_muslim_price : $price->price;
             } else {
-                return $price->none_muslim;
+                return $rental == 1 ? $price->rent_none_muslim_price : $price->none_muslim;
             }
            
         }

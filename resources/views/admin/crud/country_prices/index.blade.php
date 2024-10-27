@@ -63,6 +63,8 @@
                             <th>الاسم</th>
                             <th>السعر للمسلمين</th>
                             <th>السعر لغير المسلمين</th>
+                            <th>السعر الايجار للمسلمين</th>
+                            <th>السعر الايجار لغير المسلمين</th>
                             <th>التحكم</th>
                         </tr>
                     </thead>
@@ -154,6 +156,16 @@
                 },
                 {
                     data: 'none_muslim',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'rent_muslim_price',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'rent_none_muslim_price',
                     orderable: false,
                     searchable: false
                 },

@@ -379,7 +379,7 @@
         $(document).on('click', '.update-status', function() {
             var id = $(this).attr('id');
             var status = $(this).attr("data-status");
-
+            var value = "{{ $value }}";
 
             Swal.fire({
                 title: "هل أنت متأكد من تنفيذ هذا الإجراء ؟",
@@ -394,8 +394,10 @@
             }).then((result) => {
                 // console.log(result)
                 if (result.value) {
-                    var url = '{{ route('admin-orders.update', ':id') }}';
+                    var url = '{{ route('admin-orders.update', ['id' => ':id', 'value' => ':value']) }}';
                     url = url.replace(':id', id);
+                    url = url.replace(':value', value);
+                    console.log(url);
                     $.ajax({
                         url: url,
                         type: 'PUT',

@@ -161,15 +161,20 @@ class AdminBiographiesController extends Controller
                     else
                         return 'نقل خدمات  ';
                 })
-                ->addColumn('actions', function ($row) {
+                ->addColumn('actions', function ($row) use($rental) {
                     $edit = '';
                     $delete = '';
+                    $back = 'hidden';
+                    if($rental == 1) {
+                        $back = '';
+                    }
                     if (!checkPermission(20))
                         $edit = 'hidden';
                     if (!checkPermission(21))
                         $delete = 'hidden';
                     return "<a $edit href='" . route('biographies.edit', $row->id) . "'  class='btn btn-info editButton' id='" . $row->id . "'> <i class='fa fa-edit'></i></button>
-                   <a $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2' id='" . $row->id . "'><i class='fa fa-trash'></i> </a>";
+                   <a $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2'
+                       id='" . $row->id . "'><i class='fa fa-trash'></i> </a>";
                 })->rawColumns(['actions','sec_id', 'image', 'delete_all', 'nationalitie_id', 'type_of_experience',
                 'recruitment_office_id', 'type', 'status','date'])->make(true);
         }
@@ -342,7 +347,7 @@ class AdminBiographiesController extends Controller
 //            'skill_ids' => $skill_ids,
             'images' => $images,
             'biography' => $biography,
-      
+            'value' => $value,
         ];
         return view('admin.crud.biographies.edit', $data);
     }

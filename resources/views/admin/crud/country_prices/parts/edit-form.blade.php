@@ -23,6 +23,16 @@
             <input type="number" required name="none_muslim" value="{{ $obj->none_muslim }}" class="form-control"
                 placeholder="أدخل السعر لغير المسلمين">
         </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">سعر الايجار للمسلمين</label>
+            <input type="number" required name="rent_muslim_price" value="{{ $obj->rent_muslim_price }}"
+                class="form-control" placeholder="أدخل السعر للمسلمين">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">سعر الايجار لغير للمسلمين</label>
+            <input type="number" required name="rent_none_muslim_price" value="{{ $obj->rent_none_muslim_price }}"
+                class="form-control" placeholder="أدخل السعر لغير المسلمين">
+        </div>
 
     </div>
 </form>
