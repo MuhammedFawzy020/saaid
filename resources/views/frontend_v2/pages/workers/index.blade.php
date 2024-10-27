@@ -155,8 +155,10 @@
                                             لا يوجد اسم
                                         @endif
                                     </h5>
-                                    <p class="card-text" style="padding-bottom:20px;"><small class="text-danger"
-                                            style="font-size:10px">لا يتم دفع أي رسوم إلا من خلال مساند</small></p>
+                                    @if ($value != 'rental')
+                                        <p class="card-text" style="padding-bottom:20px;"><small class="text-danger"
+                                                style="font-size:10px">لا يتم دفع أي رسوم إلا من خلال مساند</small></p>
+                                    @endif
                                     <div class="row">
                                         <div class="col-6">
                                             <p class="worker-address">{{ __('frontend.Nationality') }}
@@ -184,7 +186,15 @@
                                         @else
                                             <div class="col-6">
                                                 <p class="worker-address">
-                                                    {{ __('frontend.Recruitment price') }}:
+
+
+                                                    @if ($value == 'rental')
+                                                        {{ __('frontend.Rent Price') }}
+                                                    @else
+                                                        {{ __('frontend.Recruitment price') }}
+                                                    @endif
+
+                                                    :
                                                     <b>{{ $cv->recruitment_price }} {{ __('frontend.SAR') }}</b>
                                                 </p>
                                             </div>
@@ -209,6 +219,12 @@
                                             </p>
                                         </div>
 
+                                        <div class="col-6">
+                                            <p class="worker-address"> {{ __('frontend.Salary') }} :
+                                                <b>{{ $cv->salary }} {{ __('frontend.SAR') }}</b>
+                                            </p>
+                                        </div>
+
                                     </div>
                                     @if ($type == 'transport')
                                         <ul class="list-unstyled">
@@ -226,15 +242,15 @@
                                     <div class="row">
                                         <div class="cv-comp text-center">
                                             <!-- <a href="{{ route('worker-details', $cv->id) }}"
-                                                class="worker btn cvDetails btn btn-outline-secondary">
+                                                                                                                                                class="worker btn cvDetails btn btn-outline-secondary">
 
-                                                التفاصيل
+                                                                                                                                                التفاصيل
 
-                                            </a>
-                                            <a href="{{ route('frontend.show.worker', $cv->id) }}" class="btn btn-secondary">
-                                                احجز الان
+                                                                                                                                            </a>
+                                                                                                                                            <a href="{{ route('frontend.show.worker', $cv->id) }}" class="btn btn-secondary">
+                                                                                                                                                احجز الان
 
-                                            </a> -->
+                                                                                                                                            </a> -->
 
                                             <a id="downloadPdfBtn2" class="btn btn-danger d-none">
                                                 تحميل السيفي
@@ -269,8 +285,8 @@
                             <div class="modal-body">
                                 <div class="card" style="padding:3px;">
                                     <!-- <div class="card-image">
-                                                                                                                                                                                                            <img src="{{ get_file($cv->cv_file) }}" alt="">
-                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                            <img src="{{ get_file($cv->cv_file) }}" alt="">
+                                                                                                                                                                                                                                                                                                        </div> -->
 
                                     <div class="card-header" style="padding:0px !important;border:none !important;">
                                         <div class="card col-lg-12" style="border:none;">
@@ -512,7 +528,7 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <!-- <img src="{{ url('/') }}/frontend/images/Symbology-QR-code.svg"
-                                                                                                                                                                                                                            style="width:100%;height:50px" alt=""> -->
+                                                                                                                                                                                                                                                                                                                            style="width:100%;height:50px" alt=""> -->
                                                 </div>
                                                 <div class="col-4">
                                                     <img src="{{ url('/') }}/frontend/images/logo/logoH.svg"
@@ -520,7 +536,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <!-- <img src="{{ url('/') }}/frontend/images/Symbology-QR-code.svg"
-                                                                                                                                                                                                                            style="width:100%;height:50px" alt=""> -->
+                                                                                                                                                                                                                                                                                                                            style="width:100%;height:50px" alt=""> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -558,7 +574,11 @@
                                                 @else
                                                     <li>
                                                         <p class="worker-address">
-                                                            {{ __('frontend.Recruitment price') }}:
+                                                            @if ($value == 'rental')
+                                                                سعر الايجار
+                                                            @else
+                                                                {{ __('frontend.Recruitment price') }}
+                                                            @endif:
                                                             {{ $cv->nationalitie->recruitment_price }}
                                                             {{ __('frontend.SAR') }}
                                                         </p>

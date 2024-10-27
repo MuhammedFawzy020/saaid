@@ -164,7 +164,7 @@ class WorkerFrontController extends Controller
     {
 
         $rental = 0;
-        if($value == "retnal") {
+        if($value == "rental") {
             $rental = 1;
         }
         $cvs = Biography::where('status', 'new')
@@ -195,7 +195,6 @@ class WorkerFrontController extends Controller
                 'current_page' => $current_page,
                 'last_page' => $last_page,
                 'type' => $type,
-
             ]);
         }
 

@@ -12,6 +12,7 @@
 */
 
 return [
+    'Rent Price' => 'Rent Price',
     'Home'     => 'Home',
     'aboutUs'     => 'About Us',
     'El-nhas'     => 'Nahas And Partners',

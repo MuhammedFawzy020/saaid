@@ -56,7 +56,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                            href="{{ route('all-workers', ['value' => 'retnal', 'type' => 'admission']) }}">
+                            href="{{ route('all-workers', ['value' => 'rental', 'type' => 'admission']) }}">
                             طلب الايجار </a>
                     </li>
                     <li class="nav-item">

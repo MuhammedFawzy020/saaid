@@ -12,6 +12,7 @@
 */
 
 return [
+    'Rent Price' => 'سعر الايجار',
     'Home'     => 'الرئيسية',
     'aboutUs'     => 'من نحن',
     'El-nhas'     => 'النحاس و شركاه',
@@ -705,6 +706,7 @@ return [
     'Job'=>'المهنة',
     'nationalities'=>'الجنسية',
     'Clear'=>'مسح',
+    'Salary' => 'الراتب',
     'Apply'=>'تطبيق',
     'Submit a special request'=>'تقديم طلب خاص',
     'We can provide the right manpower according to your specifications'=>'يمكننا توفير العمالة المناسبة طبقاً لمواصفاتك الخاصة',
