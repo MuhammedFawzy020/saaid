@@ -218,24 +218,6 @@ class AdminOrderController extends Controller
                     else
                         return 'نقل خدمات  ';
                 })
-//                ->addColumn('actions', function ($row) {
-//                    $compelete = '';
-//                    $delete = '';
-//                    if (!checkPermission(32))
-//                        $compelete = 'hidden';
-//                    if (!checkPermission(33))
-//                        $delete = 'hidden';
-//                    if ($row->status == "new" || $row->status == "under_work") {
-//                        $text = "إتمام التعاقد";
-//                        return "
-//                    <a href='#'  ".$compelete."  class='btn btn-info update-status' id='" . $row->id . "'> ".$text."  </a>
-//                   <a " .$delete."  style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2' id='" . $row->id . "'><i class='fa fa-trash'></i> </a>";
-//                    } elseif ($row->status == "finished") {
-//                        return "<a style='margin-right: 10px;' href='#' class='btn btn-danger mr-2' id=''> لا يوجد اجراء </a>";
-//                    } else {
-//                        return "<a style='margin-right: 10px;' href='#' class='btn btn-danger mr-2' id=''> لا يوجد اجراء </a>";
-//                    }
-//                })
                 ->addColumn('actions', function ($row) use ($rental) {
                     $status = '';
                     $delete = '';
@@ -306,7 +288,7 @@ class AdminOrderController extends Controller
 
 
                     } else {
-                        return "                   <a  $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2' id='" . $row->id . "'><i class='fa fa-trash'></i> </a>";
+                        return "<a  $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2' id='" . $row->id . "'><i class='fa fa-trash'></i> </a>";
 
 
                     }
@@ -405,7 +387,7 @@ class AdminOrderController extends Controller
     public function update(Request $request, $id, $value = null)
     {
         $order = Order::where("id", $id)->first();
-        //Order::where("id", $id)->update(["status" => $request->status]);
+        Order::where("id", $id)->update(["status" => $request->status]);
        
         if($request->status == 'new' && $value == 'rental') {
             Order::where("id", $id)->update(["status" => "canceled"]);
