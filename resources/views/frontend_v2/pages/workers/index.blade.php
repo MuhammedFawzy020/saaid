@@ -195,7 +195,18 @@
                                                     @endif
 
                                                     :
-                                                    <b>{{ $cv->nationalitie->recruitment_price }} {{ __('frontend.SAR') }}</b>
+                                                    <b>
+                                                    @if($cv->religion_id == 1 && $cv->is_rental == 1 )
+                                                    {{ $cv->nationalitie->price->rent_muslim_price }} {{ __('frontend.SAR') }}
+                                                    @elseif($cv->religion_id != 1 && $cv->is_rental == 1 )
+                                                    {{ $cv->nationalitie->price->rent_none_muslim_price }} {{ __('frontend.SAR') }}
+
+                                                    @elseif($cv->religion_id == 1 && $cv->is_rental == 0 )
+                                                    {{ $cv->nationalitie->price->price }} {{ __('frontend.SAR') }}
+                                                    @else
+                                                    {{ $cv->nationalitie->price->none_muslim }} {{ __('frontend.SAR') }}
+                                                    @endif
+                                                    </b>
                                                 </p>
                                             </div>
                                         @endif
