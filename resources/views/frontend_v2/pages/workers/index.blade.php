@@ -195,7 +195,7 @@
                                                     @endif
 
                                                     :
-                                                    <b>{{ $cv->recruitment_price }} {{ __('frontend.SAR') }}</b>
+                                                    <b>{{ $cv->nationalitie->recruitment_price }} {{ __('frontend.SAR') }}</b>
                                                 </p>
                                             </div>
                                         @endif
