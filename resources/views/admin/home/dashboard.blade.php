@@ -297,7 +297,7 @@
 
                             <div class="col-4">
                                 <div class="mt-4">
-                                    <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-gray me-1"></i> الطلبات
+                                    <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-gray me-1"></i> 
                                         الطلبات الملغيه </p>
                                     <h5>{{$cancelOrder}}</h5>
                                 </div>
