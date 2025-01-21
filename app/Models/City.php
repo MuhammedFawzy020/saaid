@@ -13,4 +13,9 @@ class City extends Model
     protected $guarded = [];
     public $translatable = ['title'];
 
+
+    public function city_price(){
+        return $this->hasOne('App\Models\country_price')
+    }
+
 }
