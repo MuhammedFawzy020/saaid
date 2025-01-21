@@ -86,20 +86,32 @@ class AdminController extends Controller
         if($orders==0){
             $orders=1;
         }
-        $finishedOrder=Order::where('status','finished')->count();
-        $percentage=($finishedOrder/$orders??1)*100;
-        $newOrder=Order::where('status','new')->count();
-        $cancelOrder=Order::where('status','cancel')->count();
-        $underWork=Order::Where('status','under_work')->count();
+      
+        
+       
 
 
         $fromDate = date('Y-m',strtotime(' 0 month'.date('Y-m-d'))).'-1';
         $toDate = date('Y-m-t',strtotime(' 0 month'.date('Y-m-d')));
         $betweenMonth=[$fromDate,$toDate];
+
         $filterMonth=Order::whereBetween('created_at',$betweenMonth)->count();
 
+
+        $newOrder=Order::where('status','new')->whereBetween('created_at',$betweenMonth)->count();
+     
+        $underWork=Order::Where('status','under_work')->count(); // ma7goza
+        $Contracted=Order::Where('status','contract')->count(); // moktmla b etmam l t3aqod
+        $cancelOrder=Order::where('status','canceled')->count();  //tlbat mal8ya
+
+
+        $finishedOrder=Order::where('status','finished')->whereBetween('created_at',$betweenMonth)->count();
+
+        $percentage=($Contracted/$orders??1)*100;
+
+
         $users = User::count(); // User::where("type","normal_user")->count();
-        $employer = User::where("type", "employer")->count();
+        $employer = User::where("type", "employer")->whereBetween('created_at',$betweenMonth)->count();
 
 //        if ($request->ajax()) {
 
@@ -147,6 +159,7 @@ class AdminController extends Controller
             'newOrder'=>$newOrder,
             'cancelOrder'=>$cancelOrder,
             'finishedOrder'=>$finishedOrder,
+            'Contracted' => $Contracted,
             'filterMonth'  =>$filterMonth ,
             'underWork'   =>$underWork,
             'newAdmins'  =>$newAdmins,

@@ -271,33 +271,35 @@
 
                     <div class="text-center text-muted">
                         <div class="row">
-                            <div class="col-4">
+                            <!-- <div class="col-4">
                                 <div class="mt-4">
                                     <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-primary me-1"></i>
                                         الطلبات الجديدة</p>
                                     <h5>{{$newOrder}}</h5>
                                 </div>
-                            </div>
+                            </div> -->
+
+                              
                             <div class="col-4">
                                 <div class="mt-4">
                                     <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-success me-1"></i>
-                                        الطلبات المكتملة </p>
-                                    <h5>{{$finishedOrder}}</h5>
+                                        الطلبات المحجوزه </p>
+                                    <h5>{{$underWork}}</h5>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="mt-4">
                                     <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-danger me-1"></i>
-                                        الطلبات الملغية</p>
-                                    <h5>{{$cancelOrder}}</h5>
+                                        الطلبات المكتمله باتمام التعاقد</p>
+                                    <h5>{{$Contracted}}</h5>
                                 </div>
                             </div>
 
                             <div class="col-4">
                                 <div class="mt-4">
-                                    <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-gray me-1"></i> الطلبات
-                                        جاري العمل</p>
-                                    <h5>{{$underWork}}</h5>
+                                    <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-gray me-1"></i> 
+                                        الطلبات الملغيه </p>
+                                    <h5>{{$cancelOrder}}</h5>
                                 </div>
                             </div>
 
