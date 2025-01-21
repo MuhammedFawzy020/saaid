@@ -100,9 +100,9 @@ class AdminController extends Controller
 
         $newOrder=Order::where('status','new')->whereBetween('created_at',$betweenMonth)->count();
      
-        $underWork=Order::Where('status','under_work')->whereBetween('created_at',$betweenMonth)->count(); // ma7goza
-        $Contracted=Order::Where('status','contract')->whereBetween('created_at',$betweenMonth)->count(); // moktmla b etmam l t3aqod
-        $cancelOrder=Order::where('status','canceled')->whereBetween('created_at',$betweenMonth)->count();  //tlbat mal8ya
+        $underWork=Order::Where('status','under_work')->count(); // ma7goza
+        $Contracted=Order::Where('status','contract')->count(); // moktmla b etmam l t3aqod
+        $cancelOrder=Order::where('status','canceled')->count();  //tlbat mal8ya
 
 
         $finishedOrder=Order::where('status','finished')->whereBetween('created_at',$betweenMonth)->count();
