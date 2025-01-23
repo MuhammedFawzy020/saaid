@@ -263,7 +263,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">احصائيات الطلبات</h4>
+                    <h4 class="card-title mb-4">احصائيات الطلبات (كامل الاشهر) </h4>
 
                     <div>
                         <div id="donut-chart" class="apex-charts"></div>
@@ -300,6 +300,55 @@
                                     <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-gray me-1"></i> 
                                         الطلبات الملغيه </p>
                                     <h5>{{$cancelOrder}}</h5>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+             <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">احصائيات الطلبات ( للشهر الحالي فقط) </h4>
+
+                    <div>
+                        <div id="donut-chart" class="apex-charts"></div>
+                    </div>
+
+                    <div class="text-center text-muted">
+                        <div class="row">
+                            <!-- <div class="col-4">
+                                <div class="mt-4">
+                                    <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-primary me-1"></i>
+                                        الطلبات الجديدة</p>
+                                    <h5>{{$newOrder}}</h5>
+                                </div>
+                            </div> -->
+
+                              
+                            <div class="col-4">
+                                <div class="mt-4">
+                                    <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-success me-1"></i>
+                                        الطلبات المحجوزه </p>
+                                    <h5>{{$underWorkCurrent}}</h5>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="mt-4">
+                                    <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-danger me-1"></i>
+                                        الطلبات المكتمله باتمام التعاقد</p>
+                                    <h5>{{$ContractedCurrent}}</h5>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="mt-4">
+                                    <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-gray me-1"></i> 
+                                        الطلبات الملغيه </p>
+                                    <h5>{{$cancelOrderCurrent}}</h5>
                                 </div>
                             </div>
 
