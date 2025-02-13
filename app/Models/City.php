@@ -15,7 +15,7 @@ class City extends Model
 
 
     public function city_price(){
-        return $this->hasOne('App\Models\country_price')
+        return $this->hasOne('App\Models\country_price');
     }
 
 }

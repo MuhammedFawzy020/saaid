@@ -187,6 +187,21 @@
                                         <img src="{{ url('frontend/images/users/' . $biography->cv_file) }}"
                                             style="width:100%;height:100px" alt="">
                                     </div>
+
+                                    <div class="col-6 p-2">
+                                        <div class="form-group">
+                                            <label >PDF </label>
+                                            <input type="file" data-validation="required" class="form-control"
+                                                 name="pdf" accept=".pdf"  placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-6 p-2">
+                                        <div class="form-group">
+                                            <label >Vedio</label>
+                                            <input type="file" data-validation="required" class="form-control"
+                                                 name="vedio" accept="video/*" placeholder="">
+                                        </div>
+                                    </div>
                                 </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">

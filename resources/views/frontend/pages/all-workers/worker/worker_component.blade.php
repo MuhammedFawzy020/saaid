@@ -89,7 +89,29 @@
                     احجز الان
 
                 </a>
+                @if($cv->pdf)
+                <a href="{{ Storage::url($cv->pdf) }}" target="_blank" class="btn book">
+                    عرض السيرة الذاتية (PDF)
+                </a>
+            @endif
+
+            @if($cv->vedio)
+                <a href="{{ Storage::url($cv->vedio) }}" target="_blank" class="btn book">
+                    عرض الفيديو
+                </a>
+            @endif
             @else
+            @if($cv->pdf)
+                <a href="{{ Storage::url($cv->pdf) }}" target="_blank" class="btn book">
+                    عرض السيرة الذاتية (PDF)
+                </a>
+            @endif
+
+            @if($cv->vedio)
+                <a href="{{ Storage::url($cv->vedio) }}" target="_blank" class="btn book">
+                    عرض الفيديو
+                </a>
+            @endif
                 <a href="{{route('register',$cv->id)}}" class="btn book">
                     احجز الان
 

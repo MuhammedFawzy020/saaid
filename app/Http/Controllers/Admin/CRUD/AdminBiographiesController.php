@@ -226,11 +226,13 @@ class AdminBiographiesController extends Controller
             'phone_no' => 'nullable' ,
             'cv_file' => 'nullable|image|mimes:jpeg,png,jpg',
             'display_or_hide' => 'nullable' ,
+            'pdf' => 'nullable|mimes:pdf|max:2048',
+            'vedio' => 'nullable|mimes:mp4,avi,mov|max:20480',
             
           
         ]);
 
-        $data = $request->except(['skills', 'images','exp_job_id' ,'exp_city_id' ,'exp_period']);
+        $data = $request->except(['skills', 'images','exp_job_id' ,'exp_city_id' ,'exp_period' ,'pdf','vedio']);
 
 
       
@@ -239,8 +241,22 @@ class AdminBiographiesController extends Controller
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $image->storeAs('frontend/images/users/', $imageName);
 
+        $pdfPath = null;
+        $videoPath = null;
+
+        if ($request->hasFile('pdf')) {
+            $pdfPath = $request->file('pdf')->store('pdfs', 'public');
+        } 
+
+        if ($request->hasFile('vedio')) {
+            $videoPath = $request->file('vedio')->store('vedio', 'public');
+        } 
+
+        $data['pdf'] = $pdfPath;
+        $data['vedio'] = $videoPath;
 
         $biography = Biography::create($data);
+
         $biography->cv_file = $imageName;
         if($value == "rental") {
             $biography->is_rental =1 ;
@@ -276,6 +292,8 @@ class AdminBiographiesController extends Controller
                 ]);
             }
         }
+
+       
 
 
         return response()->json([], 200);
@@ -394,13 +412,15 @@ class AdminBiographiesController extends Controller
         //    'cv_file' => 'required|image|mimes:jpeg,png,jpg',
             'display' => 'nullable',
             'display_or_hide' => 'nullable' ,
+            'pdf' => 'nullable|mimes:pdf|max:2048',
+            'vedio' => 'nullable|mimes:mp4,avi,mov|max',
         ]);
     
         try {
             DB::beginTransaction();
     
             $biography = Biography::findOrFail($id);
-            $data = $request->except(['skills', 'images', 'cv_file', '_token', '_method', 'old','exp_job_id' ,'exp_city_id' ,'exp_period']);
+            $data = $request->except(['skills', 'images', 'cv_file', '_token', '_method', 'old','exp_job_id' ,'exp_city_id' ,'exp_period' ,'pdf','vedio']);
     
             if ($request->hasFile('cv_file')) {
                
@@ -410,6 +430,20 @@ class AdminBiographiesController extends Controller
 
                $data['cv_file'] = $imageName;
             }
+            
+            $pdfPath = null;
+            $videoPath = null;
+
+            if ($request->hasFile('pdf')) {
+                $pdfPath = $request->file('pdf')->store('pdfs', 'public');
+            } 
+
+            if ($request->hasFile('vedio')) {
+                $videoPath = $request->file('vedio')->store('vedio', 'public');
+            } 
+
+            $data['pdf'] = $pdfPath;
+            $data['vedio'] = $videoPath;
     
             $biography->fill($data);
             $biography->save();
