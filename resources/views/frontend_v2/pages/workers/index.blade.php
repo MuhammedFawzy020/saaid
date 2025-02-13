@@ -270,6 +270,17 @@
                                                 class="btn btn-secondary">
                                                 احجز الان
                                             </a>
+                                            @if($cv->pdf)
+                                                <a href="{{url('/')}}/{{$cv->pdf}}" target="_blank" class="btn book">
+                                                    عرض السيرة الذاتية (PDF)
+                                                </a>
+                                            @endif
+
+                                            @if($cv->vedio)
+                                                <a href="{{url('/')}}/{{ $cv->vedio }}" target="_blank" class="btn book">
+                                                    عرض الفيديو
+                                                </a>
+                                            @endif
 
                                         </div>
                                     </div>
