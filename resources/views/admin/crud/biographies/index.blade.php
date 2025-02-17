@@ -423,7 +423,8 @@
 
 
         $(document).on('click', '#bulk_delete', function(e) {
-            e.preventDefault()
+           
+            e.preventDefault();
             var id = [];
             $('.delete-all:checked').each(function() {
                 id.push($(this).attr('id'));
@@ -439,39 +440,34 @@
                     cancelButtonText: "إلغاء",
                     okButtonText: "موافق",
                     closeOnConfirm: false
-
                 }).then((result) => {
                     if (result.value) {
-                        if (id.length > 0) {
-
-                            $.ajax({
-                                url: '{{ route('biographies.delete.bulk') }}',
-                                type: 'DELETE',
-                                data: {
-                                    id: id
-                                },
-                                success: function(data) {
-                                    $("#bulk_delete").hide()
-                                    $("#checkAll").prop('checked', false);
-                                    cuteToast({
-                                        type: "success", // or 'info', 'error', 'warning'
-                                        message: "تم تنفيذ العملية بنجاح",
-                                        timer: 3000
-                                    });
-                                    datatable_selector.draw();
-
-
-                                },
-                                error: function(data) {
-                                    swal.close()
-                                    cuteToast({
-                                        type: "error", // or 'info', 'error', 'warning'
-                                        message: "أنت لا تملك الصلاحية لفعل هذا ",
-                                        timer: 3000
-                                    });
-                                }
-                            });
-                        }
+                        $.ajax({
+                            url: '{{ route('biographies.delete.bulk') }}',
+                            type: 'POST',
+                            data: {
+                                id: id,
+                                _token: '{{ csrf_token() }}' // Include CSRF token
+                            },
+                            success: function(data) {
+                                $("#bulk_delete").hide();
+                                $("#checkAll").prop('checked', false);
+                                cuteToast({
+                                    type: "success",
+                                    message: "تم تنفيذ العملية بنجاح",
+                                    timer: 3000
+                                });
+                                datatable_selector.draw();
+                            },
+                            error: function(data) {
+                                Swal.close();
+                                cuteToast({
+                                    type: "error",
+                                    message: "أنت لا تملك الصلاحية لفعل هذا ",
+                                    timer: 3000
+                                });
+                            }
+                        });
                     }
                 });
             } else {
@@ -482,7 +478,6 @@
                     confirmButtonText: "تم الأمر"
                 });
             }
-
         });
 
 

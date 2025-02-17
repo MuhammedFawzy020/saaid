@@ -183,7 +183,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 
-            Route::delete('biographies/delete/bulk', 'AdminBiographiesController@delete_all')
+            Route::post('biographies/delete/bulk', 'AdminBiographiesController@delete_all')
                 ->name('biographies.delete.bulk');
 
             // -------------------------------------
