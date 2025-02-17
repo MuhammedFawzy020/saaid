@@ -413,7 +413,7 @@ class AdminBiographiesController extends Controller
             'display' => 'nullable',
             'display_or_hide' => 'nullable' ,
             'pdf' => 'nullable|mimes:pdf|max:2048',
-            'vedio' => 'nullable|mimes:mp4,avi,mov|max',
+            'vedio' => 'nullable|mimes:mp4,avi,mov',
         ]);
     
         try {
