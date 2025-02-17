@@ -495,7 +495,13 @@ class AdminBiographiesController extends Controller
 
     public function delete_all(Request $request)
     {
-        Biography::destroy($request->id);
+        $request->validate([
+            'id' => 'required|array',
+            'id.*' => 'integer|exists:biographies,id',
+        ]);
+    
+        $ids = $request->input('id');
+        Biography::destroy($ids);
         return response()->json(1, 200);
     }
 
@@ -507,6 +513,7 @@ class AdminBiographiesController extends Controller
      */
     public function destroy($id)
     {
+       
         return response()->json(Biography::destroy($id), 200);
     }
 
