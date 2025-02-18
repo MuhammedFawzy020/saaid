@@ -7,15 +7,20 @@ $setting = App\Models\Setting::first();
 ?>
 
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11407152342"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'AW-11407152342');
+    </script>
     @include('frontend_v2.layout.header')
 </head>
 
 
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXKR56N9" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    
     <!-- Preloader -->
     <div class="preloader-bg"></div>
     <div id="preloader">
