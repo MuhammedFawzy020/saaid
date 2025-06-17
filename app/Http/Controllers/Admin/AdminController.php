@@ -223,39 +223,103 @@ class AdminController extends Controller
 //    }//end fun
 
 
+
+
 public function analysis()
 {
+    $statuses = ['under_work', 'contract',  'musaned', 'traning', 'visa', 'finished', 'canceled'];
+
     $today = Carbon::today();
-
-    $underWork = Order::where('status', 'under_work')->count();
-    $contracted = Order::where('status', 'contract')->count();
-    $cancelOrder = Order::where('status', 'canceled')->count();
-    // Today
-    $underWorkToday = Order::where('status', 'under_work')->whereDate('created_at', $today)->count();
-    $contractedToday = Order::where('status', 'contract')->whereDate('created_at', $today)->count();
-    $cancelOrderToday = Order::where('status', 'canceled')->whereDate('created_at', $today)->count();
-
-    // This Week
     $startOfWeek = Carbon::now()->startOfWeek();
     $endOfWeek = Carbon::now()->endOfWeek();
-    $underWorkWeek = Order::where('status', 'under_work')->whereBetween('created_at', [$startOfWeek, $endOfWeek])->count();
-    $contractedWeek = Order::where('status', 'contract')->whereBetween('created_at', [$startOfWeek, $endOfWeek])->count();
-    $cancelOrderWeek = Order::where('status', 'canceled')->whereBetween('created_at', [$startOfWeek, $endOfWeek])->count();
-
-    // This Month
     $startOfMonth = Carbon::now()->startOfMonth();
     $endOfMonth = Carbon::now()->endOfMonth();
-    $underWorkMonth = Order::where('status', 'under_work')->whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
-    $contractedMonth = Order::where('status', 'contract')->whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
-    $cancelOrderMonth = Order::where('status', 'canceled')->whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
 
-    return view('admin.home.analysis', compact(
-        'underWork', 'contracted', 'cancelOrder',
-        'underWorkToday', 'contractedToday', 'cancelOrderToday',
-        'underWorkWeek', 'contractedWeek', 'cancelOrderWeek',
-        'underWorkMonth', 'contractedMonth', 'cancelOrderMonth'
-    ));
+    $analysis = [];
+
+    foreach ($statuses as $status) {
+        $analysis[$status] = [
+            'today' => Order::where('status', $status)
+                ->whereDate('created_at', $today)
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', false);
+                })
+                ->count(),
+
+            'week' => Order::where('status', $status)
+                ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', false);
+                })
+                ->count(),
+
+            'month' => Order::where('status', $status)
+                ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', false);
+                })
+                ->count(),
+
+            'total' => Order::where('status', $status)
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', false);
+                })
+                ->count(),
+        ];
+    }
+
+
+    return view('admin.home.analysis', compact('analysis'));
 }
+
+public function analysis_for_rent()
+{
+    $statuses = ['under_work', 'contract',  'musaned', 'traning', 'visa', 'finished', 'canceled'];
+
+    $today = Carbon::today();
+    $startOfWeek = Carbon::now()->startOfWeek();
+    $endOfWeek = Carbon::now()->endOfWeek();
+    $startOfMonth = Carbon::now()->startOfMonth();
+    $endOfMonth = Carbon::now()->endOfMonth();
+
+    $analysis = [];
+
+    foreach ($statuses as $status) {
+        $analysis[$status] = [
+            'today' => Order::where('status', $status)
+                ->whereDate('created_at', $today)
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', true);
+                })
+                ->count(),
+
+            'week' => Order::where('status', $status)
+                ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', true);
+                })
+                ->count(),
+
+            'month' => Order::where('status', $status)
+                ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', true);
+                })
+                ->count(),
+
+            'total' => Order::where('status', $status)
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', true);
+                })
+                ->count(),
+        ];
+    }
+
+
+    return view('admin.home.analysis_for_rent', compact('analysis'));
+}
+
+
 
 
 }//end

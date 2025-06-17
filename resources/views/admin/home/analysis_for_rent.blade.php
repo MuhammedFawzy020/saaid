@@ -1,7 +1,7 @@
 @extends('admin.layouts.layout')
 
 @section('page-title')
-    إحصائيات الطلبات للإستقدام
+    إحصائيات الطلبات للإيجار
 @endsection
 
 @section('content')

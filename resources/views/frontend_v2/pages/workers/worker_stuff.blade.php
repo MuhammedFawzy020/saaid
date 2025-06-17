@@ -48,8 +48,29 @@
                                         class="form-control" />
                                 </div>
                             </div>
+                            @if($cv->is_rental == true)
+                            <div class="col-md-8">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="delivery_to" name="delivery_to" value="1">
+                                    
+                                    <label class="form-check-label" for="delivery_to" style="font-size: 18px;font-weight: bold;">
+                                        توصيل العامل إلى المنزل  <small style="color: red; font-weight: bold; font-size: 16px;">
+                                         (  سوف يتم إضافة رسوم التوصيل )
+                                        </small>
+                                    </label>
+
+                                    <div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            </div>
 
                         </div>
+                         
+                        
+
 
                         <div class="headTitle">
                             <h1> </h1>
@@ -58,6 +79,8 @@
 
                             </p>
                         </div>
+
+                      
 
                         {{--                    <form action="selected_customer_service.html"> --}}
                         <div class="choose">
@@ -74,14 +97,14 @@
                             @endforeach
 
                         </div>
-
-
+                       
                         <div class=" pt-4 p-2 text-center">
                             <button type="submit" class="btn px-5 btn-success m-auto ">
                                 {{ __('frontend.Recruitment Request') }}
                             </button>
 
                         </div>
+                        
                         {{--                    </form> --}}
                     </div>
                 </div>
