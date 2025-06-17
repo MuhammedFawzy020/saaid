@@ -24,6 +24,13 @@
                 {{--  Rec Requests --}}
                 @if (checkPermission(31))
                     <li>
+                        <a href="{{ route('admin.analysis') }}" class="waves-effect">
+                            <i class="bx bxs-pie-chart"></i>
+                            <span class="badge rounded-pill bg-info float-end"></span>
+                            <span key="t-dashboards">إحصائيات الطلبات</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('admin-orders.index') }}" class="waves-effect">
                             <i class="bx bxs-file"></i>
                             <span class="badge rounded-pill bg-info float-end"></span>

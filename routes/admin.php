@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 
         Route::get('/home', 'AdminController@index')->name('admin.dashboard');
+        Route::get('/analysis', 'AdminController@analysis')->name('admin.analysis');
         Route::get('calender', 'AdminController@calender')->name('admin.calender');
 
 

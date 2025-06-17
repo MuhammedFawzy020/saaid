@@ -13,7 +13,7 @@ use App\Models\RecruitmentOffice;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -221,6 +221,41 @@ class AdminController extends Controller
 //            'ids'=>$ids
 //        ]);
 //    }//end fun
+
+
+public function analysis()
+{
+    $today = Carbon::today();
+
+    $underWork = Order::where('status', 'under_work')->count();
+    $contracted = Order::where('status', 'contract')->count();
+    $cancelOrder = Order::where('status', 'canceled')->count();
+    // Today
+    $underWorkToday = Order::where('status', 'under_work')->whereDate('created_at', $today)->count();
+    $contractedToday = Order::where('status', 'contract')->whereDate('created_at', $today)->count();
+    $cancelOrderToday = Order::where('status', 'canceled')->whereDate('created_at', $today)->count();
+
+    // This Week
+    $startOfWeek = Carbon::now()->startOfWeek();
+    $endOfWeek = Carbon::now()->endOfWeek();
+    $underWorkWeek = Order::where('status', 'under_work')->whereBetween('created_at', [$startOfWeek, $endOfWeek])->count();
+    $contractedWeek = Order::where('status', 'contract')->whereBetween('created_at', [$startOfWeek, $endOfWeek])->count();
+    $cancelOrderWeek = Order::where('status', 'canceled')->whereBetween('created_at', [$startOfWeek, $endOfWeek])->count();
+
+    // This Month
+    $startOfMonth = Carbon::now()->startOfMonth();
+    $endOfMonth = Carbon::now()->endOfMonth();
+    $underWorkMonth = Order::where('status', 'under_work')->whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
+    $contractedMonth = Order::where('status', 'contract')->whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
+    $cancelOrderMonth = Order::where('status', 'canceled')->whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
+
+    return view('admin.home.analysis', compact(
+        'underWork', 'contracted', 'cancelOrder',
+        'underWorkToday', 'contractedToday', 'cancelOrderToday',
+        'underWorkWeek', 'contractedWeek', 'cancelOrderWeek',
+        'underWorkMonth', 'contractedMonth', 'cancelOrderMonth'
+    ));
+}
 
 
 }//end
