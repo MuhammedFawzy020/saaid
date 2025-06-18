@@ -348,14 +348,8 @@ class WorkerFrontController extends Controller
             'user_id' => $user->id,
             'status' => "under_work",
             "admin_id" => $request->customer,
-<<<<<<< Updated upstream
-//            "admin_id"=>1,
-            'order_date' => now(),
-=======
             //            "admin_id"=>1,
             'order_date' => now(),
-
->>>>>>> Stashed changes
             'delivery_to' => $request->has('delivery_to') ? true : false,
         ];
 

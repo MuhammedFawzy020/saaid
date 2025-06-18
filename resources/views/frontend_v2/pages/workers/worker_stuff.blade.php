@@ -48,31 +48,6 @@
                                         class="form-control" />
                                 </div>
                             </div>
-<<<<<<< Updated upstream
-                            @if($cv->is_rental == true)
-                            <div class="col-md-8">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="delivery_to" name="delivery_to" value="1">
-                                    
-                                    <label class="form-check-label" for="delivery_to" style="font-size: 18px;font-weight: bold;">
-                                        توصيل العامل إلى المنزل  <small style="color: red; font-weight: bold; font-size: 16px;">
-                                         (  سوف يتم إضافة رسوم التوصيل )
-                                        </small>
-                                    </label>
-
-                                    <div>
-                                       
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-                            </div>
-
-                        </div>
-                         
-                        
-
-=======
                             @if ($cv->is_rental == true)
                                 <div class="col-md-8">
                                     <div class="form-check">
@@ -86,28 +61,12 @@
                                                 ( سوف يتم إضافة رسوم التوصيل )
                                             </small>
                                         </label>
->>>>>>> Stashed changes
 
                                         <div>
 
                                         </div>
                                     </div>
 
-<<<<<<< Updated upstream
-                      
-
-                        {{--                    <form action="selected_customer_service.html"> --}}
-                        <div class="choose">
-                            @foreach ($admins as $admin)
-                                <!--  customer -->
-                                <div class="customerOption " data-aos=" fade-up">
-                                    <input type="radio" class="btn-check " value="{{ $admin->id }}" name="customer"
-                                        id="option{{ $admin->id }}">
-                                    <label class="btn btn-outline" for="option{{ $admin->id }}">
-                                        <img src="{{ asset('frontend') }}/img/img/customerService2.png" alt="">
-                                        <span> {{ $admin->name }} </span>
-                                    </label>
-=======
                                     <div class="form-group d-none mt-2 mb-2" id="address">
                                         <label>
                                             العنوان تفصيلي ( يشمل المدينة و المنطقة)
@@ -129,23 +88,9 @@
                                             });
                                         </script>
                                     @endsection
->>>>>>> Stashed changes
                                 </div>
                             @endif
                         </div>
-<<<<<<< Updated upstream
-                       
-                        <div class=" pt-4 p-2 text-center">
-                            <button type="submit" class="btn px-5 btn-success m-auto ">
-                                {{ __('frontend.Recruitment Request') }}
-                            </button>
-
-                        </div>
-                        
-                        {{--                    </form> --}}
-=======
-
->>>>>>> Stashed changes
                     </div>
 
 
