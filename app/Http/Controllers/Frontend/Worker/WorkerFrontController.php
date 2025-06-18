@@ -25,20 +25,20 @@ class WorkerFrontController extends Controller
 {
 
 
-    
+
 
 
     public function track_order_view(Request $request)
     {
-        if($request->has('order_code') && $request->has('phone')) {
+        if ($request->has('order_code') && $request->has('phone')) {
 
-            $user = \App\Models\User::where('phone',$request->phone)->first();
-            if($user == null ) {
+            $user = \App\Models\User::where('phone', $request->phone)->first();
+            if ($user == null) {
                 return view('frontend_v2.pages.track.order');
             }
 
-            $order = Order::where(['order_code'=>$request->order_code,'user_id'=>$user->id])->first();
-            if($order == null) {
+            $order = Order::where(['order_code' => $request->order_code, 'user_id' => $user->id])->first();
+            if ($order == null) {
                 return view('frontend_v2.pages.track.order');
             }
 
@@ -61,13 +61,13 @@ class WorkerFrontController extends Controller
             } else {
                 return response()->json([], 403);
 
-//                toastError('ﻻ يمكنك تتبع هذا الطلب', 'حدث خطأ ما');
+                //                toastError('ﻻ يمكنك تتبع هذا الطلب', 'حدث خطأ ما');
 //                return back();
             }
         } else {
             return response()->json([], 500);
 
-//            toastError('يجب تسجيل الدخول لاستخدام هذة الخدمة', 'حدث خطأ ما');
+            //            toastError('يجب تسجيل الدخول لاستخدام هذة الخدمة', 'حدث خطأ ما');
 //            return back();
         }
 
@@ -99,8 +99,17 @@ class WorkerFrontController extends Controller
     {
 
 
-        $cv = Biography::with('recruitment_office', 'nationalitie', 'language_title',
-            'religion', 'job', 'social_type', 'admin', 'images', 'skills')
+        $cv = Biography::with(
+            'recruitment_office',
+            'nationalitie',
+            'language_title',
+            'religion',
+            'job',
+            'social_type',
+            'admin',
+            'images',
+            'skills'
+        )
             ->where('id', $id)
             ->firstOrFail();
         $admins = \App\Models\Admin::where('admin_type', '!=', 0)->get();
@@ -119,8 +128,17 @@ class WorkerFrontController extends Controller
             ->FilterByJob($request->job)
             ->FilterByReligon($request->religon)->where('type', $type)
             ->FilterByNationality($request->nationality)->where('type', $type)
-            ->with('recruitment_office', 'nationalitie', 'language_title',
-                'religion', 'job', 'social_type', 'admin', 'images', 'skills')
+            ->with(
+                'recruitment_office',
+                'nationalitie',
+                'language_title',
+                'religion',
+                'job',
+                'social_type',
+                'admin',
+                'images',
+                'skills'
+            )
             ->latest()
             ->paginate(18);
         $current_page = $cvs->currentPage();
@@ -164,7 +182,7 @@ class WorkerFrontController extends Controller
     {
 
         $rental = 0;
-        if($value == "rental") {
+        if ($value == "rental") {
             $rental = 1;
         }
         $cvs = Biography::where('status', 'new')
@@ -174,11 +192,20 @@ class WorkerFrontController extends Controller
             ->FilterByAge($request->age)
             ->FilterByJob($request->job)
             ->FilterByNationality($request->nationality)->where('type', $type)
-            ->when($request->religion, function($query) use ($request) {
-                $query->where('religion_id',$request->religion);
+            ->when($request->religion, function ($query) use ($request) {
+                $query->where('religion_id', $request->religion);
             })
-            ->with('recruitment_office', 'nationalitie', 'language_title',
-                'religion', 'job', 'social_type', 'admin', 'images', 'skills')
+            ->with(
+                'recruitment_office',
+                'nationalitie',
+                'language_title',
+                'religion',
+                'job',
+                'social_type',
+                'admin',
+                'images',
+                'skills'
+            )
             ->latest()
             ->paginate(18)->appends(request()->query());
 
@@ -219,50 +246,61 @@ class WorkerFrontController extends Controller
     }//end fun
 
 
-    public function worker_details($id , $type="admission"){
-        $cv = Biography::with('recruitment_office', 'nationalitie', 'language_title',
-        'religion', 'job', 'social_type', 'admin', 'images', 'skills')
-        ->where('id', $id)
-        ->firstOrFail();
+    public function worker_details($id, $type = "admission")
+    {
+        $cv = Biography::with(
+            'recruitment_office',
+            'nationalitie',
+            'language_title',
+            'religion',
+            'job',
+            'social_type',
+            'admin',
+            'images',
+            'skills'
+        )
+            ->where('id', $id)
+            ->firstOrFail();
 
         $admins = \App\Models\Admin::whereHas('roles', function ($q) {
             $q->where('roles.id', 4);
         })->get();
 
-          return view('frontend_v2.pages.workers.cv_details')->with([
-              'cv' => $cv ,
-              'type' => $type ,
-              'admins' => $admins,
-              
-              ]);
+        return view('frontend_v2.pages.workers.cv_details')->with([
+            'cv' => $cv,
+            'type' => $type,
+            'admins' => $admins,
+
+        ]);
     }
 
-    public function downloadPDF($id, $type="admission")
+    public function downloadPDF($id, $type = "admission")
     {
         $cv = Biography::findORFail($id);
         // $admins = \App\Models\Admin::whereHas('roles', function ($q) {
         //     $q->where('roles.id', 4);
         // })->take(10)->get();
         $data = [
-               'cv' => $cv ,
-              'type' => $type ,
-              
+            'cv' => $cv,
+            'type' => $type,
+
         ];
-    
-        $html = view('frontend_v2.pages.workers.cv_details', $data)->render();    
+
+        $html = view('frontend_v2.pages.workers.cv_details', $data)->render();
         $pdf = PDF::loadHTML($html);
-    
+
         return $pdf->download('sample.pdf');
 
         return view('frontend_v2.pages.workers.cv_details')->with([
-            'cv' => $cv ,
-            'type' => $type ,
-          
-            
-            ]);
+            'cv' => $cv,
+            'type' => $type,
+
+
+        ]);
     }
 
-    public function showAllWorrkers_v2() {
+    public function showAllWorrkers_v2()
+    {
 
     }
 
@@ -270,46 +308,54 @@ class WorkerFrontController extends Controller
     {
 
 
-        
+
+
+
         $cv = Biography::findOrFail($id);
         if ($cv->status != 'new') {
             return back()->with('error', 'عفوا هذا العامل/ة تم حجزهم');
         }
-        
+
         // $user = auth()->user();
-        
-        if($request->name == "" || $request->name == null) {
+
+        if ($request->name == "" || $request->name == null) {
             return back()->with('error', 'عفوا ، حقل الاسم إلزامي');
         }
 
-        if($request->phone == "" || $request->phone == null || strlen($request->phone) != 9) {
-             return back()->with('error', 'عفوا ، هناك خطأ في حقل الهاتف برجاء مراجعة الهاتف يجب ان يكون مكون من 9 ارقام فقط');
+        if ($request->phone == "" || $request->phone == null || strlen($request->phone) != 9) {
+            return back()->with('error', 'عفوا ، هناك خطأ في حقل الهاتف برجاء مراجعة الهاتف يجب ان يكون مكون من 9 ارقام فقط');
         }
 
-        if($request->customer == "" || $request->customer == null) {
+        if ($request->customer == "" || $request->customer == null) {
             return back()->with('error', 'برجاء اختيار احد ممثلي خدمة العملاء بالضغط علي الاسم و سيتم التحديد');
         }
 
 
         $user = User::where('phone', $request->phone)->first();
-        if($user == null) {
+        if ($user == null) {
             $user = new User();
             $user->type = "normal_user";
             $user->phone = $request->phone;
             $user->name = $request->name;
-            $user->password = Hash::make(rand(99999999,99999999999));
-            $user->phone_activation_code = rand(9999,99999);
+            $user->password = Hash::make(rand(99999999, 99999999999));
+            $user->phone_activation_code = rand(9999, 99999);
             $user->activated_at = Date('Y-m-d h:i:s');
             $user->save();
         }
-        
+
 
         $order_data = [
             'user_id' => $user->id,
             'status' => "under_work",
             "admin_id" => $request->customer,
+<<<<<<< Updated upstream
 //            "admin_id"=>1,
             'order_date' => now(),
+=======
+            //            "admin_id"=>1,
+            'order_date' => now(),
+
+>>>>>>> Stashed changes
             'delivery_to' => $request->has('delivery_to') ? true : false,
         ];
 
@@ -319,14 +365,15 @@ class WorkerFrontController extends Controller
         Biography::where('id', $id)->update(collect($order_data)->except('delivery_to')->toArray());
         $order_data['biography_id'] = $cv->id;
         $order_data['order_code'] = "NK" . $cv->id . time();
+        $order_data['address'] = $request->address;
         $order = Order::create($order_data);
         $order_id = $order->id;
 
-      //  $this->sendSms($user->phone, "  تم ارسال طلبك بنجاح ف انتظار تواصلك مع خدمة العملاء علي رقم الجوال "."0".$admin->phone);
+        //  $this->sendSms($user->phone, "  تم ارسال طلبك بنجاح ف انتظار تواصلك مع خدمة العملاء علي رقم الجوال "."0".$admin->phone);
 
         // $this->sendSms($admin->phone,"تم استقبال طلب استقدام من العميل ".$user->name."برقم جوال".$user->phone);
 
-//        $this->send_support_reply_email_to_user($user, $order);
+        //        $this->send_support_reply_email_to_user($user, $order);
 
 
         return redirect()->route('success-order', $order->order_code);
@@ -354,7 +401,8 @@ class WorkerFrontController extends Controller
         return $result;
     }
 
-    public function RequestCompleted($order_code) {
+    public function RequestCompleted($order_code)
+    {
 
         $order = Order::where('order_code', $order_code)->first();
         return view('frontend_v2.pages.workers.success', compact('order'));
@@ -367,9 +415,9 @@ class WorkerFrontController extends Controller
         $array['content'] = " قام المستخدم بطلب استقدام جديد برجاء تصفح الطلب برقم العميل" . $user->phone;
         $array['link'] = route('admin-orders.index');
         $array['sender'] = $user->name;
-//        $array['details'] = $tkt_reply->reply;
+        //        $array['details'] = $tkt_reply->reply;
 
-//        try {
+        //        try {
 //            Mail::to(env('MAIL_FROM_ADDRESS'))->queue(new SupportMailManager($array));
 //        } catch (\Exception $e) {
 //            //dd($e->getMessage());
@@ -378,8 +426,17 @@ class WorkerFrontController extends Controller
 
     public function show_worker_details($id, $type = 'admission')
     {
-        $cv = Biography::with('recruitment_office', 'nationalitie', 'language_title',
-            'religion', 'job', 'social_type', 'admin', 'images', 'skills')
+        $cv = Biography::with(
+            'recruitment_office',
+            'nationalitie',
+            'language_title',
+            'religion',
+            'job',
+            'social_type',
+            'admin',
+            'images',
+            'skills'
+        )
             ->where('id', $id)
             ->firstOrFail();
 
@@ -455,7 +512,7 @@ class WorkerFrontController extends Controller
             'user_id' => auth()->user()->id,
             'status' => "under_work",
             "admin_id" => $customer_id,
-//            "admin_id"=>1,
+            //            "admin_id"=>1,
             'order_date' => now()
         ];
 

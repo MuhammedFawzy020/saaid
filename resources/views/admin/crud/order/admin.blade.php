@@ -122,6 +122,7 @@
 
                             </select>
                         </div>
+<<<<<<< Updated upstream
                          @if($value == 'rental')
                         <div class="col-lg-2 ml-auto">
                             <select class="form-control " name="delivery_to" id="delivery_to">
@@ -133,6 +134,19 @@
 
                             </select>
                         </div>
+=======
+                        @if ($value == 'rental')
+                            <div class="col-lg-2 ml-auto">
+                                <select class="form-control " name="delivery_to" id="delivery_to">
+                                    <option value=" " selected>التوصيل</option>
+                                    <option value="0" @if ($delivery_to == '0') selected @endif>بدون توصيل
+                                    </option>
+                                    <option value="1" @if ($delivery_to == '1') selected @endif>توصيل للمنزل
+                                    </option>
+
+                                </select>
+                            </div>
+>>>>>>> Stashed changes
                         @endif
                         <div class="col-md-2 ">
                             <div class='input-group mb-3' style="width: 228px">
@@ -181,8 +195,14 @@
                             <th>الحالة</th>
                             <th>الوكيل</th>
                             <th>النوع</th>
+<<<<<<< Updated upstream
                             @if($value == 'rental')
                             <th>توصيل</th>
+=======
+                            @if ($value == 'rental')
+                                <th>توصيل</th>
+                                <th>العنوان</th>
+>>>>>>> Stashed changes
                             @endif
                             <th>التاريخ</th>
                             <th>التحكم</th>
@@ -298,6 +318,7 @@
                     orderable: false,
                     searchable: true
                 },
+<<<<<<< Updated upstream
                 @if($value == 'rental')
                 {
                     "data": "delivery_to",
@@ -305,6 +326,17 @@
                 },
                 @endif
                 {
+=======
+                @if ($value == 'rental')
+                    {
+                        "data": "delivery_to",
+                        searchable: true
+                    }, {
+                        "data": "address",
+                        searchable: true
+                    },
+                @endif {
+>>>>>>> Stashed changes
                     "data": "created_at",
                     searchable: true
                 },

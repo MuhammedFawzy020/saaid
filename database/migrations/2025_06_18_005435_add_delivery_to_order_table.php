@@ -15,6 +15,10 @@ class AddDeliveryToOrderTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->boolean('delivery_to')->nullable()->after('order_canceled')->comment('Indicates if the order is delivered to a specific address')->default(false);
+<<<<<<< Updated upstream
+=======
+            $table->longText('address')->nullable()->after('delivery_to')->nullable();
+>>>>>>> Stashed changes
         });
     }
 
