@@ -212,6 +212,8 @@ class WorkerFrontController extends Controller
         $current_page = $cvs->currentPage();
         $last_page = $cvs->lastPage();
 
+
+
         if ($request->ajax()) {
 
             $returnHTML = view('frontend.pages.all-workers.worker.workers_page')

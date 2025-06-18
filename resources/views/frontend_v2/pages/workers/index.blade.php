@@ -34,7 +34,10 @@
             </figure>
         </div>
 
-        <form method="get" action="{{ route('all-workers') }}">
+
+
+        <form method="get"
+            action="{{ $value == 'rental' ? route('all-workers', ['value' => 'rental', 'type' => 'admission']) : route('all-workers') }}">
             @csrf
             <div class="row m-0 p-0 mb-4 mt-4 backgound-color-orange p-4">
                 <div class="col-12 text-center mb-2 ">
@@ -196,16 +199,18 @@
 
                                                     :
                                                     <b>
-                                                    @if($cv->religion_id == 1 && $cv->is_rental == 1 )
-                                                    {{ $cv->nationalitie->price->rent_muslim_price }} {{ __('frontend.SAR') }}
-                                                    @elseif($cv->religion_id != 1 && $cv->is_rental == 1 )
-                                                    {{ $cv->nationalitie->price->rent_none_muslim_price }} {{ __('frontend.SAR') }}
-
-                                                    @elseif($cv->religion_id == 1 && $cv->is_rental == 0 )
-                                                    {{ $cv->nationalitie->price->price }} {{ __('frontend.SAR') }}
-                                                    @else
-                                                    {{ $cv->nationalitie->price->none_muslim }} {{ __('frontend.SAR') }}
-                                                    @endif
+                                                        @if ($cv->religion_id == 1 && $cv->is_rental == 1)
+                                                            {{ $cv->nationalitie->price->rent_muslim_price }}
+                                                            {{ __('frontend.SAR') }}
+                                                        @elseif($cv->religion_id != 1 && $cv->is_rental == 1)
+                                                            {{ $cv->nationalitie->price->rent_none_muslim_price }}
+                                                            {{ __('frontend.SAR') }}
+                                                        @elseif($cv->religion_id == 1 && $cv->is_rental == 0)
+                                                            {{ $cv->nationalitie->price->price }} {{ __('frontend.SAR') }}
+                                                        @else
+                                                            {{ $cv->nationalitie->price->none_muslim }}
+                                                            {{ __('frontend.SAR') }}
+                                                        @endif
                                                     </b>
                                                 </p>
                                             </div>
@@ -253,15 +258,15 @@
                                     <div class="row">
                                         <div class="cv-comp text-center">
                                             <!-- <a href="{{ route('worker-details', $cv->id) }}"
-                                                                                                                                                class="worker btn cvDetails btn btn-outline-secondary">
+                                                                                                                                                                class="worker btn cvDetails btn btn-outline-secondary">
 
-                                                                                                                                                التفاصيل
+                                                                                                                                                                التفاصيل
 
-                                                                                                                                            </a>
-                                                                                                                                            <a href="{{ route('frontend.show.worker', $cv->id) }}" class="btn btn-secondary">
-                                                                                                                                                احجز الان
+                                                                                                                                                            </a>
+                                                                                                                                                            <a href="{{ route('frontend.show.worker', $cv->id) }}" class="btn btn-secondary">
+                                                                                                                                                                احجز الان
 
-                                                                                                                                            </a> -->
+                                                                                                                                                            </a> -->
 
                                             <a id="downloadPdfBtn2" class="btn btn-danger d-none">
                                                 تحميل السيفي
@@ -270,14 +275,16 @@
                                                 class="btn btn-secondary">
                                                 احجز الان
                                             </a>
-                                            @if($cv->pdf)
-                                                <a href="{{url('/')}}/{{$cv->pdf}}" target="_blank" class="btn book">
+                                            @if ($cv->pdf)
+                                                <a href="{{ url('/') }}/{{ $cv->pdf }}" target="_blank"
+                                                    class="btn book">
                                                     عرض السيرة الذاتية (PDF)
                                                 </a>
                                             @endif
 
-                                            @if($cv->vedio)
-                                                <a href="{{url('/')}}/{{ $cv->vedio }}" target="_blank" class="btn book">
+                                            @if ($cv->vedio)
+                                                <a href="{{ url('/') }}/{{ $cv->vedio }}" target="_blank"
+                                                    class="btn book">
                                                     عرض الفيديو
                                                 </a>
                                             @endif
@@ -307,8 +314,8 @@
                             <div class="modal-body">
                                 <div class="card" style="padding:3px;">
                                     <!-- <div class="card-image">
-                                                                                                                                                                                                                                                                                                            <img src="{{ get_file($cv->cv_file) }}" alt="">
-                                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                                            <img src="{{ get_file($cv->cv_file) }}" alt="">
+                                                                                                                                                                                                                                                                                                                        </div> -->
 
                                     <div class="card-header" style="padding:0px !important;border:none !important;">
                                         <div class="card col-lg-12" style="border:none;">
@@ -550,7 +557,7 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <!-- <img src="{{ url('/') }}/frontend/images/Symbology-QR-code.svg"
-                                                                                                                                                                                                                                                                                                                            style="width:100%;height:50px" alt=""> -->
+                                                                                                                                                                                                                                                                                                                                            style="width:100%;height:50px" alt=""> -->
                                                 </div>
                                                 <div class="col-4">
                                                     <img src="{{ url('/') }}/frontend/images/logo/logoH.svg"
@@ -558,7 +565,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <!-- <img src="{{ url('/') }}/frontend/images/Symbology-QR-code.svg"
-                                                                                                                                                                                                                                                                                                                            style="width:100%;height:50px" alt=""> -->
+                                                                                                                                                                                                                                                                                                                                            style="width:100%;height:50px" alt=""> -->
                                                 </div>
                                             </div>
                                         </div>
