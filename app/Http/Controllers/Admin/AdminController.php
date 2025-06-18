@@ -13,7 +13,7 @@ use App\Models\RecruitmentOffice;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -221,6 +221,105 @@ class AdminController extends Controller
 //            'ids'=>$ids
 //        ]);
 //    }//end fun
+
+
+
+
+public function analysis()
+{
+    $statuses = ['under_work', 'contract',  'musaned', 'traning', 'visa', 'finished', 'canceled'];
+
+    $today = Carbon::today();
+    $startOfWeek = Carbon::now()->startOfWeek();
+    $endOfWeek = Carbon::now()->endOfWeek();
+    $startOfMonth = Carbon::now()->startOfMonth();
+    $endOfMonth = Carbon::now()->endOfMonth();
+
+    $analysis = [];
+
+    foreach ($statuses as $status) {
+        $analysis[$status] = [
+            'today' => Order::where('status', $status)
+                ->whereDate('created_at', $today)
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', false);
+                })
+                ->count(),
+
+            'week' => Order::where('status', $status)
+                ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', false);
+                })
+                ->count(),
+
+            'month' => Order::where('status', $status)
+                ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', false);
+                })
+                ->count(),
+
+            'total' => Order::where('status', $status)
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', false);
+                })
+                ->count(),
+        ];
+    }
+
+
+    return view('admin.home.analysis', compact('analysis'));
+}
+
+public function analysis_for_rent()
+{
+    $statuses = ['under_work', 'contract',  'musaned', 'traning', 'visa', 'finished', 'canceled'];
+
+    $today = Carbon::today();
+    $startOfWeek = Carbon::now()->startOfWeek();
+    $endOfWeek = Carbon::now()->endOfWeek();
+    $startOfMonth = Carbon::now()->startOfMonth();
+    $endOfMonth = Carbon::now()->endOfMonth();
+
+    $analysis = [];
+
+    foreach ($statuses as $status) {
+        $analysis[$status] = [
+            'today' => Order::where('status', $status)
+                ->whereDate('created_at', $today)
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', true);
+                })
+                ->count(),
+
+            'week' => Order::where('status', $status)
+                ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', true);
+                })
+                ->count(),
+
+            'month' => Order::where('status', $status)
+                ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', true);
+                })
+                ->count(),
+
+            'total' => Order::where('status', $status)
+                ->whereHas('biography', function ($query) {
+                    $query->where('is_rental', true);
+                })
+                ->count(),
+        ];
+    }
+
+
+    return view('admin.home.analysis_for_rent', compact('analysis'));
+}
+
+
 
 
 }//end

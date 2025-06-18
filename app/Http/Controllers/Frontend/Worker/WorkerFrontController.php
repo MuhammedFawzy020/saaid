@@ -309,13 +309,14 @@ class WorkerFrontController extends Controller
             'status' => "under_work",
             "admin_id" => $request->customer,
 //            "admin_id"=>1,
-            'order_date' => now()
+            'order_date' => now(),
+            'delivery_to' => $request->has('delivery_to') ? true : false,
         ];
 
         $admin = Admin::find($request->customer);
 
 
-        Biography::where('id', $id)->update($order_data);
+        Biography::where('id', $id)->update(collect($order_data)->except('delivery_to')->toArray());
         $order_data['biography_id'] = $cv->id;
         $order_data['order_code'] = "NK" . $cv->id . time();
         $order = Order::create($order_data);

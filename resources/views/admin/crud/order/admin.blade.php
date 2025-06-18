@@ -115,13 +115,25 @@
                         <div class="col-lg-2 ml-auto">
                             <select class="form-control " name="type" id="type">
                                 <option value=" " selected>نوع السيرة</option>
-                                <option value="admission" @if ($type == 'admission') selected @endif>استقدام
+                                <option value="admission" @if ($delivery_to == 'admission') selected @endif>استقدام
                                 </option>
                                 <option value="transport" @if ($type == 'transport') selected @endif>نقل خدمات
                                 </option>
 
                             </select>
                         </div>
+                         @if($value == 'rental')
+                        <div class="col-lg-2 ml-auto">
+                            <select class="form-control " name="delivery_to" id="delivery_to">
+                                <option value=" " selected>التوصيل</option>
+                                <option value="0" @if ($delivery_to == '0') selected @endif>بدون توصيل
+                                </option>
+                                <option value="1" @if ($delivery_to == '1') selected @endif>توصيل للمنزل 
+                                </option>
+
+                            </select>
+                        </div>
+                        @endif
                         <div class="col-md-2 ">
                             <div class='input-group mb-3' style="width: 228px">
                                 <input type='text' class="form-control " id="reportrange" name="datefilter"
@@ -169,6 +181,9 @@
                             <th>الحالة</th>
                             <th>الوكيل</th>
                             <th>النوع</th>
+                            @if($value == 'rental')
+                            <th>توصيل</th>
+                            @endif
                             <th>التاريخ</th>
                             <th>التحكم</th>
                         </tr>
@@ -283,6 +298,12 @@
                     orderable: false,
                     searchable: true
                 },
+                @if($value == 'rental')
+                {
+                    "data": "delivery_to",
+                    searchable: true
+                },
+                @endif
                 {
                     "data": "created_at",
                     searchable: true
