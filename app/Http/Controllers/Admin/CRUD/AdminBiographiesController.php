@@ -518,4 +518,25 @@ class AdminBiographiesController extends Controller
     }
 
 
+    // app/Http/Controllers/BiographyController.php
+
+    public function bulkVisibility(Request $request)
+    {
+        $data = $request->validate([
+            'ids'      => 'required|array|min:1',
+            'ids.*'    => 'integer|exists:biographies,id',
+            'status'   => 'required|in:0,1', // 0 = inactive, 1 = active
+        ]);
+
+        // Optional: authorize (if you use policies)
+        // $this->authorize('update', Biography::class);
+
+        \App\Models\Biography::whereIn('id', $data['ids'])
+            ->update(['display_or_hide' => (int) $data['status']]);
+
+        return response()->json(['ok' => true], 200);
+}
+
+
+
 }//end

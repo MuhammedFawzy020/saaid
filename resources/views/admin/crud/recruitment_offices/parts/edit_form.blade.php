@@ -12,9 +12,21 @@
                            value="{{$obj->getTranslation('title', $language->title)}}"
                            id="{{$language->title}}_title" name="title[]"
                            placeholder="{{__('admin.recruitment office')}} {{--({{__('admin.'.$language->title)}}) --}}">
+
+                    
                 </div>
             </div>
         @endforeach
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="form-group">
+                <label for="status">{{__('admin.status')}}</label>
+                <select class="form-control" name="status"  data-validation="required">
+                    <option value="active" {{$obj->status == 'active' ? 'selected' : ''}}>{{__('admin.active')}}</option>
+                    <option value="inactive" {{$obj->status == 'inactive' ? 'selected' : ''}}>{{__('admin.not_active')}}</option>
+                </select>
+            </div>
+        </div>
 
       {{--  @foreach($languages as $index=>$language)
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-2">

@@ -184,6 +184,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/biographies/store/{value?}', 'AdminBiographiesController@store')->name('biographies.store');
             Route::delete('/biographies/delete/{id}/{value?}', 'AdminBiographiesController@destroy')->name('biographies.destroy');
 
+            Route::post('biographies/bulk-visibility','AdminBiographiesController@bulkVisibility')->name('biographies.bulk.visibility');
 
 
             Route::post('biographies/delete/bulk', 'AdminBiographiesController@delete_all')
