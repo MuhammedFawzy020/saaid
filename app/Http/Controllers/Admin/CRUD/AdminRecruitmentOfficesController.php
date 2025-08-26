@@ -44,6 +44,13 @@ class AdminRecruitmentOfficesController extends Controller
                 ->editColumn('title', function ($row) {
                     return $row->title;
                 })
+                ->editColumn('status', function ($row) {
+                    if($row->status == 'active'){
+                        return "<span class='badge bg-success'>".__('admin.active')."</span>";
+                    }else{
+                        return "<span class='badge bg-danger'>".__('admin.not_active')."</span>";
+                    }
+                })
                 ->addColumn('delete_all', function ($row) {
                     return "<input type='checkbox' class=' delete-all form-check-input' data-tablesaw-checkall name='delete_all' id='" . $row->id . "'>";
                 })
@@ -57,7 +64,7 @@ class AdminRecruitmentOfficesController extends Controller
                     return "<button  $edit class='btn btn-info editButton' id='" . $row->id . "'> <i class='fa fa-edit'></i></button>
                    <button $delete class='btn btn-danger  delete' id='" . $row->id . "'><i class='fa fa-trash'></i> </button>";
                 })
-                ->rawColumns(['actions',/* 'desc',*/ 'delete_all','title'])->make(true);
+                ->rawColumns(['actions','status',/* 'desc',*/ 'delete_all','title'])->make(true);
         }
         return view('admin.crud.recruitment_offices.index');
     }
@@ -100,8 +107,17 @@ class AdminRecruitmentOfficesController extends Controller
             $name[$language->title] = $request->title[$index];
         }
         $data['title'] = $name;
+        $data['status'] = $request->status;
       /*  $data ['image'] = $this->uploadFiles('our_services',$request->file('image'),null );*/
-        RecruitmentOffice::create($data);
+        //RecruitmentOffice::create($data);
+
+        $office = RecruitmentOffice::create($data);
+        if ($request->filled('status')) {
+            dd($office->cvs());
+            $office->cvs()->update([
+                'display_or_hide' => $request->status == 'active' ? 1 : 0,
+            ]);
+        }
         return response()->json(1,200);
 
     }
@@ -166,8 +182,19 @@ class AdminRecruitmentOfficesController extends Controller
              /*   $desc[$language->title] = $request->desc[$index];*/
             }
             $data['title'] = $name;
+            $data['status'] = $request->status;
+
+           
           /*  $data['desc'] = $desc;*/
             $slider->update($data);
+
+            if($request->status == 'active'){
+                $slider->cvs()->update(['display_or_hide'=>'1']);
+            }
+            else{
+                $slider->cvs()->update(['display_or_hide'=>'0']);
+            }
+
             return response()->json(1,200);
         }catch (\Exception $exception){
             return response()->json($exception->getMessage(),500);

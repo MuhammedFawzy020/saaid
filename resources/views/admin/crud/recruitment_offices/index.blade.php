@@ -78,6 +78,7 @@
                             </th>
 
                             <th>مكتب الاستقدام</th>
+                            <th>النشاط ؟</th>
                             {{--   <th>الاجابة </th>--}}
                             <th>وقت الإضافة</th>
                             <th>التحكم</th>
@@ -162,6 +163,7 @@
             "columns": [
                 {"data": "delete_all", orderable: false, searchable: false},
                 {"data": "title", orderable: false, searchable: false},
+                {"data": "status", orderable: false, searchable: false},
                 /*     {"data": "desc", orderable: false, searchable: false},*/
                 {"data": "created_at", searchable: false},
                 {"data": "actions", orderable: false, searchable: false}

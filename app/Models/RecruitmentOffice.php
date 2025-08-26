@@ -12,6 +12,9 @@ class RecruitmentOffice extends Model
     use HasTranslations;
     protected $guarded = [];
     public $translatable = ['title'];
+    protected $fillable = ['title','status'];
+
+    
     public function cvs(){
         return $this->hasMany(Biography::class,'recruitment_office_id');
     }

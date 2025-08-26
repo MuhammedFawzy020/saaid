@@ -176,6 +176,16 @@
                                             </select>
                                         </div>
                                     </div>
+                                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                        <div class="form-group">
+                                            <label for="passport_number">مكتب الاستقدام</label>
+                                            <select name="recruitment_office_id" class="form-control select2Users">
+                                                @foreach($recruitment_office as $office)
+                                                <option value="{{$office->id}}">{{$office->title}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <input id="submit_button"
                                             style="border: none !important;background-color: #556ee6;border-radius: 4px;padding: 8px 15px;color: #fff;"
