@@ -113,7 +113,6 @@ class AdminRecruitmentOfficesController extends Controller
 
         $office = RecruitmentOffice::create($data);
         if ($request->filled('status')) {
-            dd($office->cvs());
             $office->cvs()->update([
                 'display_or_hide' => $request->status == 'active' ? 1 : 0,
             ]);
