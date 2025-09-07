@@ -21,6 +21,7 @@
     @include('frontend_v2.pages.home.sections.sectionEight')
 
     @include('frontend_v2.pages.home.sections.sectionTen')
+
 @endsection
 
 @section('js')
