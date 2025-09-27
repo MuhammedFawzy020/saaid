@@ -84,16 +84,16 @@
                                     </div>
                                     <div class="col-6 p-2">
                                         <div class="form-group">
-                                            <label >PDF </label>
+                                            <label>PDF </label>
                                             <input type="file" data-validation="required" class="form-control"
-                                                 name="pdf" accept=".pdf"  placeholder="">
+                                                name="pdf" accept=".pdf" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-6 p-2">
                                         <div class="form-group">
-                                            <label >Vedio</label>
+                                            <label>Vedio</label>
                                             <input type="file" data-validation="required" class="form-control"
-                                                 name="vedio" accept="video/*" placeholder="">
+                                                name="vedio" accept="video/*" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
@@ -151,8 +151,8 @@
                                         <div class="form-group">
 
                                             <label for="recruitment_price">سعر الاستقدام </label>
-                                            <input type="number" class="form-control" value="" id="recruitment_price"
-                                                name="recruitment_price" placeholder=" ">
+                                            <input type="number" class="form-control" value=""
+                                                id="recruitment_price" name="recruitment_price" placeholder=" ">
 
                                         </div>
 
@@ -161,8 +161,9 @@
                                         <div class="form-group">
 
                                             <label for="salary">الراتب</label>
-                                            <input data-validation="required" required type="number" class="form-control"
-                                                value="" id="salary" name="salary" placeholder=" ">
+                                            <input data-validation="required" required type="number"
+                                                class="form-control" value="" id="salary" name="salary"
+                                                placeholder=" ">
 
                                         </div>
 
@@ -176,15 +177,24 @@
                                             </select>
                                         </div>
                                     </div>
-                                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="passport_number">مكتب الاستقدام</label>
                                             <select name="recruitment_office_id" class="form-control select2Users">
-                                                @foreach($recruitment_office as $office)
-                                                <option value="{{$office->id}}">{{$office->title}}</option>
+                                                @foreach ($recruitment_office as $office)
+                                                    <option value="{{ $office->id }}">{{ $office->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                        <div class="form-group">
+
+                                            <label for="salary">الملاحظات</label>
+                                            <textarea type="text" class="form-control" value="" id="notes" name="notes"></textarea>
+
+                                        </div>
+
                                     </div>
                                     <div class="col-md-6">
                                         <input id="submit_button"

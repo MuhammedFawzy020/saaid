@@ -255,18 +255,18 @@
                                         </ul>
                                     @endif
 
+                                    <div>
+                                        @if ($cv->notes)
+                                            <p class="text-danger text-sm"
+                                                style="font-size: 14px !important; margin-top: 15px">
+                                                {{ $cv->notes }}
+                                            </p>
+                                        @endif
+                                    </div>
+
                                     <div class="row">
                                         <div class="cv-comp text-center">
-                                            <!-- <a href="{{ route('worker-details', $cv->id) }}"
-                                                                                                                                                                class="worker btn cvDetails btn btn-outline-secondary">
 
-                                                                                                                                                                التفاصيل
-
-                                                                                                                                                            </a>
-                                                                                                                                                            <a href="{{ route('frontend.show.worker', $cv->id) }}" class="btn btn-secondary">
-                                                                                                                                                                احجز الان
-
-                                                                                                                                                            </a> -->
 
                                             <a id="downloadPdfBtn2" class="btn btn-danger d-none">
                                                 تحميل السيفي
@@ -314,8 +314,8 @@
                             <div class="modal-body">
                                 <div class="card" style="padding:3px;">
                                     <!-- <div class="card-image">
-                                                                                                                                                                                                                                                                                                                            <img src="{{ get_file($cv->cv_file) }}" alt="">
-                                                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                                                                <img src="{{ get_file($cv->cv_file) }}" alt="">
+                                                                                                                                                                                                                                                                                                                                            </div> -->
 
                                     <div class="card-header" style="padding:0px !important;border:none !important;">
                                         <div class="card col-lg-12" style="border:none;">
@@ -557,7 +557,7 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <!-- <img src="{{ url('/') }}/frontend/images/Symbology-QR-code.svg"
-                                                                                                                                                                                                                                                                                                                                            style="width:100%;height:50px" alt=""> -->
+                                                                                                                                                                                                                                                                                                                                                                style="width:100%;height:50px" alt=""> -->
                                                 </div>
                                                 <div class="col-4">
                                                     <img src="{{ url('/') }}/frontend/images/logo/logoH.svg"
@@ -565,7 +565,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <!-- <img src="{{ url('/') }}/frontend/images/Symbology-QR-code.svg"
-                                                                                                                                                                                                                                                                                                                                            style="width:100%;height:50px" alt=""> -->
+                                                                                                                                                                                                                                                                                                                                                                style="width:100%;height:50px" alt=""> -->
                                                 </div>
                                             </div>
                                         </div>
