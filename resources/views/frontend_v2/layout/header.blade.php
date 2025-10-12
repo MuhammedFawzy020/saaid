@@ -76,15 +76,12 @@
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/swiper-bundle.min.css" />
 <!-- animate -->
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/animate.min.css" />
-<!-- select2 -->
-<link rel="stylesheet" href="{{ asset('frontend') }}/css/select2.min.css" />
-
 <!-- img gallery -->
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/jquery.fancybox.min.css" />
 <!-- odometer -->
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/odometer.min.css" />
 <!-- Custom style  -->
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <!-- (removed duplicate core CSS includes) -->
 {{-- here el mafrod nne2lha l style --}}
