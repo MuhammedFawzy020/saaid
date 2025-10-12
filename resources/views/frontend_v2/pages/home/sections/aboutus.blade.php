@@ -8,7 +8,7 @@ $local = 'ar';
         <div class="ab-det-head-title">
             <h6 style="padding-bottom:30px;">ـــ من نحن</h6>
         </div>
-        <h2>شركة ساعد للاستقدام</h2>
+        <h1>شركة ساعد للاستقدام</h1>
         <p class="text">
             {{ $setting->about_us }}
         </p>
