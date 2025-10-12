@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="{{ app()->getLocale() ?? 'ar' }}">
 
 <head>
     <!-- Required meta tags -->
@@ -8,24 +8,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>
-        {{ $settings->title ?? 'شركة موطن للاستقدام' }} - @yield('title')
+        {{ $settings->title ?? ($setting->title ?? 'شركة موطن للاستقدام') }} - @yield('title')
     </title>
 
-    <meta name="description"
-        content="أحد أعرق شركات الاستقدام في المملكة منذ أكثر منذ ثلاثون عاما ولدينا عشرة فروع خارج المملكة لجلب أفضل العمالة المدربة والماهرة طبقا للمعايير الدولية ارضاءا لعملائنا" />
-    <meta name="keywords" content="استقدام,عمالة,منزل,منزلية,ربة منزل,عامل,عاملة,مكتب,مكتب استقدام,">
+    {{-- Dynamic description: views can set a section "meta_description" --}}
+    <meta name="description" content="@yield('meta_description', $settings->description ?? ($setting->description ?? ''))" />
+    <meta name="keywords" content="@yield('meta_keywords', $settings->keywords ?? ($setting->keywords ?? ''))">
+    <link rel="canonical" href="{{ request()->url() }}" />
 
-    <meta property="og:title" content="شركة موطن للاستقدام">
-    <meta property="og:image" content="{{ asset('frontend') }}/img/logo/logoH.svg">
+    <meta property="og:title" content="شركة ساعد للاستقدام">
+    <meta property="og:image" content="{{ asset(path: 'frontend') }}/img/logo/logoH.svg">
     <meta property="og:image:secure_url" content="{{ asset('frontend') }}/img/logo/logoH.svg" />
     <meta property="og:image:type" content="svg" />
     <meta property="og:image:width" content="400" />
     <meta property="og:image:height" content="300" />
     <meta property="og:description"
         content="أحد أعرق شركات الاستقدام في المملكة منذ أكثر منذ ثلاثون عاما ولدينا عشرة فروع خارج المملكة لجلب أفضل العمالة المدربة والماهرة طبقا للمعايير الدولية ارضاءا لعملائنا">
-    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
     <meta name="twitter:card" content="summary_large_image">
-    {{-- here we will add --}}
+    <meta name="twitter:title" content="@yield('twitter_title', $settings->title ?? ($setting->title ?? ''))">
+    <meta name="twitter:description" content="@yield('twitter_description', $settings->description ?? ($setting->description ?? ''))">
+    <meta name="twitter:image" content="@yield('twitter_image', asset('frontend') . '/img/logo/logoH.svg')">
+
+    {{-- JSON-LD Organization Schema (basic) --}}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "{{ url('/') }}",
+            "name": "{{ $settings->title ?? $setting->title ?? config('app.name') }}",
+            "logo": "{{ asset('frontend') . '/img/logo/logoH.svg' }}"
+        }
+        </script>
     <!-- icon -->
     @include('frontend.layouts.assets._css')
     <link rel="stylesheet" media="all" href="{{ asset('frontend') }}/cute-alert-master/style.css" />
@@ -77,7 +91,7 @@
             bubbleBackground: '#00897e',
             headerTextColor: '#fff',
             placeholderText: 'إكتب رسالتك هنا',
-            aboutLink: 'https:\\mawtenrec.sa',
+            aboutLink: 'https:\\saaid-sa.com',
 
         };
     </script>

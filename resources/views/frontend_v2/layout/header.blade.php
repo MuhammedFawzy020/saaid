@@ -3,16 +3,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <title>
-    {{ $setting->title }} - @yield('title')
+    {{ $setting->title ?? ($settings->title ?? config('app.name')) }} - @yield('title')
 </title>
 
+<meta name="description" content="@yield('meta_description', $settings->description ?? ($setting->description ?? ''))">
+<meta name="keywords" content="@yield('meta_keywords', $settings->keywords ?? ($setting->keywords ?? ''))">
+<link rel="canonical" href="{{ request()->url() }}">
 
-<meta property="og:title" content="{{ $setting->title }}">
+<meta property="og:title" content="{{ $setting->title ?? ($settings->title ?? config('app.name')) }}">
 <meta property="og:image" content="{{ get_file($settings->header_logo) }}">
 <meta property="og:image:secure_url" content="{{ get_file($settings->header_logo) }}" />
 <meta property="og:image:type" content="jpg" />
 <meta property="og:image:width" content="400" />
 <meta property="og:image:height" content="300" />
+<meta property="og:url" content="{{ url()->current() }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="@yield('twitter_title', $settings->title ?? ($setting->title ?? ''))">
+<meta name="twitter:description" content="@yield('twitter_description', $settings->description ?? ($setting->description ?? ''))">
+<meta name="twitter:image" content="@yield('twitter_image', get_file($settings->header_logo) ?? asset('frontend') . '/img/logo/logoH.svg')">
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "url": "{{ url('/') }}",
+    "name": "{{ $settings->title ?? $setting->title ?? config('app.name') }}",
+    "logo": "{{ get_file($settings->header_logo) ?? asset('frontend') . '/img/logo/logoH.svg' }}"
+}
+</script>
 
 
 <!-- favicon -->
