@@ -140,6 +140,21 @@ $setting = App\Models\Setting::first();
             <!-- Copyright -->
         </footer>
 
+
+        <div style="display:none">
+            <a href="https://maroof.sa/" target="_blank" rel="noopener noreferrer"> <img
+                    data-original="https://www.tarafalamal.sa/public/maroof.webp" alt="https://maroof.sa/"
+                    class="lazyimgs" height= "20px" width="20px"
+                    style="-o-object-fit: contain;object-fit: contain;margin: 0 5px;"> </a> <a
+                href="https://musaned.com.sa/home" target="_blank" rel="noopener noreferrer"> <img
+                    data-original="https://www.tarafalamal.sa/public/musaned.webp" alt="https://musaned.com.sa/home"
+                    class="lazyimgs" height="20px" width="20px"
+                    style=";-o-object-fit: contain;object-fit: contain;margin: 0 5px;"> </a> <a
+                href="https://www.rawafdnajd.sa/public/sa1.webp" target="_blank" rel="noopener noreferrer"> <img
+                    data-original="https://www.tarafalamal.sa/public/sa1.webp"
+                    alt="https://www.tarafalamal.sa/public/sa1.webp" height="20px" width="20px"
+                    style="-o-object-fit: contain;object-fit: contain;margin: 0 5px;" class="lazyimgs"> </a>
+        </div>
     </div>
     <!-- End of .container -->
     <!-- Grid container -->

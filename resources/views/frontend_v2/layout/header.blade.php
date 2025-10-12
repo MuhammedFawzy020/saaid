@@ -6,8 +6,10 @@
     {{ $setting->title ?? ($settings->title ?? config('app.name')) }} - @yield('title')
 </title>
 
-<meta name="description" content="@yield('meta_description', $settings->description ?? ($setting->description ?? ''))">
-<meta name="keywords" content="@yield('meta_keywords', $settings->keywords ?? ($setting->keywords ?? ''))">
+<meta name="description"
+    content="شركة ساعد للاستقدام من أبرز الشركات المتخصصة في المملكة العربية السعودية في تقديم خدمات توفير العمالة المنزلية الماهرة من كافة الدول المصرح بها وفق منهجية و رؤية متكاملة توفر للعميل كافة الخدمات التي يرغبها في وقت وجيز .">
+<meta name="keywords"
+    content="مكتب استقدام,استقدام سائق خاص,استقدام عماله منزليه,مكتب استقدام الرياض,مكتب استقدام جدة,مكتب استقدام عماله منزلية,مكتب استقدام سائق,خدمات الاستقدام,روافد للاستقدام,مواقع مكاتب الاستقدام,مساند مكاتب استقدام,مساند للاستقدام,استقدام عاملة منزلية,استقدام الرياض,منصة مساند,ارخص مكتب استقدام,افضل مكتب استقدام,تقديم شغالات,استقدام عامل منزلي,اقرب مكتب استقدام من موقعي,اسعار تقديم الخادمات,شروط استقدام سائق خاص,شروط استقدام عامل منزلي,شروط الاستقدام,مكاتب الاستقدام المعتمدة,مكاتب الاستقدام المعتمدة من وزارة العمل,مكتب استقدام سائق خاص,مكاتب استقدام من الفلبين بالرياض,اسعار استقدام العاملات المنزلية,أفضل مكتب استقدام في الرياض,مكتب استقدام شمال الرياض,استقدام خادمة سيرلانكية,مكتب استقدام كينيا الرياض,مكاتب استقدام فلبينيات بالرياض,مكتب العقيل للإستقدام,مكتب العقيل للاستقدام,مكتب العقيل,العقيل,مساند,استخراج تاشيرة من مساند,أسعار الاستقدام من بنجلاديش 2021,للاستقدام,شروط استقدام عاملة منزلية مساند,استخراج تاشيرة عاملة منزلية,أسعار الاستقدام من الفلبين 2025">
 <link rel="canonical" href="{{ request()->url() }}">
 
 <meta property="og:title" content="{{ $setting->title ?? ($settings->title ?? config('app.name')) }}">
@@ -19,7 +21,8 @@
 <meta property="og:url" content="{{ url()->current() }}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="@yield('twitter_title', $settings->title ?? ($setting->title ?? ''))">
-<meta name="twitter:description" content="@yield('twitter_description', $settings->description ?? ($setting->description ?? ''))">
+<meta name="twitter:description"
+    content="شركة ساعد للاستقدام من أبرز الشركات المتخصصة في المملكة العربية السعودية في تقديم خدمات توفير العمالة المنزلية الماهرة من كافة الدول المصرح بها وفق منهجية و رؤية متكاملة توفر للعميل كافة الخدمات التي يرغبها في وقت وجيز .">
 <meta name="twitter:image" content="@yield('twitter_image', get_file($settings->header_logo) ?? asset('frontend') . '/img/logo/logoH.svg')">
 
 <script type="application/ld+json">
