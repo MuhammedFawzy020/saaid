@@ -114,7 +114,7 @@
                                 <div class="card mb-3">
                                     <div class="row g-0">
                                         <div class="col-md-3 content-head">
-                                            <h1 style="text-align:center;padding:20px;">البيانات الشخصية</h1>
+                                            <h2 style="text-align:center;padding:20px;">البيانات الشخصية</h2>
                                         </div>
                                         <div class="col-md-9">
                                             <div class="card-body">
@@ -217,7 +217,7 @@
                                 <div class="card mb-3">
                                     <div class="row g-0">
                                         <div class="col-md-3 content-head">
-                                            <h1 style="text-align:center;padding:20px;">الخبرات السابقة</h1>
+                                            <h2 style="text-align:center;padding:20px;">الخبرات السابقة</h2>
                                         </div>
                                         <div class="col-md-9">
                                             <div class="card-body">
@@ -258,7 +258,7 @@
                                 <div class="card mb-3">
                                     <div class="row g-0">
                                         <div class="col-md-3 content-head">
-                                            <h1 style="text-align:center;padding:20px;">المهــارات</h1>
+                                            <h2 style="text-align:center;padding:20px;">المهــارات</h2>
                                         </div>
                                         <div class="col-md-9">
                                             <div class="card-body">
@@ -278,7 +278,7 @@
                                 <div class="card mb-3">
                                     <div class="row g-0">
                                         <div class="col-md-3 content-head">
-                                            <h1 style="text-align:center;padding:20px;">تفاصيل جاوز السفر</h1>
+                                            <h2 style="text-align:center;padding:20px;">تفاصيل جواز السفر</h2>
                                         </div>
                                         <div class="col-md-9">
                                             <div class="row">
@@ -322,7 +322,8 @@
                                     <div class="row">
                                         <div class="col-12 text-center mb-4">
                                             <img src="{{ url('/') }}/frontend/images/logo/favW.png"
-                                                style="width: auto; height:35px">
+                                                style="width: auto; height:35px"
+                                                alt="شعار {{ $settings->title ?? ($setting->title ?? config('app.name')) }}">
                                         </div>
                                     </div>
                                 </div>

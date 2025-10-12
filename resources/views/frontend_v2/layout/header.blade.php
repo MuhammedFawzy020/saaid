@@ -40,6 +40,7 @@
 
 
 
+<!-- Core styles -->
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css" />
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/responsive.css" />
 
@@ -52,18 +53,17 @@
 
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/bootstrap.rtl.min.css">
 
+<!-- Fonts (single include) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500&display=swap" rel="stylesheet">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&family=Almarai:wght@300&display=swap"
+    rel="stylesheet">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+<!-- Bootstrap RTL -->
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/bootstrap.rtl.min.css" />
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/fontawesome.min.css"
@@ -83,8 +83,7 @@
 <!-- Custom style  -->
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css" />
-<link rel="stylesheet" href="{{ asset('frontend') }}/css/responsive.css" />
+<!-- (removed duplicate core CSS includes) -->
 {{-- here el mafrod nne2lha l style --}}
 
 

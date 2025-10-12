@@ -69,9 +69,9 @@
     <div class="">
         <div class="row m-0 p-0 mb-4 p-4 text-center">
             {{-- need background image spanke home page ;) --}}
-            <h1 class="display-3 mt-3 ">
+            <h2 class="display-3 mt-3 ">
                 يمكنكـ الان تتبع طلبك
-            </h1>
+            </h2>
             <figure class="p-2 mb-3">
                 <blockquote class="blockquote">
                     <p></p>
@@ -265,8 +265,8 @@
                                         <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12">
                                             <div class="order-media">
                                                 <div class="order-media-pic">
-                                                    <img src="{{ url('/frontend/images/users/' . $order->biography->images[0]->image ?? '') }}"
-                                                        alt="#">
+                                                    <img src="{{ url('/frontend/images/users/' . ($order->biography->images[0]->image ?? '')) }}"
+                                                        alt="صورة {{ $order->biography?->name ?? 'العامل' }}">
 
                                                 </div>
                                             </div>
@@ -294,9 +294,9 @@
             @else
                 <div class="col-md-12">
                     <div class="container">
-                        <h1 class="display-6 text-center text-danger">
+                        <h2 class="display-6 text-center text-danger">
                             لم نتمكن من العثور علي النتائج مطابقة
-                        </h1>
+                        </h2>
                     </div>
                 </div>
             @endif

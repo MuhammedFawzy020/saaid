@@ -5,9 +5,9 @@
     <div class="overlay-main "></div>
     <div class="container-fluid">
         <div class="text-center mb-4">
-            <h1 class="display-4">
+            <h2 class="display-4">
                 تواصل معنا
-            </h1>
+            </h2>
             <p class="text-muted">
                 يمكنك الان تواصل معنا علي مدار 24 ساعة
             </p>

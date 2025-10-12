@@ -41,7 +41,8 @@
                          <div class="col-lg-3 col-md-6">
                              <div class="Countries-block">
                                  <div class="Countries-media">
-                                     <div> <img src="{{ get_file($country->image) }}" alt="" /></div>
+                                     <div> <img src="{{ get_file($country->image) }}" alt="علم {{ $country->title }}" />
+                                     </div>
                                  </div>
                                  <div class="Countries-content">
                                      <div class="count-content-title">{{ $country->title }}</div>

@@ -8,7 +8,7 @@
                          <div class="swiper-slide" style="background-image:url({{ get_file($slider->image) }})">
                              <div class=" info">
                                  <h4 class="hint">{{ $slider->title }}</h4>
-                                 <h1 class="sliderTitle"> {{ $slider->desc }} </h1>
+                                 <h2 class="sliderTitle"> {{ $slider->desc }} </h2>
                                  <div class="btns">
                                      <a href="{{ route('all-workers') }}" class="btn"> طلب استقدام </a>
                                      <a href="{{ url('/all-workers/admission/rental') }}" class="btn"> طلب إيجار </a>

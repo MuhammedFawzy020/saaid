@@ -3,27 +3,23 @@
     طلب استقدام
 @endsection
 
+@section('meta_description')
+    ابحث عن العمالة المنزلية المناسبة لك: تصفح السير الذاتية، قارن الأسعار، واحجز العامل المطلوب بسهولة.
+@endsection
+
 @section('keywords')
     <meta name="keywords"
         content="عاملات منزلية,استقدام,عمالة منزلية,سائق,سائقين,مساند,مكتب استقدام,استقدام سائق خاص,استقدام عماله منزليه,مكتب استقدام الرياض,مكتب استقدام جدة,مكتب استقدام عماله منزلية,مكتب استقدام سائق,خدمات الاستقدام,روافد للاستقدام,مواقع مكاتب الاستقدام,مساند مكاتب استقدام,مساند للاستقدام,استقدام عاملة منزلية,استقدام الرياض,منصة مساند,ارخص مكتب استقدام,افضل مكتب استقدام,تقديم شغالات,استقدام عامل منزلي,اقرب مكتب استقدام من موقعي,اسعار تقديم الخادمات,شروط استقدام سائق خاص,شروط استقدام عامل منزلي,شروط الاستقدام,مكاتب الاستقدام المعتمدة,مكاتب الاستقدام المعتمدة من وزارة العمل,مكتب استقدام سائق خاص,مكاتب استقدام من الفلبين بالرياض,اسعار استقدام العاملات المنزلية,أفضل مكتب استقدام في الرياض,مكتب استقدام شمال الرياض,استقدام خادمة سيرلانكية,مكتب استقدام كينيا الرياض,مكاتب استقدام فلبينيات بالرياض">
 @endsection
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
-    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
-</script>
+{{-- Core scripts are loaded in layout/app.blade.php to avoid duplicates (jQuery, Swiper, WOW, Bootstrap) --}}
 
 @section('content')
     <div class="">
         <div class="row m-0 p-0 mb-4 p-4 text-center">
             {{-- need background image like home page ;) --}}
-            <h1 class="display-3 mt-3 ">
+            <h2 class="display-3 mt-3 ">
                 إبحث عن طلبك
-            </h1>
+            </h2>
             <figure class="p-2 mb-3">
                 <blockquote class="blockquote">
                     <p></p>
@@ -142,11 +138,12 @@
                                 @if ($cv->cv_file)
                                     <a href="{{ url('frontend/images/users/' . $cv->cv_file) }}" data-fancybox
                                         data-caption="{{ $cv->name }}">
-                                        <img src="{{ url('frontend/images/users/' . $cv->cv_file) }}" class="card-img" />
+                                        <img src="{{ url('frontend/images/users/' . $cv->cv_file) }}" class="card-img"
+                                            alt="سيرة {{ $cv->name }}" />
                                     </a>
                                 @else
                                     <img src="{{ url('/') }}/frontend/images/comment-1-1.jpg" class="card-img"
-                                        alt="">
+                                        alt="صورة افتراضية لسيرة" />
                                 @endif
                             </div>
                             <div class="col-md-8">
@@ -314,8 +311,8 @@
                             <div class="modal-body">
                                 <div class="card" style="padding:3px;">
                                     <!-- <div class="card-image">
-                                                                                                                                                                                                                                                                                                                                                <img src="{{ get_file($cv->cv_file) }}" alt="">
-                                                                                                                                                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                                                                                                                                            <img src="{{ get_file($cv->cv_file) }}" alt="سيرة {{ $cv->name }}" />
+                                                                                                                                                                                                                                                                                                                                                        </div> -->
 
                                     <div class="card-header" style="padding:0px !important;border:none !important;">
                                         <div class="card col-lg-12" style="border:none;">
@@ -325,10 +322,11 @@
                                                     <div class="personal-image col-2" style="padding:0px;">
                                                         @if ($cv->cv_file)
                                                             <img src="{{ url('frontend/images/users/' . $cv->cv_file) }}"
-                                                                style="width:auto;height:135px " alt="">
+                                                                style="width:auto;height:135px "
+                                                                alt="صورة {{ $cv->name }}" />
                                                         @else
                                                             <img src="{{ url('/') }}/frontend/images/comment-1-1.jpg"
-                                                                style="width:auto;height:135px " alt="">
+                                                                style="width:auto;height:135px " alt="صورة افتراضية" />
                                                         @endif
                                                     </div>
                                                     <div class="personal-info col-7">
@@ -357,7 +355,7 @@
                                                     </div>
                                                     <div class="gawhra-logo col-3">
                                                         <img src="{{ url('/') }}/frontend/images/logo/logoH.svg"
-                                                            style="width:auto;height:45px" alt="">
+                                                            style="width:auto;height:45px" alt="لوغو الشركة">
                                                     </div>
                                                 </div>
                                             </div>
@@ -556,16 +554,14 @@
                                         <div class="col-lg-12">
                                             <div class="row">
                                                 <div class="col-4">
-                                                    <!-- <img src="{{ url('/') }}/frontend/images/Symbology-QR-code.svg"
-                                                                                                                                                                                                                                                                                                                                                                style="width:100%;height:50px" alt=""> -->
+                                                    <!-- QR placeholder removed -->
                                                 </div>
                                                 <div class="col-4">
                                                     <img src="{{ url('/') }}/frontend/images/logo/logoH.svg"
-                                                        alt="">
+                                                        alt="لوغو الشركة">
                                                 </div>
                                                 <div class="col-4">
-                                                    <!-- <img src="{{ url('/') }}/frontend/images/Symbology-QR-code.svg"
-                                                                                                                                                                                                                                                                                                                                                                style="width:100%;height:50px" alt=""> -->
+                                                    <!-- QR placeholder removed -->
                                                 </div>
                                             </div>
                                         </div>

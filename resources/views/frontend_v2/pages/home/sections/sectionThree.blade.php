@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div class="text-center">
-        <h1 class="display-1">
+        <h2 class="display-1">
             خدماتنا
-        </h1>
+        </h2>
         <p class="text-muted">
             تعرف علي الخدمات التي نقدمها لعملائنا...
         </p>

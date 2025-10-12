@@ -3,9 +3,9 @@
         <div class="container-fluid">
 
             <div class="text-center">
-                <h1 class="display-1">
+                <h2 class="display-1">
                     المدونة
-                </h1>
+                </h2>
                 <p class="text-muted">
                     يمكنك قراءة المدونة الخاصة بنا لتتزود بكل المعلومات ...
                 </p>
@@ -18,7 +18,8 @@
                             <a href="{{ route('view-blog', ['id' => $blog->id]) }}" class="text-decoration-none">
                                 <div class="Countries-block">
                                     <div class="Countries-media">
-                                        <div> <img src="{{ get_file($blog->image) }}" alt="{{ $blog->image }}" /></div>
+                                        <div> <img src="{{ get_file($blog->image) }}" alt="{{ $blog->title_ar }}" />
+                                        </div>
                                     </div>
                                     <div class="Countries-content">
                                         <div class="count-content-title">{{ $blog->title_ar }}</div>

@@ -1,9 +1,9 @@
  <section class="Countries-section" id="Countries">
      <div class="container-fluid">
          <div class="text-center">
-             <h1 class="display-1">
+             <h2 class="display-1">
                  خدمة العملاء
-             </h1>
+             </h2>
              <p class="text-muted">
                  يمكنك الان التواصل مع خدمة العملاء في اي وقت
              </p>
@@ -15,7 +15,8 @@
                      <div class="col-lg-3 col-md-6">
                          <div class="Countries-block">
                              <div class="Countries-media">
-                                 <div> <img src="{{ get_file($customerService->image) }}" alt="" /></div>
+                                 <div> <img src="{{ get_file($customerService->image) }}"
+                                         alt="صورة {{ $customerService->name }}" /></div>
                              </div>
                              <div class="Countries-content">
                                  <div class="count-content-title">{{ $customerService->name }}</div>

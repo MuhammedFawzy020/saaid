@@ -7,9 +7,9 @@
     <section class="Countries-section" id="Countries">
         <div class="container-fluid">
             <div class="text-center">
-                <h1 class="display-1">
+                <h2 class="display-1">
                     دول الاستقدام
-                </h1>
+                </h2>
                 <p class="text-muted">
                     تعرف علي الدول و اسعار الاستقدام الان
                 </p>
@@ -23,7 +23,8 @@
                                 <div class="swiper-slide m-2">
                                     <div class="Countries-block">
                                         <div class="Countries-media">
-                                            <div> <img src="{{ get_file($country->image) }}" alt="" /></div>
+                                            <div> <img src="{{ get_file($country->image) }}"
+                                                    alt="علم {{ $country->title }}" /></div>
                                         </div>
                                         <div class="Countries-content">
                                             <div class="count-content-title">{{ $country->title }}</div>
@@ -62,7 +63,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="Countries-block">
                             <div class="Countries-media">
-                                <div> <img src="{{ asset('frontend') }}/img/countries/1.png" alt="" /></div>
+                                <div> <img src="{{ asset('frontend') }}/img/countries/1.png" alt="علم أوغندا" /></div>
                             </div>
                             <div class="Countries-content">
                                 <div class="count-content-title">أوغندا</div>
@@ -74,7 +75,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="Countries-block">
                             <div class="Countries-media">
-                                <div><img src="{{ asset('frontend') }}/img/countries/2.png" alt="" /></div>
+                                <div><img src="{{ asset('frontend') }}/img/countries/2.png" alt="علم كينيا" /></div>
                             </div>
                             <div class="Countries-content">
                                 <div class="count-content-title"> كينيا </div>
@@ -86,7 +87,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="Countries-block">
                             <div class="Countries-media">
-                                <div><img src="{{ asset('frontend') }}/img/countries/3.jpeg" alt="" /></div>
+                                <div><img src="{{ asset('frontend') }}/img/countries/3.jpeg" alt="علم بنجلادش" /></div>
                             </div>
                             <div class="Countries-content">
                                 <div class="count-content-title"> بنجلادش </div>
@@ -98,7 +99,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="Countries-block">
                             <div class="Countries-media">
-                                <div><img src="{{ asset('frontend') }}/img/countries/4.jpeg" alt="" /></div>
+                                <div><img src="{{ asset('frontend') }}/img/countries/4.jpeg" alt="علم الفلبين" /></div>
                             </div>
                             <div class="Countries-content">
                                 <div class="count-content-title"> الفلبين </div>
@@ -111,7 +112,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="Countries-block">
                             <div class="Countries-media">
-                                <div><img src="{{ asset('frontend') }}/img/countries/5.png" alt="" /></div>
+                                <div><img src="{{ asset('frontend') }}/img/countries/5.png" alt="علم الهند" /></div>
                             </div>
                             <div class="Countries-content">
                                 <div class="count-content-title"> الهند </div>
@@ -123,7 +124,8 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="Countries-block">
                             <div class="Countries-media">
-                                <div><img src="{{ asset('frontend') }}/img/countries/6.png" alt="" /></div>
+                                <div><img src="{{ asset('frontend') }}/img/countries/6.png" alt="علم موريتانيا" />
+                                </div>
                             </div>
                             <div class="Countries-content">
                                 <div class="count-content-title"> موريتانيا </div>
@@ -135,7 +137,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="Countries-block">
                             <div class="Countries-media">
-                                <div><img src="{{ asset('frontend') }}/img/countries/7.png" alt="" /></div>
+                                <div><img src="{{ asset('frontend') }}/img/countries/7.png" alt="علم جيبوتي" /></div>
                             </div>
                             <div class="Countries-content">
                                 <div class="count-content-title"> جيبوتي </div>
