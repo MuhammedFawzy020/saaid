@@ -138,11 +138,11 @@
                                 @if ($cv->cv_file)
                                     <a href="{{ url('frontend/images/users/' . $cv->cv_file) }}" data-fancybox
                                         data-caption="{{ $cv->name }}">
-                                        <img src="{{ url('frontend/images/users/' . $cv->cv_file) }}" class="card-img"
+                                        <img src="{{ url('frontend/images/users/' . $cv->cv_file) }}" class="card-img" style="width:auto"
                                             alt="سيرة {{ $cv->name }}" />
                                     </a>
                                 @else
-                                    <img src="{{ url('/') }}/frontend/images/comment-1-1.jpg" class="card-img"
+                                    <img src="{{ url('/') }}/frontend/images/comment-1-1.jpg" class="card-img" style="width:auto"
                                         alt="صورة افتراضية لسيرة" />
                                 @endif
                             </div>
