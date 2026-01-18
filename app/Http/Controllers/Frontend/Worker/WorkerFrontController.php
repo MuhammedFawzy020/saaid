@@ -309,9 +309,9 @@ class WorkerFrontController extends Controller
     public function completeTheRecruitmentRequest($id, Request $request)
     {
 
-
-
-
+        if ($request->cookie('order_created')) {
+            return back()->with('error', 'عفوا لا يمكن اضافة اكثر من طلب');
+        }
 
         $cv = Biography::findOrFail($id);
         if ($cv->status != 'new') {
@@ -343,6 +343,12 @@ class WorkerFrontController extends Controller
             $user->phone_activation_code = rand(9999, 99999);
             $user->activated_at = Date('Y-m-d h:i:s');
             $user->save();
+        } else {
+            $hasOrder = Order::where('user_id', $user->id)->where('status', '!=', 'canceled')->exists();
+            $hasSpecial = Biography::where('user_id', $user->id)->where('order_type', 'special')->where('status', '!=', 'canceled')->exists();
+            if ($hasOrder || $hasSpecial) {
+                return back()->with('error', 'عفوا لا يمكن اضافة اكثر من طلب');
+            }
         }
 
 
@@ -371,6 +377,7 @@ class WorkerFrontController extends Controller
 
         //        $this->send_support_reply_email_to_user($user, $order);
 
+        \Cookie::queue('order_created', 'true', 525600);
 
         return redirect()->route('success-order', $order->order_code);
     }//end fun
@@ -470,13 +477,26 @@ class WorkerFrontController extends Controller
 
     public function makeCustomRecruitmentRequest(CustomWorkerRequest $request)
     {
+        if ($request->cookie('order_created')) {
+            return response()->json(['error' => 'عفوا لا يمكن اضافة اكثر من طلب'], 403);
+        }
 
-        $user = User::create([
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'city_id' => $request->city_id,
-            'type' => 'employer',
-        ]);
+        $user = User::where('phone', $request->phone)->first();
+        if ($user) {
+            $hasOrder = Order::where('user_id', $user->id)->where('status', '!=', 'canceled')->exists();
+            $hasSpecial = Biography::where('user_id', $user->id)->where('order_type', 'special')->where('status', '!=', 'canceled')->exists();
+            if ($hasOrder || $hasSpecial) {
+                return response()->json(['error' => 'عفوا لا يمكن اضافة اكثر من طلب'], 403);
+            }
+        } else {
+            $user = User::create([
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'city_id' => $request->city_id,
+                'type' => 'employer',
+            ]);
+        }
+
         Biography::create([
             'user_id' => $user->id,
             'status' => "under_work",
@@ -494,14 +514,24 @@ class WorkerFrontController extends Controller
         ]);
 
 
-        return response()->json([], 200);
+        return response()->json([], 200)->cookie('order_created', 'true', 525600);
     }
 
     public function newrecriutment($id, $customer_id)
     {
+        if (request()->cookie('order_created')) {
+            return back()->with('error', 'عفوا لا يمكن اضافة اكثر من طلب');
+        }
+
         $cv = Biography::findOrFail($id);
         if ($cv->status != 'new') {
             return response([], 400);
+        }
+
+        $hasOrder = Order::where('user_id', auth()->user()->id)->where('status', '!=', 'canceled')->exists();
+        $hasSpecial = Biography::where('user_id', auth()->user()->id)->where('order_type', 'special')->where('status', '!=', 'canceled')->exists();
+        if ($hasOrder || $hasSpecial) {
+            return back()->with('error', 'عفوا لا يمكن اضافة اكثر من طلب');
         }
 
         $order_data = [
@@ -516,6 +546,9 @@ class WorkerFrontController extends Controller
         $order_data['biography_id'] = $cv->id;
         $order_data['order_code'] = "NK" . $cv->id . time();
         Order::create($order_data);
+
+        \Cookie::queue('order_created', 'true', 525600);
+
         return redirect()->route('auth.profile');
     }
 
