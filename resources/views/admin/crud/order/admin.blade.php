@@ -57,6 +57,14 @@
                                     placeholder="ابحث برقم جواز السفر">
                             </div>
                         </div>
+
+                        <div class="col-md-2 ">
+                            <div class='input-group mb-3'>
+                                <input type="text" class="form-control" id="phone" name="phone"
+                                    @isset($phone) value="{{ $phone }}" @endisset
+                                    placeholder="ابحث الجوال">
+                            </div>
+                        </div>
                         <div class="col-md-2 ">
                             <div class='input-group mb-3'>
                                 <select class="form-control " name="nationality_id" id="nationality_id">
@@ -240,6 +248,7 @@
                 url: "{{ route('admin-orders.index', $value) }}",
                 data: function(d) {
                     d.passport_key = $('#passport_key').val(),
+                        d.phone = $('#phone').val(),
                         d.social_type = $('#social_type').val(),
                         // d.selected_staff = $('#selected_staff').val(),
                         d.booking_status = $('#booking_status').val(),

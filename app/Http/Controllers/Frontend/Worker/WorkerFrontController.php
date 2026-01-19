@@ -309,9 +309,9 @@ class WorkerFrontController extends Controller
     public function completeTheRecruitmentRequest($id, Request $request)
     {
 
-        if ($request->cookie('order_created')) {
-            return back()->with('error', 'عفوا لا يمكن اضافة اكثر من طلب');
-        }
+        // if ($request->cookie('order_created')) {
+        //     return back()->with('error', 'عفوا لا يمكن اضافة اكثر من طلب');
+        // }
 
         $cv = Biography::findOrFail($id);
         if ($cv->status != 'new') {
@@ -344,7 +344,7 @@ class WorkerFrontController extends Controller
             $user->activated_at = Date('Y-m-d h:i:s');
             $user->save();
         } else {
-            $hasOrder = Order::where('user_id', $user->id)->where('status', '!=', 'canceled')->exists();
+            $hasOrder = Order::where(column: 'user_id', $user->id)->where('status', '!=', 'canceled')->where('status', '!=', 'finished')->exists();
             $hasSpecial = Biography::where('user_id', $user->id)->where('order_type', 'special')->where('status', '!=', 'canceled')->exists();
             if ($hasOrder || $hasSpecial) {
                 return back()->with('error', 'عفوا لا يمكن اضافة اكثر من طلب');

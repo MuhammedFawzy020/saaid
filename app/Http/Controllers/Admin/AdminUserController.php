@@ -15,7 +15,7 @@ use Yajra\DataTables\DataTables;
 class AdminUserController extends Controller
 {
 
-    use Upload_Files,CheckPermission;
+    use Upload_Files, CheckPermission;
 
 
     public function __construct()
@@ -35,55 +35,55 @@ class AdminUserController extends Controller
 
 
         if ($request->ajax()) {
-            $users = User::normalUser()->orderBy('id',"DESC")->get();
+            $users = User::normalUser()->orderBy('id', "DESC");
 
 
             return DataTables::of($users)
                 ->editColumn('logo', function ($user) {
-                    return ' <img src="'.get_file($user->logo).'" class=" rounded" style="height:50px;width:50px"
+                    return ' <img src="' . get_file($user->logo) . '" class=" rounded" style="height:50px;width:50px"
                              onclick="window.open(this.src)">';
                 })
                 ->editColumn('created_at', function ($user) {
-                    return date('Y/m/d',strtotime($user->created_at));
+                    return date('Y/m/d', strtotime($user->created_at));
                 })
 
                 ->editColumn('is_blocked', function ($user) {
                     $re_block = '';
                     if ($user->is_blocked == 'not_blocked') {
-                        $re_block = '<span class=" badge bg-primary">'.trans('admin.active').'</span>';
-                    }else{
-                        $re_block = '<span class="badge bg-danger">'.trans('admin.not_active').'</span>';
+                        $re_block = '<span class=" badge bg-primary">' . trans('admin.active') . '</span>';
+                    } else {
+                        $re_block = '<span class="badge bg-danger">' . trans('admin.not_active') . '</span>';
 
                     }
                     return $re_block;
                 })
                 ->editColumn('created_at', function ($user) {
-                    return date('Y/m/d',strtotime($user->created_at));
+                    return date('Y/m/d', strtotime($user->created_at));
                 })
 
                 ->addColumn('delete_all', function ($row) {
                     return "<input type='checkbox' class=' delete-all form-check-input' data-tablesaw-checkall name='delete_all' id='" . $row->id . "'>";
                 })
                 ->editColumn('Recruitment request', function ($user) {
-                    $request='';
+                    $request = '';
                     if (!\checkPermission(24))
-                        $request='hidden';
-                    $url=route('admins.selectOrderForUser',$user->id);
-                    return '<a ' .$request. ' href="'.$url.'" class="btn btn-success ">طلب استقدام</a>';
+                        $request = 'hidden';
+                    $url = route('admins.selectOrderForUser', $user->id);
+                    return '<a ' . $request . ' href="' . $url . '" class="btn btn-success ">طلب استقدام</a>';
                 })
                 ->addColumn('actions', function ($user) {
-                    $block='';
-                    $delete='';
-                    $url=route('users.edit',$user->id);
+                    $block = '';
+                    $delete = '';
+                    $url = route('users.edit', $user->id);
                     $edit = '';
-                    if(!\checkPermission(25))
-                        $block='hidden';
-                    if(!\checkPermission(26))
-                        $delete='hidden';
+                    if (!\checkPermission(25))
+                        $block = 'hidden';
+                    if (!\checkPermission(26))
+                        $delete = 'hidden';
 
-                    return "<a ".$edit."  href='".$url."' class='btn btn-info ' id='" . $user->id . "'><i class='fa fa-edit'></i></a> <button $block title='يمكنك التنشيط أو  الغاء التنشيط من هنا'  class='btn btn-info status' id='" . $user->id . "'> <span class='fa fa-user-clock'></span></button>
+                    return "<a " . $edit . "  href='" . $url . "' class='btn btn-info ' id='" . $user->id . "'><i class='fa fa-edit'></i></a> <button $block title='يمكنك التنشيط أو  الغاء التنشيط من هنا'  class='btn btn-info status' id='" . $user->id . "'> <span class='fa fa-user-clock'></span></button>
                    <button $delete class='btn btn-danger  delete' id='" . $user->id . "'><span class='fa fa-trash'></span> </button>";
-                })->rawColumns(['actions','logo','delete_all','is_blocked','Recruitment request'])->make(true);
+                })->rawColumns(['actions', 'logo', 'delete_all', 'is_blocked', 'Recruitment request'])->make(true);
         }
         return view('admin.users.index');
     }
@@ -107,17 +107,19 @@ class AdminUserController extends Controller
     public function store(Request $request)
     {
 
-        $validator=\Validator::make($request->all(),
+        $validator = \Validator::make(
+            $request->all(),
             [
-                'phone'=>'required|unique:users,phone',
-                'name'=>'required',
-                'email'=>'nullable|unique:users,email',
-                'password'=>'required',
-                'city_id'=>'required',
-                'logo'=>'nullable|mimes:jpeg,jpg,png,gif,svg',
-            ]);
+                'phone' => 'required|unique:users,phone',
+                'name' => 'required',
+                'email' => 'nullable|unique:users,email',
+                'password' => 'required',
+                'city_id' => 'required',
+                'logo' => 'nullable|mimes:jpeg,jpg,png,gif,svg',
+            ]
+        );
         if ($validator->fails()) {
-            return response()->json(['status'=>'errors','errors'=>$validator->errors()]);
+            return response()->json(['status' => 'errors', 'errors' => $validator->errors()]);
         }
 
 
@@ -125,35 +127,35 @@ class AdminUserController extends Controller
         if (!preg_match($regex, $request->phone)) {
 
 
-            return response()->json(['status'=>'notmatch','errors'=>$validator->errors()]);
+            return response()->json(['status' => 'notmatch', 'errors' => $validator->errors()]);
 
 
 
         }
 
-        if($request->logo){
-            $data ['logo'] = $this->uploadFiles('users', $request->file('logo'), null);
+        if ($request->logo) {
+            $data['logo'] = $this->uploadFiles('users', $request->file('logo'), null);
 
         }
         $data['password'] = $request->password;
-        $data['phone']=$request->phone;
-        $data['city_id']=$request->city_id;
+        $data['phone'] = $request->phone;
+        $data['city_id'] = $request->city_id;
 
-        $data['name']=$request->name;
-        $data['email']=$request->email;
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
 
-        $number=$data['phone'];
-        $numlength = strlen((string)$number);
+        $number = $data['phone'];
+        $numlength = strlen((string) $number);
 
-        if($numlength==10) {
+        if ($numlength == 10) {
             $number = substr($number, 1);
         }
 
-        $data['phone']=$number;
+        $data['phone'] = $number;
 
         User::create($data);
 
-        return response()->json(['status'=>true]);
+        return response()->json(['status' => true]);
 
     }
     /**
@@ -175,9 +177,9 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        $users=User::findOrFail($id);
-        $edituser=User::get();
-        return view('admin.users.parts.update',compact('edituser','users'));
+        $users = User::findOrFail($id);
+        $edituser = User::get();
+        return view('admin.users.parts.update', compact('edituser', 'users'));
 
 
     }
@@ -189,15 +191,17 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $validator=\Validator::make($request->all(),
+        $validator = \Validator::make(
+            $request->all(),
             [
-                'name'=>'required|max:120|min:3',
+                'name' => 'required|max:120|min:3',
 
-            ]);
+            ]
+        );
         if ($validator->fails()) {
-            return response()->json(['status'=>'errors','errors'=>$validator->errors()]);
+            return response()->json(['status' => 'errors', 'errors' => $validator->errors()]);
         }
         $users = User::findOrFail($id);
         $users->update([
@@ -214,11 +218,11 @@ class AdminUserController extends Controller
                 User::updateOrCreate([
                     'id' => $users->id,
                     'password' => $users->password,
-                    'phone'=> $users->phone,
-                    'city_id'=> $users->city_id,
-                    'name'=> $users->name,
-                    'email'=> $users->email,
-                    'phone'=> $users->phone
+                    'phone' => $users->phone,
+                    'city_id' => $users->city_id,
+                    'name' => $users->name,
+                    'email' => $users->email,
+                    'phone' => $users->phone
                 ]);
             }
         }
@@ -235,7 +239,7 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        return response()->json(User::destroy($id),200);
+        return response()->json(User::destroy($id), 200);
     }
 
     /**
@@ -247,61 +251,82 @@ class AdminUserController extends Controller
     {
 
         User::destroy($request->id);
-        return response()->json(1,200);
+        return response()->json(1, 200);
     }
 
 
     public function changeBlock($id)
     {
         $row = User::findOrFail($id);
-        $status = $row->is_blocked == 'blocked'?'not_blocked':'blocked';
+        $status = $row->is_blocked == 'blocked' ? 'not_blocked' : 'blocked';
         $row->update(['is_blocked' => $status]);
-        return response()->json(1,200);
+        return response()->json(1, 200);
     }
 
-    public function selectOrderForUser($id){
+    public function selectOrderForUser($id)
+    {
         if (!\checkPermission(24))
             return view('admin.permission');
-        $user=User::findOrFail($id);
+        $user = User::findOrFail($id);
         $cvs = Biography::where('status', 'new')
             ->where('order_type', 'normal')
-            ->with('recruitment_office', 'nationalitie', 'language_title',
-                'religion', 'job', 'social_type', 'admin', 'images', 'skills')
+            ->with(
+                'recruitment_office',
+                'nationalitie',
+                'language_title',
+                'religion',
+                'job',
+                'social_type',
+                'admin',
+                'images',
+                'skills'
+            )
             ->latest()
             ->get();
-        return view('admin.users.parts.recruitmentRequest',compact('cvs','user'));
+        return view('admin.users.parts.recruitmentRequest', compact('cvs', 'user'));
 
     }
-    public function selectCustomerServiceForCv($cv_id,$user_id){
+    public function selectCustomerServiceForCv($cv_id, $user_id)
+    {
 
-        $user=User::findOrFail($user_id);
-        $cv = Biography::with('recruitment_office','nationalitie','language_title',
-            'religion','job','social_type','admin','images','skills')
-            ->where('id',$cv_id)
+        $user = User::findOrFail($user_id);
+        $cv = Biography::with(
+            'recruitment_office',
+            'nationalitie',
+            'language_title',
+            'religion',
+            'job',
+            'social_type',
+            'admin',
+            'images',
+            'skills'
+        )
+            ->where('id', $cv_id)
             ->firstOrFail();
-        $admins = \App\Models\Admin::where('admin_type','!=',0)->take(12)->get();
-        return view('admin.users.parts.customerService',compact('cv','user','admins'));
+        $admins = \App\Models\Admin::where('admin_type', '!=', 0)->take(12)->get();
+        return view('admin.users.parts.customerService', compact('cv', 'user', 'admins'));
 
     }
 
-    public function adminCompleteTheRecruitmentRequest($cv_id,$admin_id,$user_id){
+    public function adminCompleteTheRecruitmentRequest($cv_id, $admin_id, $user_id)
+    {
         $cv = Biography::findOrFail($cv_id);
         if ($cv->status != 'new') {
-            return response([],400);
+            return response([], 400);
         }
 
 
 
         $order_data = [
-            'status'=>"under_work",
-            "admin_id"=>$admin_id,
-            'order_date'=>now()
+            'status' => "under_work",
+            "admin_id" => $admin_id,
+            'order_date' => now()
         ];
-        Biography::where('id',$cv_id)->update($order_data);
-        $order_data['biography_id']= $cv->id;
-        $order_data['order_code']= "NK".$cv->id.time();
+        Biography::where('id', $cv_id)->update($order_data);
+        $order_data['biography_id'] = $cv->id;
+        $order_data['order_code'] = "NK" . $cv->id . time();
         Order::create($order_data);
-        return response([],200);
+        return response([], 200);
 
     }
 
