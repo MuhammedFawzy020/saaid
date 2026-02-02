@@ -343,16 +343,7 @@ class WorkerFrontController extends Controller
             $user->phone_activation_code = rand(9999, 99999);
             $user->activated_at = Date('Y-m-d h:i:s');
             $user->save();
-        } else {
-            $hasOrder = Order::where('user_id', $user->id)
-            ->where('status', '!=', 'canceled')
-            ->where('status', '!=', 'finished')
-            ->exists();
-            $hasSpecial = Biography::where('user_id', $user->id)->where('order_type', 'special')->where('status', '!=', 'canceled')->exists();
-            if ($hasOrder || $hasSpecial) {
-                return back()->with('error', 'عفوا لا يمكن اضافة اكثر من طلب');
-            }
-        }
+        } 
 
 
         $order_data = [
