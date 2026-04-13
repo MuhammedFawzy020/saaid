@@ -112,7 +112,10 @@ class WorkerFrontController extends Controller
         )
             ->where('id', $id)
             ->firstOrFail();
-        $admins = \App\Models\Admin::where('admin_type', '!=', 0)->get();
+        $orderType = $cv->is_rental ? 'rental' : 'normal';
+        $admins = \App\Models\Admin::where('admin_type', '!=', 0)
+            ->whereIn('order_type', [$orderType, 'both'])
+            ->get();
         //frontend.pages.all-workers.worker.worker_stuff frontend_v2.pages.workers.worker_stuff
         return view("frontend_v2.pages.workers.worker_stuff", compact('cv', 'admins'));
 
@@ -264,9 +267,10 @@ class WorkerFrontController extends Controller
             ->where('id', $id)
             ->firstOrFail();
 
+        $orderType = $cv->is_rental ? 'rental' : 'normal';
         $admins = \App\Models\Admin::whereHas('roles', function ($q) {
             $q->where('roles.id', 4);
-        })->get();
+        })->whereIn('order_type', [$orderType, 'both'])->get();
 
         return view('frontend_v2.pages.workers.cv_details')->with([
             'cv' => $cv,
@@ -343,7 +347,7 @@ class WorkerFrontController extends Controller
             $user->phone_activation_code = rand(9999, 99999);
             $user->activated_at = Date('Y-m-d h:i:s');
             $user->save();
-        } 
+        }
 
 
         $order_data = [
@@ -437,9 +441,10 @@ class WorkerFrontController extends Controller
             ->where('id', $id)
             ->firstOrFail();
 
+        $orderType = $cv->is_rental ? 'rental' : 'normal';
         $admins = \App\Models\Admin::whereHas('roles', function ($q) {
             $q->where('roles.id', 4);
-        })->take(10)->get();
+        })->whereIn('order_type', [$orderType, 'both'])->take(10)->get();
 
 
         $returnHTML = view("frontend.pages.all-workers.worker.worker_details")

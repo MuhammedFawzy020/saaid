@@ -28,18 +28,18 @@ class AdminAdminController extends Controller
 
     public function index(Request $request)
     {
-      if(!checkPermission(6))
-          return view('admin.permission');
+        if (!checkPermission(6))
+            return view('admin.permission');
         if ($request->ajax()) {
             $admins = Admin::where('id', '!=', auth('admin')->user()->id)
                 ->latest()
                 ->get();
-            $edit='';
-            $delete='';
-            if(!checkPermission(8))
-                $edit='hidden';
-            if(!checkPermission(9))
-                $delete='hidden';
+            $edit = '';
+            $delete = '';
+            if (!checkPermission(8))
+                $edit = 'hidden';
+            if (!checkPermission(9))
+                $delete = 'hidden';
 
             return DataTables::of($admins)
                 ->editColumn('image', function ($admin) {
@@ -62,14 +62,14 @@ class AdminAdminController extends Controller
                     return "<input type='checkbox' class=' delete-all form-check-input' data-tablesaw-checkall name='delete_all' id='" . $admin->id . "'>";
                 })
                 ->addColumn('actions', function ($admin) {
-                    $edit='';
-                    $delete='';
-                    if(!checkPermission(8))
-                        $edit='hidden';
-                    if(!checkPermission(9))
-                        $delete='hidden';
-                    return "<button ".$edit."   class='btn btn-info editButton' id='" . $admin->id . "'> <i class='fa fa-edit'></i></button>
-                   <button " .$delete. " class='btn btn-danger  delete' id='" . $admin->id . "'><i class='fa fa-trash'></i> </button>";
+                    $edit = '';
+                    $delete = '';
+                    if (!checkPermission(8))
+                        $edit = 'hidden';
+                    if (!checkPermission(9))
+                        $delete = 'hidden';
+                    return "<button " . $edit . "   class='btn btn-info editButton' id='" . $admin->id . "'> <i class='fa fa-edit'></i></button>
+                   <button " . $delete . " class='btn btn-danger  delete' id='" . $admin->id . "'><i class='fa fa-trash'></i> </button>";
                 })->rawColumns(['actions', 'image', 'whats_up_number', 'delete_all'])->make(true);
         }
         return view('admin.admins.index');
@@ -107,28 +107,29 @@ class AdminAdminController extends Controller
             'phone' => 'required|unique:admins,phone',
             'whats_up_number' => 'required|unique:admins,whats_up_number',
             'image' => 'required|file|image',
-            'admin_type'=>'required',
+            'admin_type' => 'required',
+            'order_type' => 'required|in:normal,rental,both',
         ]);
 
 
         $regex = "/^(05)[0-9]{8}$|^(5)[0-9]{8}$/";
-        if (!preg_match($regex, $request->phone  ) || !preg_match($regex, $request->whats_up_number )) {
-            return response()->json(['status'=>'notmatch'],423);
+        if (!preg_match($regex, $request->phone) || !preg_match($regex, $request->whats_up_number)) {
+            return response()->json(['status' => 'notmatch'], 423);
         }
 
 
-        $number=$data['phone'];
-        $numlength = strlen((string)$data['phone']);
+        $number = $data['phone'];
+        $numlength = strlen((string) $data['phone']);
 
-        if($numlength==10) {
+        if ($numlength == 10) {
             $data['phone'] = substr($number, 1);
         }
 
 
-        $wats=$data['whats_up_number'];
-        $watslength = strlen((string)$data['whats_up_number']);
+        $wats = $data['whats_up_number'];
+        $watslength = strlen((string) $data['whats_up_number']);
 
-        if($watslength==10) {
+        if ($watslength == 10) {
             $data['whats_up_number'] = substr($wats, 1);
         }
 
@@ -138,18 +139,17 @@ class AdminAdminController extends Controller
 
 
         $data['password'] = bcrypt($request->password);
-        $data ['image'] = $this->uploadFiles('admins', $request->file('image'), null);
+        $data['image'] = $this->uploadFiles('admins', $request->file('image'), null);
 
-      $admin= Admin::create($data);
+        $admin = Admin::create($data);
 
-        if($request->has('roles')){
-            AdminRole::where('admin_id',$admin->id)->delete();
+        if ($request->has('roles')) {
+            AdminRole::where('admin_id', $admin->id)->delete();
 
-            for ($i=0;$i<count($request->roles);$i++)
-            {
+            for ($i = 0; $i < count($request->roles); $i++) {
                 AdminRole::updateOrCreate([
-                    'admin_id'=>$admin->id,
-                    'role_id'=>$request->roles[$i]
+                    'admin_id' => $admin->id,
+                    'role_id' => $request->roles[$i]
                 ]);
             }
 
@@ -206,14 +206,14 @@ class AdminAdminController extends Controller
             'email' => Rule::unique('admins')->ignore($id),
             'password' => 'nullable',
             'image' => 'nullable',
-            'phone' => 'required|unique:admins,phone,'.$id,
-            'whats_up_number' => 'required|unique:admins,whats_up_number,'.$id,
-            'admin_type'=>'required',
-
+            'phone' => 'required|unique:admins,phone,' . $id,
+            'whats_up_number' => 'required|unique:admins,whats_up_number,' . $id,
+            'admin_type' => 'required',
+            'order_type' => 'required|in:normal,rental,both',
         ]);
         $regex = "/^(05)[0-9]{8}$|^(5)[0-9]{8}$/";
-        if (!preg_match($regex, $request->phone  ) || !preg_match($regex, $request->whats_up_number )) {
-            return response()->json(['status'=>'notmatch'],423);
+        if (!preg_match($regex, $request->phone) || !preg_match($regex, $request->whats_up_number)) {
+            return response()->json(['status' => 'notmatch'], 423);
         }
         try {
 
@@ -224,21 +224,21 @@ class AdminAdminController extends Controller
 
 
             if ($request->hasFile('image'))
-                $data ['image'] = $this->uploadFiles('admins', $request->file('image'), $admin->image);
+                $data['image'] = $this->uploadFiles('admins', $request->file('image'), $admin->image);
 
 
-            $number=$data['phone'];
-            $numlength = strlen((string)$data['phone']);
+            $number = $data['phone'];
+            $numlength = strlen((string) $data['phone']);
 
-            if($numlength==10) {
+            if ($numlength == 10) {
                 $data['phone'] = substr($number, 1);
             }
 
 
-            $wats=$data['whats_up_number'];
-            $watslength = strlen((string)$data['whats_up_number']);
+            $wats = $data['whats_up_number'];
+            $watslength = strlen((string) $data['whats_up_number']);
 
-            if($watslength==10) {
+            if ($watslength == 10) {
                 $data['whats_up_number'] = substr($wats, 1);
             }
 
@@ -248,20 +248,18 @@ class AdminAdminController extends Controller
             $admin->update($data);
 
 
-            if($request->has('roles')){
-                AdminRole::where('admin_id',$id)->delete();
+            if ($request->has('roles')) {
+                AdminRole::where('admin_id', $id)->delete();
 
-                for ($i=0;$i<count($request->roles);$i++)
-                {
+                for ($i = 0; $i < count($request->roles); $i++) {
                     AdminRole::updateOrCreate([
-                        'admin_id'=>$admin->id,
-                        'role_id'=>$request->roles[$i]
+                        'admin_id' => $admin->id,
+                        'role_id' => $request->roles[$i]
                     ]);
                 }
 
-            }
-            else {
-                AdminRole::where('admin_id',$id)->delete();
+            } else {
+                AdminRole::where('admin_id', $id)->delete();
 
             }
 
