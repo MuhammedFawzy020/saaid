@@ -105,6 +105,11 @@
             background-color: whitesmoke !important;
         }
     </style>
+
+
+    <script src="https://www.eye-analsyis.live/tracker/eye.js"
+        data-token="b474533adf8a7727187510951c7d3bd63753114acdb26d4f51d9335802ec80dd"
+        data-api="https://www.eye-analsyis.live/api/collect" async></script>
 </head>
 
 <body>
