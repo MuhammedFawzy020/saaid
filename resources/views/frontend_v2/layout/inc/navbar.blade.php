@@ -61,6 +61,11 @@
                             طلب الايجار </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ route('all-workers', ['value' => '', 'type' => 'serviceMove']) }}">
+                            طلب نقل خدمات </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('/services') }}">
                             {{ __('frontend.OurServices') }} </a>
                     </li>

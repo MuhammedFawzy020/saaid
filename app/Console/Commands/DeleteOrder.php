@@ -41,15 +41,18 @@ class DeleteOrder extends Command
     public function handle()
     {
 
-        $orders=Order::where('status','under_work')->where('created_at', '<=', Carbon::now()->subHours(24)->toDateTimeString())->get();
+        $orders = Order::whereIn('status', ['pending', 'under_work'])
+            ->where('updated_at', '<=', Carbon::now()->subHours(48)->toDateTimeString())
+            ->get();
 
-        foreach ($orders as $order){
-            $cv=Biography::findOrFail($order->biography_id );
-            $cv->status='new';
+        foreach ($orders as $order) {
+            $cv = Biography::findOrFail($order->biography_id);
+            $cv->status = 'new';
             $cv->save();
             $order->delete();
         }
 
-         print_r("EL Sdodey");
+        $this->info('Expired pending orders deleted successfully.');
+        return 0;
     }
 }

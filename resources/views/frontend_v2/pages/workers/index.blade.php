@@ -1,6 +1,6 @@
 @extends('frontend_v2.layout.app')
 @section('title')
-    طلب استقدام
+    {{ $value == 'rental' ? 'طلب إيجار' : ($type === 'serviceMove' ? 'طلب نقل خدمات' : 'طلب استقدام') }}
 @endsection
 
 @section('meta_description')
@@ -32,8 +32,7 @@
 
 
 
-        <form method="get"
-            action="{{ $value == 'rental' ? route('all-workers', ['value' => 'rental', 'type' => 'admission']) : route('all-workers') }}">
+        <form method="get" action="{{ route('all-workers', ['type' => $type, 'value' => $value]) }}">
             @csrf
             <div class="row m-0 p-0 mb-4 mt-4 backgound-color-orange p-4">
                 <div class="col-12 text-center mb-2 ">
@@ -121,7 +120,8 @@
                     <button type="submit" class="btn btn-light">
                         إبحث
                     </button>
-                    <a href="{{ route('all-workers') }}" class="btn btn-outline-light">
+                    <a href="{{ route('all-workers', ['type' => $type, 'value' => $value]) }}"
+                        class="btn btn-outline-light">
                         إعادة تهيئة البحث
                     </a>
                 </div>
@@ -138,12 +138,12 @@
                                 @if ($cv->cv_file)
                                     <a href="{{ url('frontend/images/users/' . $cv->cv_file) }}" data-fancybox
                                         data-caption="{{ $cv->name }}">
-                                        <img src="{{ url('frontend/images/users/' . $cv->cv_file) }}" class="card-img" style="width:auto;margin:auto;display:block;"
-                                            alt="سيرة {{ $cv->name }}" />
+                                        <img src="{{ url('frontend/images/users/' . $cv->cv_file) }}" class="card-img"
+                                            style="width:auto;margin:auto;display:block;" alt="سيرة {{ $cv->name }}" />
                                     </a>
                                 @else
-                                    <img src="{{ url('/') }}/frontend/images/comment-1-1.jpg" class="card-img" style="width:auto;margin:auto;display:block;"
-                                        alt="صورة افتراضية لسيرة" />
+                                    <img src="{{ url('/') }}/frontend/images/comment-1-1.jpg" class="card-img"
+                                        style="width:auto;margin:auto;display:block;" alt="صورة افتراضية لسيرة" />
                                 @endif
                             </div>
                             <div class="col-md-8">
@@ -176,7 +176,7 @@
                                                 <b>{{ $cv->religion ? $cv->religion->title : '' }}</b>
                                             </p>
                                         </div>
-                                        @if ($type == 'transport')
+                                        @if ($type == 'transport' || $type === 'serviceMove')
                                             <div class="col-6">
                                                 <p class="worker-address">
                                                     سعر نقل الخدمات:
@@ -239,7 +239,7 @@
                                         </div>
 
                                     </div>
-                                    @if ($type == 'transport')
+                                    @if ($type == 'transport' || $type === 'serviceMove')
                                         <ul class="list-unstyled">
                                             <li>
                                                 <p class="worker-address"> مدة العمل للكفيل السابق :
@@ -279,9 +279,9 @@
                                                 </a>
                                             @endif
 
-                                            @if ($cv->vedio)
-                                                <a href="{{ url('/') }}/{{ $cv->vedio }}" target="_blank"
-                                                    class="btn book">
+                                            @if ($cv->video_url || $cv->vedio)
+                                                <a href="{{ $cv->video_url ?: Storage::url($cv->vedio) }}"
+                                                    target="_blank" class="btn book">
                                                     عرض الفيديو
                                                 </a>
                                             @endif
@@ -311,8 +311,8 @@
                             <div class="modal-body">
                                 <div class="card" style="padding:3px;">
                                     <!-- <div class="card-image">
-                                                                                                                                                                                                                                                                                                                                                            <img src="{{ get_file($cv->cv_file) }}" alt="سيرة {{ $cv->name }}" />
-                                                                                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                                                                                    <img src="{{ get_file($cv->cv_file) }}" alt="سيرة {{ $cv->name }}" />
+                                                                                                                                                                                                                                                                                                                                                                </div> -->
 
                                     <div class="card-header" style="padding:0px !important;border:none !important;">
                                         <div class="card col-lg-12" style="border:none;">
@@ -589,7 +589,7 @@
                                                     <p class="worker-address"> {{ __('frontend.Religion') }} :
                                                         {{ $cv->religion ? $cv->religion->title : '' }} </p>
                                                 </li>
-                                                @if ($type == 'transport')
+                                                @if ($type == 'transport' || $type === 'serviceMove')
                                                     <li>
                                                         <p class="worker-address">
                                                             سعر نقل الخدمات:
@@ -629,7 +629,7 @@
                                                 </li>
 
                                             </ul>
-                                            @if ($type == 'transport')
+                                            @if ($type == 'transport' || $type === 'serviceMove')
                                                 <ul class="list-unstyled">
                                                     <li>
                                                         <p class="worker-address"> مدة العمل للكفيل السابق :

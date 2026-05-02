@@ -48,7 +48,7 @@
 @endsection
 
 @section('page-title')
-    تعديل السيرة الذاتية
+    {{ $value === 'serviceMove' ? 'تعديل سيرة ذاتية لنقل الخدمات' : 'تعديل السيرة الذاتية' }}
 @endsection
 
 
@@ -58,101 +58,101 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">تعديل السيرة الذاتية</h4>
-                    <form id="Form" method="post" action="{{ route('biographies.update', $biography->id) }}">
+                    <form id="Form" method="post" action="{{ route('biographies.update', [$biography->id, $value]) }}">
                         @csrf
                         @method('PUT')
                         <div class="vertical-wizard">
 
                             <!-- Seller Details -->
                             <!-- <h3>البيانات الرئيسية </h3>
-                                                                                    <section>
+                                                                                            <section>
 
-                                                                                        <div class="row">
-                                                                                            <div class="col-12 p-2">
-                                                                                                <div class="form-group">
-                                                                                                    <input type="checkbox" {{ $biography->display == 1 ? 'checked' : '' }}
-                                                                                                        value="0" id="display" name="display">
-                                                                                                    <label for="display">إخفاء المعلومات داخل السايت</label>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-12 p-2">
+                                                                                                        <div class="form-group">
+                                                                                                            <input type="checkbox" {{ $biography->display == 1 ? 'checked' : '' }}
+                                                                                                                value="0" id="display" name="display">
+                                                                                                            <label for="display">إخفاء المعلومات داخل السايت</label>
 
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-12 p-2">
-                                                                                               
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                                                                                <div class="form-group">
-                                                                                                    <label for="recruitment_office_id"> مكاتب السيرة الذاتيه </label>
-                                                                                                    <select data-validation="required" required name="recruitment_office_id"
-                                                                                                        id="recruitment_office_id" class="form-control">
-                                                                                                        @foreach ($recruitment_office as $one)
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col-12 p-2">
+                                                                                                       
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="recruitment_office_id"> مكاتب السيرة الذاتيه </label>
+                                                                                                            <select data-validation="required" required name="recruitment_office_id"
+                                                                                                                id="recruitment_office_id" class="form-control">
+                                                                                                                @foreach ($recruitment_office as $one)
     <option value="{{ $one->id }}"
-                                                                                                                {{ $biography->recruitment_office_id == $one->id ? 'selected' : ' ' }}>
-                                                                                                                {{ $one->title }}</option>
+                                                                                                                        {{ $biography->recruitment_office_id == $one->id ? 'selected' : ' ' }}>
+                                                                                                                        {{ $one->title }}</option>
     @endforeach
-                                                                                                    </select>
-                                                                                                </div>
-                                                                                            </div>
+                                                                                                            </select>
+                                                                                                        </div>
+                                                                                                    </div>
 
 
 
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                                                                                <div class="form-group">
-                                                                                                    <label for="passport_number">رقم جواز السفر </label>
-                                                                                                    <input data-validation="required" required type="text" class="form-control"
-                                                                                                        value="{{ $biography->passport_number }}" id="passport_number"
-                                                                                                        name="passport_number" placeholder="">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                                                                                <div class="form-group">
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="passport_number">رقم جواز السفر </label>
+                                                                                                            <input data-validation="required" required type="text" class="form-control"
+                                                                                                                value="{{ $biography->passport_number }}" id="passport_number"
+                                                                                                                name="passport_number" placeholder="">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                                                                                        <div class="form-group">
 
-                                                                                                    <label for="passport_start">تاريخ إصدار جواز السفر </label>
-                                                                                                    <input type="date" class="form-control"
-                                                                                                        value="{{ Date('Y-m-d', strtotime($biography->passport_start)) }}"
-                                                                                                        id="passport_start" name="passport_start" placeholder="">
-                                                                                                </div>
-                                                                                            </div>
+                                                                                                            <label for="passport_start">تاريخ إصدار جواز السفر </label>
+                                                                                                            <input type="date" class="form-control"
+                                                                                                                value="{{ Date('Y-m-d', strtotime($biography->passport_start)) }}"
+                                                                                                                id="passport_start" name="passport_start" placeholder="">
+                                                                                                        </div>
+                                                                                                    </div>
 
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                                                                                <div class="form-group">
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                                                                                        <div class="form-group">
 
-                                                                                                    <label for="passport_end">تاريخ إنتهاء جواز السفر </label>
-                                                                                                    <input type="date" class="form-control"
-                                                                                                        value="{{ $biography->passport_end }}" id="passport_end"
-                                                                                                        name="passport_end" placeholder="">
-                                                                                                </div>
-                                                                                            </div>
+                                                                                                            <label for="passport_end">تاريخ إنتهاء جواز السفر </label>
+                                                                                                            <input type="date" class="form-control"
+                                                                                                                value="{{ $biography->passport_end }}" id="passport_end"
+                                                                                                                name="passport_end" placeholder="">
+                                                                                                        </div>
+                                                                                                    </div>
 
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                                                                                <div class="form-group">
-                                                                                                    <label for="passport_city">مكان إصدار جواز السفر </label>
-                                                                                                    <select name="passport_city" class="form-control select2Users">
-                                                                                                        @foreach ($cities as $city)
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="passport_city">مكان إصدار جواز السفر </label>
+                                                                                                            <select name="passport_city" class="form-control select2Users">
+                                                                                                                @foreach ($cities as $city)
     <option value="{{ $city->id }}"
-                                                                                                                {{ $biography->passport_city == $city->id ? 'selected' : '' }}>
-                                                                                                                {{ $city->title }}</option>
+                                                                                                                        {{ $biography->passport_city == $city->id ? 'selected' : '' }}>
+                                                                                                                        {{ $city->title }}</option>
     @endforeach
-                                                                                                    </select>
-                                                                                                </div>
-                                                                                            </div>
+                                                                                                            </select>
+                                                                                                        </div>
+                                                                                                    </div>
 
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                                                                                <div class="form-group">
-                                                                                                    <label for="passport_number">المهارات </label>
-                                                                                                    <select multiple name="skills[]" class="form-control select2Users">
-                                                                                                        @foreach ($skills as $skill)
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="passport_number">المهارات </label>
+                                                                                                            <select multiple name="skills[]" class="form-control select2Users">
+                                                                                                                @foreach ($skills as $skill)
     <option value="{{ $skill->id }}"
-                                                                                                                @foreach ($biography->skills as $sk) @if ($sk->id == $skill->id) selected @endif @endforeach>
-                                                                                                                {{ $skill->title }}</option>
+                                                                                                                        @foreach ($biography->skills as $sk) @if ($sk->id == $skill->id) selected @endif @endforeach>
+                                                                                                                        {{ $skill->title }}</option>
     @endforeach
-                                                                                                    </select>
+                                                                                                            </select>
+                                                                                                        </div>
+                                                                                                    </div>
+
+
                                                                                                 </div>
-                                                                                            </div>
 
 
-                                                                                        </div>
-
-
-                                                                                    </section> -->
+                                                                                            </section> -->
                             <!-- Company Document -->
 
                             <section>
@@ -168,12 +168,12 @@
                                             <!-- Hidden input field for the unchecked state -->
                                         </div> --}}
                                     <!-- <div class="form-group col-md-4">
-                                                                                        <label for="inputState">إظهار السيره الزاتية ؟</label>
-                                                                                        <select id="inputState" class="form-control" name="display_or_hide">
-                                                                                            <option value="1" {{ $biography->display_or_hide == 1 ? 'selected' : '' }}>نعم</option>
-                                                                                            <option value="0" {{ $biography->display_or_hide == 0 ? 'selected' : '' }}>لا</option>
-                                                                                        </select>
-                                                                                    </div> -->
+                                                                                                <label for="inputState">إظهار السيره الزاتية ؟</label>
+                                                                                                <select id="inputState" class="form-control" name="display_or_hide">
+                                                                                                    <option value="1" {{ $biography->display_or_hide == 1 ? 'selected' : '' }}>نعم</option>
+                                                                                                    <option value="0" {{ $biography->display_or_hide == 0 ? 'selected' : '' }}>لا</option>
+                                                                                                </select>
+                                                                                            </div> -->
                                 </div>
                                 <div class="row">
                                     <div class="col-8">
@@ -198,11 +198,40 @@
                                     <div class="col-6 p-2">
                                         <div class="form-group">
                                             <label>Vedio</label>
-                                            <input type="file" data-validation="required" class="form-control"
-                                                name="vedio" accept="video/*" placeholder="">
+                                            <input type="file" class="form-control" name="vedio" accept="video/*"
+                                                placeholder="">
                                         </div>
                                     </div>
+                                    <div class="col-6 p-2">
+                                        <div class="form-group">
+                                            <label>رابط الفيديو (اختياري)</label>
+                                            <input type="url" class="form-control" name="video_url" id="video_url"
+                                                value="{{ $biography->video_url }}" placeholder="https://...">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 p-2">
+                                        <iframe id="video_preview_iframe"
+                                            class="w-100 {{ $biography->video_url ? '' : 'd-none' }}"
+                                            style="height:320px;border:0;" src="{{ $biography->video_url }}"
+                                            allowfullscreen loading="lazy"></iframe>
+                                    </div>
                                 </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                            <div class="form-group">
+                                <label for="type">نوع السيرة</label>
+                                <select name="type" id="type" class="form-control select2Users">
+                                    <option value="admission"
+                                        {{ ($selected_type ?? $biography->type) === 'admission' ? 'selected' : '' }}>
+                                        استقدام</option>
+                                    <option value="transport"
+                                        {{ ($selected_type ?? $biography->type) === 'transport' ? 'selected' : '' }}>نقل
+                                        داخلي</option>
+                                    <option value="serviceMove"
+                                        {{ ($selected_type ?? $biography->type) === 'serviceMove' ? 'selected' : '' }}>نقل
+                                        خدمات</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                             <div class="form-group">
@@ -334,149 +363,149 @@
 
 
                         <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                                                                                <div class="form-group">
+                                                                                                        <div class="form-group">
 
-                                                                                                    <label for="warrenty_period">مدة الضمان</label>
-                                                                                                    <input data-validation="optional" type="text" class="form-control" value="{{ $biography->warrenty_period }}" id="warrenty_period"
-                                                                                                        name="warrenty_period" placeholder=" ">
+                                                                                                            <label for="warrenty_period">مدة الضمان</label>
+                                                                                                            <input data-validation="optional" type="text" class="form-control" value="{{ $biography->warrenty_period }}" id="warrenty_period"
+                                                                                                                name="warrenty_period" placeholder=" ">
 
-                                                                                                </div>
+                                                                                                        </div>
 
-                                                                                            </div> -->
+                                                                                                    </div> -->
 
 
 
                 </div>
                 </section>
                 <!-- <h3>الخبرة السابقة</h3>
-                                                                                    <section>
+                                                                                            <section>
 
-                                                                                        <div class="row-template">
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                                                                                <div class="form-group">
-                                                                                                    <label for="exp_job_id">المهنة </label>
-                                                                                                    <select name="exp_job_id" class="form-control select2Users">
-                                                                                                        <option value=" ">لا يوجد خبرة سابقة</option>
-                                                                                                        @foreach ($job as $one)
+                                                                                                <div class="row-template">
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="exp_job_id">المهنة </label>
+                                                                                                            <select name="exp_job_id" class="form-control select2Users">
+                                                                                                                <option value=" ">لا يوجد خبرة سابقة</option>
+                                                                                                                @foreach ($job as $one)
     <option value="{{ $one->id }}"
-                                                                                                                {{ $biography->experinces?->exp_job_id == $one->id ? 'selected' : '' }}>
-                                                                                                                {{ $one->title }}</option>
+                                                                                                                        {{ $biography->experinces?->exp_job_id == $one->id ? 'selected' : '' }}>
+                                                                                                                        {{ $one->title }}</option>
     @endforeach
-                                                                                                    </select>
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                                                                                <div class="form-group">
-                                                                                                    <label for="city_id">البلد</label>
-                                                                                                    <select name="exp_city_id" class="form-control select2Users">
-                                                                                                        <option value=" ">لا يوجد خبرة سابقة</option>
-                                                                                                        @foreach ($cities as $city)
-    <option value="{{ $city->id }}"
-                                                                                                                {{ $biography->experinces?->city_id == $city->id ? 'selected' : '' }}>
-                                                                                                                {{ $city->title }}</option>
-    @endforeach
-                                                                                                    </select>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
-                                                                                                <div class="form-group">
-                                                                                                    <div id="" class="">
-                                                                                                        <label for="exp_period">المدة</label>
-                                                                                                        <input data-validation="optional" type="text" class="form-control"
-                                                                                                            value="{{ $biography->experinces?->exp_period }}" id="exp_period"
-                                                                                                            name="exp_period" placeholder=" ">
-
+                                                                                                            </select>
+                                                                                                        </div>
                                                                                                     </div>
+
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="city_id">البلد</label>
+                                                                                                            <select name="exp_city_id" class="form-control select2Users">
+                                                                                                                <option value=" ">لا يوجد خبرة سابقة</option>
+                                                                                                                @foreach ($cities as $city)
+    <option value="{{ $city->id }}"
+                                                                                                                        {{ $biography->experinces?->city_id == $city->id ? 'selected' : '' }}>
+                                                                                                                        {{ $city->title }}</option>
+    @endforeach
+                                                                                                            </select>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                                                                                        <div class="form-group">
+                                                                                                            <div id="" class="">
+                                                                                                                <label for="exp_period">المدة</label>
+                                                                                                                <input data-validation="optional" type="text" class="form-control"
+                                                                                                                    value="{{ $biography->experinces?->exp_period }}" id="exp_period"
+                                                                                                                    name="exp_period" placeholder=" ">
+
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+
+
+
+
                                                                                                 </div>
-                                                                                            </div>
 
 
-
-
-                                                                                        </div>
-
-
-                                                                                    </section> -->
+                                                                                            </section> -->
                 <!-- Company Document -->
                 <!-- <h3>تفاصيل اكثر </h3>
-                                                                                    <section>
+                                                                                            <section>
 
-                                                                                        <div class="row">
+                                                                                                <div class="row">
 
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                                                <div class="form-group">
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                                                                        <div class="form-group">
 
-                                                                                                    <label for="contract_period">مدة التعاقد</label>
-                                                                                                    <input data-validation="optional" type="text" class="form-control"
-                                                                                                        value="{{ $biography->contract_period }}" id="contract_period"
-                                                                                                        name="contract_period" placeholder=" ">
+                                                                                                            <label for="contract_period">مدة التعاقد</label>
+                                                                                                            <input data-validation="optional" type="text" class="form-control"
+                                                                                                                value="{{ $biography->contract_period }}" id="contract_period"
+                                                                                                                name="contract_period" placeholder=" ">
 
-                                                                                                </div>
-
-                                                                                            </div>
-
-
-
-
-
-
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                                                <div class="form-group">
-                                                                                                    <label for="passport_number">نوع السيرة الذاتية</label>
-                                                                                                    <select id="cvTypeSelect" data-validation="required" required name="type"
-                                                                                                        class="form-control select2Users">
-                                                                                                        <option value="admission"
-                                                                                                            {{ $biography->type == 'admission' ? 'selected' : '' }}>استقدام
-                                                                                                        </option>
-                                                                                                        <option value="transport"
-                                                                                                            {{ $biography->type == 'transport' ? 'selected' : '' }}>نقل خدمات
-                                                                                                        </option>
-
-                                                                                                    </select>
-                                                                                                </div>
-                                                                                            </div>
-
-
-
-
-
-
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                                                <div class="form-group">
-                                                                                                    <div id="showtransporttwo" class="transferReason">
-                                                                                                        <label for="reasonservices">سبب التنازل </label>
-                                                                                                        <input data-validation="optional" type="text" class="form-control"
-                                                                                                            value="{{ $biography->reasonservices }}" id="reasonservices"
-                                                                                                            name="reasonservices" placeholder="">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                                                <div class="form-group">
-                                                                                                    <div id="showtransportone" class="transferReason">
-                                                                                                        <label for="periodservices">مدة العمل عند الكفيل السابق</label>
-                                                                                                        <input data-validation="optional" type="text" class="form-control"
-                                                                                                            value="{{ $biography->periodservices }}" id="periodservices"
-                                                                                                            name="periodservices" placeholder=" ">
+                                                                                                        </div>
 
                                                                                                     </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                                                                                <div class="form-group">
-                                                                                                    <div id="showtransportthree" class="transferReason">
-                                                                                                        <label for="transfer_price">سعر نقل الخدمات </label>
-                                                                                                        <input data-validation="optional" type="number" class="form-control"
-                                                                                                            value="{{ $biography->transfer_price }}" id="transfer_price"
-                                                                                                            name="transfer_price" placeholder=" ">
 
+
+
+
+
+
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="passport_number">نوع السيرة الذاتية</label>
+                                                                                                            <select id="cvTypeSelect" data-validation="required" required name="type"
+                                                                                                                class="form-control select2Users">
+                                                                                                                <option value="admission"
+                                                                                                                    {{ $biography->type == 'admission' ? 'selected' : '' }}>استقدام
+                                                                                                                </option>
+                                                                                                                <option value="transport"
+                                                                                                                    {{ $biography->type == 'transport' ? 'selected' : '' }}>نقل خدمات
+                                                                                                                </option>
+
+                                                                                                            </select>
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                </div>
-                                                                                            </div>
 
-                                                                                        </div>
-                                                                                    </section> -->
+
+
+
+
+
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                                                                        <div class="form-group">
+                                                                                                            <div id="showtransporttwo" class="transferReason">
+                                                                                                                <label for="reasonservices">سبب التنازل </label>
+                                                                                                                <input data-validation="optional" type="text" class="form-control"
+                                                                                                                    value="{{ $biography->reasonservices }}" id="reasonservices"
+                                                                                                                    name="reasonservices" placeholder="">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                                                                        <div class="form-group">
+                                                                                                            <div id="showtransportone" class="transferReason">
+                                                                                                                <label for="periodservices">مدة العمل عند الكفيل السابق</label>
+                                                                                                                <input data-validation="optional" type="text" class="form-control"
+                                                                                                                    value="{{ $biography->periodservices }}" id="periodservices"
+                                                                                                                    name="periodservices" placeholder=" ">
+
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                                                                        <div class="form-group">
+                                                                                                            <div id="showtransportthree" class="transferReason">
+                                                                                                                <label for="transfer_price">سعر نقل الخدمات </label>
+                                                                                                                <input data-validation="optional" type="number" class="form-control"
+                                                                                                                    value="{{ $biography->transfer_price }}" id="transfer_price"
+                                                                                                                    name="transfer_price" placeholder=" ">
+
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                            </section> -->
                 <!-- Seller Details -->
 
             </div>
@@ -644,7 +673,7 @@
                             message: "تمت العملية بنجاح",
                             timer: 3000
                         })
-                        window.location.href = '{{ route('biographies.index') }}';
+                        window.location.href = '{{ route('biographies.index', $value) }}';
                         $('.loader-ajax').hide()
                     }, 20);
                 },
@@ -685,6 +714,16 @@
                 processData: false
             });
 
+        });
+
+        $(document).on('input', '#video_url', function() {
+            const url = $(this).val().trim();
+            const iframe = $('#video_preview_iframe');
+            if (!url) {
+                iframe.addClass('d-none').attr('src', '');
+                return;
+            }
+            iframe.removeClass('d-none').attr('src', url);
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -48,7 +48,7 @@
 @endsection
 
 @section('page-title')
-    {{ $value == 'rental' ? 'إضافة سيرة ذاتية جديدة للايجار' : 'إضافة سيرة ذاتية جديدة' }}
+    {{ $value == 'rental' ? 'إضافة سيرة ذاتية جديدة للايجار' : ($value === 'serviceMove' ? 'إضافة سيرة ذاتية جديدة لنقل الخدمات' : 'إضافة سيرة ذاتية جديدة') }}
 @endsection
 
 
@@ -92,8 +92,35 @@
                                     <div class="col-6 p-2">
                                         <div class="form-group">
                                             <label>Vedio</label>
-                                            <input type="file" data-validation="required" class="form-control"
-                                                name="vedio" accept="video/*" placeholder="">
+                                            <input type="file" class="form-control" name="vedio" accept="video/*"
+                                                placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-6 p-2">
+                                        <div class="form-group">
+                                            <label>رابط الفيديو (اختياري)</label>
+                                            <input type="url" class="form-control" name="video_url" id="video_url"
+                                                placeholder="https://...">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 p-2">
+                                        <iframe id="video_preview_iframe" class="w-100 d-none"
+                                            style="height:320px;border:0;" allowfullscreen loading="lazy"></iframe>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
+                                        <div class="form-group">
+                                            <label for="type">نوع السيرة</label>
+                                            <select name="type" id="type" class="form-control select2Users">
+                                                <option value="admission"
+                                                    {{ ($selected_type ?? 'admission') === 'admission' ? 'selected' : '' }}>
+                                                    استقدام</option>
+                                                <option value="transport"
+                                                    {{ ($selected_type ?? 'admission') === 'transport' ? 'selected' : '' }}>
+                                                    نقل داخلي</option>
+                                                <option value="serviceMove"
+                                                    {{ ($selected_type ?? 'admission') === 'serviceMove' ? 'selected' : '' }}>
+                                                    نقل خدمات</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
@@ -133,7 +160,8 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-2">
                                         <div class="form-group">
                                             <label for="passport_number">ديانة العامل </label>
-                                            <select id="religion_id" name="religion_id" class="form-control select2Users">
+                                            <select id="religion_id" name="religion_id"
+                                                class="form-control select2Users">
                                                 @foreach ($religion as $one)
                                                     <option value="{{ $one->id }}">{{ $one->title }}</option>
                                                 @endforeach
@@ -408,6 +436,16 @@
                 processData: false
             });
 
+        });
+
+        $(document).on('input', '#video_url', function() {
+            const url = $(this).val().trim();
+            const iframe = $('#video_preview_iframe');
+            if (!url) {
+                iframe.addClass('d-none').attr('src', '');
+                return;
+            }
+            iframe.removeClass('d-none').attr('src', url);
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -112,7 +112,7 @@ class WorkerFrontController extends Controller
         )
             ->where('id', $id)
             ->firstOrFail();
-        $orderType = $cv->is_rental ? 'rental' : 'normal';
+        $orderType = $cv->type === 'serviceMove' ? 'serviceMove' : ($cv->is_rental ? 'rental' : 'normal');
         $admins = \App\Models\Admin::where('admin_type', '!=', 0)
             ->whereIn('order_type', [$orderType, 'both'])
             ->get();
@@ -267,7 +267,7 @@ class WorkerFrontController extends Controller
             ->where('id', $id)
             ->firstOrFail();
 
-        $orderType = $cv->is_rental ? 'rental' : 'normal';
+        $orderType = $cv->type === 'serviceMove' ? 'serviceMove' : ($cv->is_rental ? 'rental' : 'normal');
         $admins = \App\Models\Admin::whereHas('roles', function ($q) {
             $q->where('roles.id', 4);
         })->whereIn('order_type', [$orderType, 'both'])->get();
@@ -447,7 +447,7 @@ class WorkerFrontController extends Controller
             ->where('id', $id)
             ->firstOrFail();
 
-        $orderType = $cv->is_rental ? 'rental' : 'normal';
+        $orderType = $cv->type === 'serviceMove' ? 'serviceMove' : ($cv->is_rental ? 'rental' : 'normal');
         $admins = \App\Models\Admin::whereHas('roles', function ($q) {
             $q->where('roles.id', 4);
         })->whereIn('order_type', [$orderType, 'both'])->take(10)->get();

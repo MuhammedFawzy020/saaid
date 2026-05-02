@@ -18,11 +18,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => 'admin:admin'], function () {
         #AdminRecruitmentRequirement
 
-        Route::get('getRecruitmentRequirement','AdminRecruitmentRequirement@index')->name('admin.getRecruitmentRequirement');
-        Route::post('updateRecruitmentRequirement/{id}','AdminRecruitmentRequirement@updateRecruitmentRequirement')->name('admin.updateRecruitmentRequirement');
+        Route::get('getRecruitmentRequirement', 'AdminRecruitmentRequirement@index')->name('admin.getRecruitmentRequirement');
+        Route::post('updateRecruitmentRequirement/{id}', 'AdminRecruitmentRequirement@updateRecruitmentRequirement')->name('admin.updateRecruitmentRequirement');
 
 
-        Route::resource('reviews','AdminReviewsController');
+        Route::resource('reviews', 'AdminReviewsController');
 
 
         /*================LogOut===========*/
@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::resource('settings', 'AdminSettingController');//setting
 
-        Route::get('deleteOrdersByCommand','AdminSettingController@deleteOrdersByCommand')->name('deleteOrdersByCommand');
+        Route::get('deleteOrdersByCommand', 'AdminSettingController@deleteOrdersByCommand')->name('deleteOrdersByCommand');
 
 
         /*================Admin Contact us control =========================*/
@@ -68,16 +68,16 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('users/changeBlock/{id}', 'AdminUserController@changeBlock')
             ->name('users.changeBlock');
 
-        Route::get('selectOrderForUser/{id}','AdminUserController@selectOrderForUser')->name('admins.selectOrderForUser');
+        Route::get('selectOrderForUser/{id}/{value?}', 'AdminUserController@selectOrderForUser')->name('admins.selectOrderForUser');
 
-        Route::get('selectCustomerServiceForCv/{cv_id}/{user_id}','AdminUserController@selectCustomerServiceForCv')->name('admins.selectCustomerServiceForCv');
+        Route::get('selectCustomerServiceForCv/{cv_id}/{user_id}/{value?}', 'AdminUserController@selectCustomerServiceForCv')->name('admins.selectCustomerServiceForCv');
 
 
-        Route::get('adminCompleteTheRecruitmentRequest/{cv_id}/{admin_id}/{user_id}','AdminUserController@adminCompleteTheRecruitmentRequest')->name('admin.adminCompleteTheRecruitmentRequest');
+        Route::get('adminCompleteTheRecruitmentRequest/{cv_id}/{admin_id}/{user_id}', 'AdminUserController@adminCompleteTheRecruitmentRequest')->name('admin.adminCompleteTheRecruitmentRequest');
 
-#### maps
-        Route::get('getMapAddress','AdminSettingController@getMapAddress')->name('setting.getMapAddress');
-        Route::post('updateMapAddress','AdminSettingController@updateMapAddress')->name('setting.updateMapAddress');
+        #### maps
+        Route::get('getMapAddress', 'AdminSettingController@getMapAddress')->name('setting.getMapAddress');
+        Route::post('updateMapAddress', 'AdminSettingController@updateMapAddress')->name('setting.updateMapAddress');
 
         ####   LaborDemand
 
@@ -88,9 +88,9 @@ Route::group(['prefix' => 'admin'], function () {
         /*====================Start CRUD==================*/
 
 
-        Route::resource('blogs','BlogController');
-         Route::delete('blogs/delete/bulk', 'BlogController@delete_all')
-         ->name('blog.delete.bulk');
+        Route::resource('blogs', 'BlogController');
+        Route::delete('blogs/delete/bulk', 'BlogController@delete_all')
+            ->name('blog.delete.bulk');
 
         Route::group(['namespace' => 'CRUD'], function () {
 
@@ -123,13 +123,13 @@ Route::group(['prefix' => 'admin'], function () {
                 ->name('jobs.delete.bulk');
 
 
-// اللغات للسيرة الذاتية
+            // اللغات للسيرة الذاتية
             Route::resource('language-titles', 'AdminLanguageTitlesController');
             Route::delete('language-titles/delete/bulk', 'AdminLanguageTitlesController@delete_all')
                 ->name('language-titles.delete.bulk');
 
 
-// اللغات للسيرة الذاتية
+            // اللغات للسيرة الذاتية
             Route::resource('nationalities', 'AdminNationalitiesController');
             Route::delete('nationalities/delete/bulk', 'AdminNationalitiesController@delete_all')
                 ->name('nationalities.delete.bulk');
@@ -184,7 +184,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/biographies/store/{value?}', 'AdminBiographiesController@store')->name('biographies.store');
             Route::delete('/biographies/delete/{id}/{value?}', 'AdminBiographiesController@destroy')->name('biographies.destroy');
 
-            Route::post('biographies/bulk-visibility','AdminBiographiesController@bulkVisibility')->name('biographies.bulk.visibility');
+            Route::post('biographies/bulk-visibility', 'AdminBiographiesController@bulkVisibility')->name('biographies.bulk.visibility');
 
 
             Route::post('biographies/delete/bulk', 'AdminBiographiesController@delete_all')
@@ -196,12 +196,12 @@ Route::group(['prefix' => 'admin'], function () {
                 ->name('biographies-special.delete.bulk');
 
             // -------------------------------------
-          //  Route::resource('admin-orders', 'AdminOrderController');
+            //  Route::resource('admin-orders', 'AdminOrderController');
 
-            Route::get('/admin-orders/{value?}','AdminOrderController@index')->name('admin-orders.index');
-            Route::delete('/admin-orders/destroy/{id}','AdminOrderController@destroy')->name('admin-orders.destroy');
-            Route::put('/admin-orders/update/{id}/{value?}','AdminOrderController@update')->name('admin-orders.update');
-            
+            Route::get('/admin-orders/{value?}', 'AdminOrderController@index')->name('admin-orders.index');
+            Route::delete('/admin-orders/destroy/{id}', 'AdminOrderController@destroy')->name('admin-orders.destroy');
+            Route::put('/admin-orders/update/{id}/{value?}', 'AdminOrderController@update')->name('admin-orders.update');
+
             Route::delete('admin-orders/delete/bulk', 'AdminOrderController@delete_all')
                 ->name('admin-orders.delete.bulk');
 
@@ -211,16 +211,16 @@ Route::group(['prefix' => 'admin'], function () {
 
 
             //countries prices route fawzy 21-11-2023
-            Route::get('/country-index' ,'CountryPricesController@index')->name('country-index');
-            Route::get('/country-create' ,'CountryPricesController@create')->name('country-create');
-            Route::post('/country-store' ,'CountryPricesController@store')->name('country-store');
-            Route::get('/country-edit/{id}' ,'CountryPricesController@edit')->name('country-edit');
-            Route::post('/country-update' ,'CountryPricesController@update')->name('country-update');
-            Route::delete('/country-delete/{id}' ,'CountryPricesController@delete')->name('country-delete');
+            Route::get('/country-index', 'CountryPricesController@index')->name('country-index');
+            Route::get('/country-create', 'CountryPricesController@create')->name('country-create');
+            Route::post('/country-store', 'CountryPricesController@store')->name('country-store');
+            Route::get('/country-edit/{id}', 'CountryPricesController@edit')->name('country-edit');
+            Route::post('/country-update', 'CountryPricesController@update')->name('country-update');
+            Route::delete('/country-delete/{id}', 'CountryPricesController@delete')->name('country-delete');
 
 
 
-            Route::get('/country-price/{countryy_id}/{religon_id}/{value?}','CountryPricesController@get_price')->name('get_price');
+            Route::get('/country-price/{countryy_id}/{religon_id}/{value?}', 'CountryPricesController@get_price')->name('get_price');
 
         });
 

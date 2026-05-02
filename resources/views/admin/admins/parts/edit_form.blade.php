@@ -87,6 +87,8 @@
                     <option value="normal" {{ $admin->order_type == 'normal' ? 'selected' : '' }}>استقدام فقط
                     </option>
                     <option value="rental" {{ $admin->order_type == 'rental' ? 'selected' : '' }}>ايجار فقط</option>
+                    <option value="serviceMove" {{ $admin->order_type == 'serviceMove' ? 'selected' : '' }}>نقل خدمات
+                        فقط</option>
                 </select>
             </div>
         </div>

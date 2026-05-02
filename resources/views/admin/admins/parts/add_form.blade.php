@@ -88,6 +88,7 @@
                     <option value="both" selected>كلاهما (استقدام وايجار)</option>
                     <option value="normal">استقدام فقط</option>
                     <option value="rental">ايجار فقط</option>
+                    <option value="serviceMove">نقل خدمات فقط</option>
                 </select>
             </div>
         </div>

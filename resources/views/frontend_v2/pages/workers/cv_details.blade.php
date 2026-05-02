@@ -55,6 +55,18 @@
                     </a>
 
                 </div>
+                @php
+                    $videoSrc = $cv->video_url ?: ($cv->vedio ? Storage::url($cv->vedio) : null);
+                @endphp
+                @if ($videoSrc)
+                    <div class="card mb-3" style="margin:20px;">
+                        <div class="card-body">
+                            <h5 class="mb-3">فيديو السيرة الذاتية</h5>
+                            <iframe src="{{ $videoSrc }}" class="w-100" style="height:420px;border:0;" allowfullscreen
+                                loading="lazy"></iframe>
+                        </div>
+                    </div>
+                @endif
                 <div class="card"
                     style="padding:3px;height:100%;margin:20px; border: 5px solid #5B79AFl;height:fit-content"
                     id="pdf-content">

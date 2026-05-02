@@ -318,8 +318,12 @@ class AdminOrderController extends Controller
     public function index(Request $request, $value = null)
     {
         $rental = 0;
+        $isServiceMove = false;
         if ($value === "rental") {
             $rental = 1;
+        }
+        if ($value === 'serviceMove') {
+            $isServiceMove = true;
         }
 
         if (!checkPermission(31)) {
@@ -346,8 +350,15 @@ class AdminOrderController extends Controller
 
         if ($request->ajax()) {
             $dataTables = Order::query()
-                ->whereHas('biography', function ($q) use ($rental) {
-                    $q->where('is_rental', $rental);
+                ->whereHas('biography', function ($q) use ($rental, $isServiceMove) {
+                    if ($isServiceMove) {
+                        $q->where('type', 'serviceMove')->where('is_rental', 0);
+                    } else {
+                        $q->where('is_rental', $rental);
+                        if ($rental === 0) {
+                            $q->where('type', '!=', 'serviceMove');
+                        }
+                    }
                 })
                 ->when($count == 0 || $admin->admin_type != 0, function ($query) use ($admin) {
                     return $query->where('admin_id', $admin->id);
@@ -428,7 +439,15 @@ class AdminOrderController extends Controller
                 ->addColumn('phone', fn($row) => isset($row->user->phone) ? '0' . $row->user->phone : 'غير محدد')
                 ->addColumn('admin', fn($row) => $row->admin->name ?? 'غير محدد')
                 ->editColumn('recruitment_office_id', fn($row) => $row->biography->recruitment_office->title ?? 'غير محدد')
-                ->editColumn('type', fn($row) => $row->biography->type === 'admission' ? 'استقدام' : 'نقل خدمات')
+                ->editColumn('type', function ($row) {
+                    if ($row->biography->type === 'admission') {
+                        return 'استقدام';
+                    }
+                    if ($row->biography->type === 'transport') {
+                        return 'نقل داخلي';
+                    }
+                    return 'نقل خدمات';
+                })
                 ->addColumn('actions', function ($row) use ($rental) {
                     $status = '';
                     $delete = '';

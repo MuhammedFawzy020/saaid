@@ -68,8 +68,10 @@ class AdminUserController extends Controller
                     $request = '';
                     if (!\checkPermission(24))
                         $request = 'hidden';
-                    $url = route('admins.selectOrderForUser', $user->id);
-                    return '<a ' . $request . ' href="' . $url . '" class="btn btn-success ">طلب استقدام</a>';
+                    $recruitmentUrl = route('admins.selectOrderForUser', [$user->id]);
+                    $serviceMoveUrl = route('admins.selectOrderForUser', [$user->id, 'serviceMove']);
+                    return '<a ' . $request . ' href="' . $recruitmentUrl . '" class="btn btn-success m-1">طلب استقدام</a>'
+                        . '<a ' . $request . ' href="' . $serviceMoveUrl . '" class="btn btn-info m-1">طلب نقل خدمات</a>';
                 })
                 ->addColumn('actions', function ($user) {
                     $block = '';
@@ -263,13 +265,19 @@ class AdminUserController extends Controller
         return response()->json(1, 200);
     }
 
-    public function selectOrderForUser($id)
+    public function selectOrderForUser($id, $value = null)
     {
         if (!\checkPermission(24))
             return view('admin.permission');
         $user = User::findOrFail($id);
+        $isServiceMove = $value === 'serviceMove';
         $cvs = Biography::where('status', 'new')
             ->where('order_type', 'normal')
+            ->when($isServiceMove, function ($query) {
+                $query->where('type', 'serviceMove');
+            }, function ($query) {
+                $query->whereIn('type', ['admission', 'transport']);
+            })
             ->with(
                 'recruitment_office',
                 'nationalitie',
@@ -283,10 +291,10 @@ class AdminUserController extends Controller
             )
             ->latest()
             ->get();
-        return view('admin.users.parts.recruitmentRequest', compact('cvs', 'user'));
+        return view('admin.users.parts.recruitmentRequest', compact('cvs', 'user', 'value'));
 
     }
-    public function selectCustomerServiceForCv($cv_id, $user_id)
+    public function selectCustomerServiceForCv($cv_id, $user_id, $value = null)
     {
 
         $user = User::findOrFail($user_id);
@@ -303,8 +311,12 @@ class AdminUserController extends Controller
         )
             ->where('id', $cv_id)
             ->firstOrFail();
-        $admins = \App\Models\Admin::where('admin_type', '!=', 0)->take(12)->get();
-        return view('admin.users.parts.customerService', compact('cv', 'user', 'admins'));
+        $customerServiceType = $cv->type === 'serviceMove' ? 'serviceMove' : ($cv->is_rental ? 'rental' : 'normal');
+        $admins = \App\Models\Admin::where('admin_type', '!=', 0)
+            ->whereIn('order_type', [$customerServiceType, 'both'])
+            ->take(12)
+            ->get();
+        return view('admin.users.parts.customerService', compact('cv', 'user', 'admins', 'value'));
 
     }
 

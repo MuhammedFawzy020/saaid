@@ -27,14 +27,14 @@
                         <a href="{{ route('admin.analysis') }}" class="waves-effect">
                             <i class="bx bxs-pie-chart"></i>
                             <span class="badge rounded-pill bg-info float-end"></span>
-                            <span key="t-dashboards">إحصائيات  الطلبات للاستقدام</span>
+                            <span key="t-dashboards">إحصائيات الطلبات للاستقدام</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.analysis-for-rent') }}" class="waves-effect">
                             <i class="bx bxs-pie-chart"></i>
                             <span class="badge rounded-pill bg-info float-end"></span>
-                            <span key="t-dashboards">إحصائيات  الطلبات للإيجار</span>
+                            <span key="t-dashboards">إحصائيات الطلبات للإيجار</span>
                         </a>
                     </li>
                     <li>
@@ -42,6 +42,13 @@
                             <i class="bx bxs-file"></i>
                             <span class="badge rounded-pill bg-info float-end"></span>
                             <span key="t-dashboards"> طلبات الاستقدام</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin-orders.index', 'serviceMove') }}" class="waves-effect">
+                            <i class="bx bxs-file"></i>
+                            <span class="badge rounded-pill bg-info float-end"></span>
+                            <span key="t-dashboards"> طلبات نقل الخدمات</span>
                         </a>
                     </li>
                     <li>
@@ -59,6 +66,13 @@
                             <i class="bx bxs-file-find"></i>
                             <span class="badge rounded-pill bg-info float-end"></span>
                             <span key="t-dashboards"> السير الذاتية </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('biographies.index', 'serviceMove') }}" class="waves-effect">
+                            <i class="bx bxs-file-find"></i>
+                            <span class="badge rounded-pill bg-info float-end"></span>
+                            <span key="t-dashboards"> السير الذاتية لنقل الخدمات </span>
                         </a>
                     </li>
                     <li>

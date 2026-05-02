@@ -108,7 +108,7 @@ class AdminAdminController extends Controller
             'whats_up_number' => 'required|unique:admins,whats_up_number',
             'image' => 'required|file|image',
             'admin_type' => 'required',
-            'order_type' => 'required|in:normal,rental,both',
+            'order_type' => 'required|in:normal,rental,both,serviceMove',
         ]);
 
 
@@ -209,7 +209,7 @@ class AdminAdminController extends Controller
             'phone' => 'required|unique:admins,phone,' . $id,
             'whats_up_number' => 'required|unique:admins,whats_up_number,' . $id,
             'admin_type' => 'required',
-            'order_type' => 'required|in:normal,rental,both',
+            'order_type' => 'required|in:normal,rental,both,serviceMove',
         ]);
         $regex = "/^(05)[0-9]{8}$|^(5)[0-9]{8}$/";
         if (!preg_match($regex, $request->phone) || !preg_match($regex, $request->whats_up_number)) {

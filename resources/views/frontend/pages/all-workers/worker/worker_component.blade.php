@@ -1,142 +1,159 @@
-{{--<div class="cv">--}}
-{{--    <div class="cvImg">--}}
-{{--        <img src="{{get_file($cv->cv_file)}}">--}}
-{{--    </div>--}}
-{{--    <span class="type"> {{$cv->job?$cv->job->title:"لا يوجد"}} </span>--}}
-{{--    <div class="details">--}}
-{{--        <a href="#!" @isset($type) attr-type="{{$type}}" @endisset class="cvDetails" attr-id="{{$cv->id}}"> {{__('frontend.Details')}} </a>--}}
-{{--    </div>--}}
-{{--</div>--}}
+{{-- <div class="cv"> --}}
+{{--    <div class="cvImg"> --}}
+{{--        <img src="{{get_file($cv->cv_file)}}"> --}}
+{{--    </div> --}}
+{{--    <span class="type"> {{$cv->job?$cv->job->title:"لا يوجد"}} </span> --}}
+{{--    <div class="details"> --}}
+{{--        <a href="#!" @isset($type) attr-type="{{$type}}" @endisset class="cvDetails" attr-id="{{$cv->id}}"> {{__('frontend.Details')}} </a> --}}
+{{--    </div> --}}
+{{-- </div> --}}
 
-{{--<a href="#!" class="worker cvDetails" data-bs-toggle="modal" data-bs-target=".cvModal"  @isset($type) attr-type="{{$type}}" @endisset  attr-id="{{$cv->id}}">--}}
-{{--    <img src="{{get_file($cv->cv_file)}}" alt="">--}}
-{{--    <span class="job">  {{$cv->job?$cv->job->title:"لا يوجد"}}--}}
-{{--    </span>--}}
-{{--    <span class="more">  {{__('frontend.Details')}}  </span>--}}
-{{--</a>--}}
+{{-- <a href="#!" class="worker cvDetails" data-bs-toggle="modal" data-bs-target=".cvModal"  @isset($type) attr-type="{{$type}}" @endisset  attr-id="{{$cv->id}}"> --}}
+{{--    <img src="{{get_file($cv->cv_file)}}" alt=""> --}}
+{{--    <span class="job">  {{$cv->job?$cv->job->title:"لا يوجد"}} --}}
+{{--    </span> --}}
+{{--    <span class="more">  {{__('frontend.Details')}}  </span> --}}
+{{-- </a> --}}
 
 
 <div class="worker-box">
     <div class="worker-media">
-        <img src="{{get_file($cv->cv_file)}}" alt="#">
+        <img src="{{ get_file($cv->cv_file) }}" alt="#">
     </div>
     <div class="worker-content">
-        <a href="#!" data-bs-toggle="modal" data-bs-target=".cvModal" @isset($type) attr-type="{{$type}}"
-           @endisset  attr-id="{{$cv->id}}" class="twm-job-title">
-            <h4> {{$cv->name}} </h4>
+        <a href="#!" data-bs-toggle="modal" data-bs-target=".cvModal"
+            @isset($type) attr-type="{{ $type }}"
+           @endisset
+            attr-id="{{ $cv->id }}" class="twm-job-title">
+            <h4> {{ $cv->name }} </h4>
         </a>
         <ul class="list-unstyled">
-            <li><p class="worker-address">{{__('frontend.Nationality')}}
-                    : {{$cv->nationalitie?$cv->nationalitie->title:""}} </p></li>
-            <li><p class="worker-job">  {{__('frontend.Occupation')}} : {{$cv->job?$cv->job->title:""}} </p></li>
+            <li>
+                <p class="worker-address">{{ __('frontend.Nationality') }}
+                    : {{ $cv->nationalitie ? $cv->nationalitie->title : '' }} </p>
+            </li>
+            <li>
+                <p class="worker-job"> {{ __('frontend.Occupation') }} : {{ $cv->job ? $cv->job->title : '' }} </p>
+            </li>
         </ul>
         <ul class="list-unstyled">
-            <li><p class="worker-address"> {{__('frontend.Religion')}} : {{$cv->religion?$cv->religion->title:""}} </p>
+            <li>
+                <p class="worker-address"> {{ __('frontend.Religion') }} : {{ $cv->religion ? $cv->religion->title : '' }}
+                </p>
             </li>
-            @if($type=='transport')
+            @if ($type == 'transport')
                 <li>
                     <p class="worker-job">
                         سعر نقل الخدمات:
-                        {{$cv->transfer_price??""}} {{__('frontend.SAR')}}
+                        {{ $cv->transfer_price ?? '' }} {{ __('frontend.SAR') }}
                     </p>
                 </li>
             @else
                 <li>
                     <p class="worker-job">
-                        {{__('frontend.Recruitment price')}}:
-                        {{$cv->nationalitie->recruitment_price}} {{__('frontend.SAR')}}
+                        {{ __('frontend.Recruitment price') }}:
+                        {{ $cv->nationalitie->recruitment_price }} {{ __('frontend.SAR') }}
                     </p>
                 </li>
             @endif
         </ul>
         <ul class="list-unstyled">
-            <li><p class="worker-address">
-                    {{__('frontend.Practical experience')}} :
-                    @if($cv->type_of_experience == 'new')
-                        {{$cv->type_of_experience?'قادم جديد':"--"}}
+            <li>
+                <p class="worker-address">
+                    {{ __('frontend.Practical experience') }} :
+                    @if ($cv->type_of_experience == 'new')
+                        {{ $cv->type_of_experience ? 'قادم جديد' : '--' }}
                     @else
-                        {{$cv->type_of_experience?'لديه خبرة سابقة':"--"}}
+                        {{ $cv->type_of_experience ? 'لديه خبرة سابقة' : '--' }}
                     @endif
 
-                </p></li>
+                </p>
+            </li>
 
-            <li><p class="worker-job"> {{__('frontend.age')}} : {{$cv->age??""}} سنة </p></li>
+            <li>
+                <p class="worker-job"> {{ __('frontend.age') }} : {{ $cv->age ?? '' }} سنة </p>
+            </li>
 
         </ul>
-        @if($type=='transport')
+        @if ($type == 'transport')
             <ul class="list-unstyled">
-                <li><p class="worker-address">  مدة العمل للكفيل السابق : {{$cv->periodservices??""}} </p></li>
+                <li>
+                    <p class="worker-address"> مدة العمل للكفيل السابق : {{ $cv->periodservices ?? '' }} </p>
+                </li>
 
-                <li><p class="worker-job"> سبب النقل :  {{$cv->reasonservices??""}} </p></li>
+                <li>
+                    <p class="worker-job"> سبب النقل : {{ $cv->reasonservices ?? '' }} </p>
+                </li>
             </ul>
         @endif
 
-        {{--        <a--}}
-        {{--            href="#!" class="worker detialsBtn cvDetails" data-bs-toggle="modal" data-bs-target=".cvModal"--}}
-        {{--            @isset($type) attr-type="{{$type}}" @endisset  attr-id="{{$cv->id}}"> التفاصيل </a>--}}
-        {{--        <a--}}
-        {{--            href="#!" class="worker bookBtn cvDetails" href="{{route('register',$cv->id)}}"> احجز الات</a>--}}
+        {{--        <a --}}
+        {{--            href="#!" class="worker detialsBtn cvDetails" data-bs-toggle="modal" data-bs-target=".cvModal" --}}
+        {{--            @isset($type) attr-type="{{$type}}" @endisset  attr-id="{{$cv->id}}"> التفاصيل </a> --}}
+        {{--        <a --}}
+        {{--            href="#!" class="worker bookBtn cvDetails" href="{{route('register',$cv->id)}}"> احجز الات</a> --}}
         {{--    --}}
         <div class="cv-comp">
             <a href="#!" class="worker btn cvDetails" data-bs-toggle="modal" data-bs-target=".cvModal"
-               @isset($type) attr-type="{{$type}}" @endisset  attr-id="{{$cv->id}}">
+                @isset($type) attr-type="{{ $type }}" @endisset
+                attr-id="{{ $cv->id }}">
 
                 التفاصيل
 
             </a>
             @auth
-                <a href="{{route('frontend.show.worker',$cv->id)}}" class="btn book">
+                <a href="{{ route('frontend.show.worker', $cv->id) }}" class="btn book">
                     احجز الان
 
                 </a>
-                @if($cv->pdf)
-                <a href="{{ Storage::url($cv->pdf) }}" target="_blank" class="btn book">
-                    عرض السيرة الذاتية (PDF)
-                </a>
-            @endif
+                @if ($cv->pdf)
+                    <a href="{{ Storage::url($cv->pdf) }}" target="_blank" class="btn book">
+                        عرض السيرة الذاتية (PDF)
+                    </a>
+                @endif
 
-            @if($cv->vedio)
-                <a href="{{ Storage::url($cv->vedio) }}" target="_blank" class="btn book">
-                    عرض الفيديو
-                </a>
-            @endif
+                @if ($cv->video_url || $cv->vedio)
+                    <a href="{{ $cv->video_url ?: Storage::url($cv->vedio) }}" target="_blank" class="btn book">
+                        عرض الفيديو
+                    </a>
+                @endif
             @else
-            @if($cv->pdf)
-                <a href="{{ Storage::url($cv->pdf) }}" target="_blank" class="btn book">
-                    عرض السيرة الذاتية (PDF)
-                </a>
-            @endif
+                @if ($cv->pdf)
+                    <a href="{{ Storage::url($cv->pdf) }}" target="_blank" class="btn book">
+                        عرض السيرة الذاتية (PDF)
+                    </a>
+                @endif
 
-            @if($cv->vedio)
-                <a href="{{ Storage::url($cv->vedio) }}" target="_blank" class="btn book">
-                    عرض الفيديو
-                </a>
-            @endif
-                <a href="{{route('register',$cv->id)}}" class="btn book">
+                @if ($cv->video_url || $cv->vedio)
+                    <a href="{{ $cv->video_url ?: Storage::url($cv->vedio) }}" target="_blank" class="btn book">
+                        عرض الفيديو
+                    </a>
+                @endif
+                <a href="{{ route('register', $cv->id) }}" class="btn book">
                     احجز الان
 
                 </a>
             @endauth
 
         </div>
-        {{--        <a data-bs-toggle="modal" data-bs-target=".cvModal" @isset($type) attr-type="{{$type}}" @endisset  attr-id="{{$cv->id}}" class="btn ">--}}
+        {{--        <a data-bs-toggle="modal" data-bs-target=".cvModal" @isset($type) attr-type="{{$type}}" @endisset  attr-id="{{$cv->id}}" class="btn "> --}}
 
-        {{--            عرض التفاصيل--}}
+        {{--            عرض التفاصيل --}}
 
-        {{--        </a>--}}
-        {{--        @auth--}}
-        {{--            <a href="{{route('frontend.show.worker',$cv->id)}}" class="btn book">--}}
-        {{--                {{__('frontend.Book a Cv')}}--}}
+        {{--        </a> --}}
+        {{--        @auth --}}
+        {{--            <a href="{{route('frontend.show.worker',$cv->id)}}" class="btn book"> --}}
+        {{--                {{__('frontend.Book a Cv')}} --}}
 
-        {{--            </a>--}}
-        {{--        @else--}}
-        {{--            <a href="{{route('register',$cv->id)}}" class="btn book">--}}
-        {{--                {{__('frontend.Book a Cv')}}--}}
+        {{--            </a> --}}
+        {{--        @else --}}
+        {{--            <a href="{{route('register',$cv->id)}}" class="btn book"> --}}
+        {{--                {{__('frontend.Book a Cv')}} --}}
 
-        {{--            </a>--}}
-        {{--        @endauth--}}
+        {{--            </a> --}}
+        {{--        @endauth --}}
     </div>
-    {{--    <div class="worker-right-content">--}}
-    {{--        <div class="worker-age"><span>{{$cv->age??""}}</span>سنة</div>--}}
-    {{--    </div>--}}
+    {{--    <div class="worker-right-content"> --}}
+    {{--        <div class="worker-age"><span>{{$cv->age??""}}</span>سنة</div> --}}
+    {{--    </div> --}}
 </div>

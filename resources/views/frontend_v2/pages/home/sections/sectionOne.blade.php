@@ -12,6 +12,8 @@
                                  <div class="btns">
                                      <a href="{{ route('all-workers') }}" class="btn"> طلب استقدام </a>
                                      <a href="{{ url('/all-workers/admission/rental') }}" class="btn"> طلب إيجار </a>
+                                     <a href="{{ route('all-workers', ['type' => 'serviceMove']) }}" class="btn"> طلب
+                                         نقل خدمات </a>
                                      <a href="{{ route('track_order_view') }}" class="btn btn-outline-secondary"> تتبع
                                          طلبك
                                      </a>

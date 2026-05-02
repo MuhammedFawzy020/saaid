@@ -43,12 +43,16 @@ class AdminBiographiesController extends Controller
     public function index(Request $request, $value = null)
     {
         $rental = 0;
-       
-        if($value == 'rental') {
+        $isServiceMove = false;
+
+        if ($value == 'rental') {
             $rental = 1;
         }
+        if ($value === 'serviceMove') {
+            $isServiceMove = true;
+        }
 
-        
+
 
         if (!checkPermission(18))
             return view('admin.permission');
@@ -70,8 +74,18 @@ class AdminBiographiesController extends Controller
 
 
         if ($request->ajax()) {
-            $biographies = Biography::query()->where("order_type", "normal")->where('is_rental', $rental)->orderBy("id", "DESC");
-            
+            $biographies = Biography::query()
+                ->where("order_type", "normal")
+                ->when($isServiceMove, function ($query) {
+                    $query->where('type', 'serviceMove')->where('is_rental', 0);
+                }, function ($query) use ($rental) {
+                    $query->where('is_rental', $rental);
+                    if ($rental === 0) {
+                        $query->where('type', '!=', 'serviceMove');
+                    }
+                })
+                ->orderBy("id", "DESC");
+
             if ($request->passport_key != null) {
                 $biographies = $biographies->where('passport_number', $passport_key);
 
@@ -108,7 +122,7 @@ class AdminBiographiesController extends Controller
             }
             return DataTables::of($biographies)
                 ->editColumn('image', function ($row) {
-                    return ' <img src="' . url('frontend/images/users/'.$row->cv_file) . '" class="rounded"
+                    return ' <img src="' . url('frontend/images/users/' . $row->cv_file) . '" class="rounded"
                         style="height:60px;width:60px;"
                              onclick="window.open(this.src)">';
                 })
@@ -156,30 +170,53 @@ class AdminBiographiesController extends Controller
                     return $row->recruitment_office?->title;
                 })
                 ->editColumn('type', function ($row) {
-                    if ($row->type == 'admission')
+                    if ($row->type == 'admission') {
                         return 'استقدام ';
-                    else
-                        return 'نقل خدمات  ';
+                    }
+                    if ($row->type == 'transport') {
+                        return 'نقل داخلي';
+                    }
+                    return 'نقل خدمات';
                 })
-                ->addColumn('actions', function ($row) use($rental) {
+                ->addColumn('actions', function ($row) use ($rental) {
                     $edit = '';
                     $delete = '';
                     $back = 'hidden';
-                    if($rental == 1) {
+                    if ($rental == 1) {
                         $back = '';
                     }
                     if (!checkPermission(20))
                         $edit = 'hidden';
                     if (!checkPermission(21))
                         $delete = 'hidden';
-                    return "<a $edit href='" . route('biographies.edit', $row->id) . "'  class='btn btn-info editButton' id='" . $row->id . "'> <i class='fa fa-edit'></i></button>
+                    return "<a $edit href='" . route('biographies.edit', [$row->id, request()->route('value')]) . "'  class='btn btn-info editButton' id='" . $row->id . "'> <i class='fa fa-edit'></i></button>
                    <a $delete style='margin-right: 10px;' href='#' class='btn btn-danger  delete mr-2'
                        id='" . $row->id . "'><i class='fa fa-trash'></i> </a>";
-                })->rawColumns(['actions','sec_id', 'image', 'delete_all', 'nationalitie_id', 'type_of_experience',
-                'recruitment_office_id', 'type', 'status','date'])->make(true);
+                })->rawColumns([
+                        'actions',
+                        'sec_id',
+                        'image',
+                        'delete_all',
+                        'nationalitie_id',
+                        'type_of_experience',
+                        'recruitment_office_id',
+                        'type',
+                        'status',
+                        'date'
+                    ])->make(true);
         }
-        return view('admin.crud.biographies.index', compact('natinalities', 'nationality_id', 'social_type',
-        'social_type_id', 'booking_status', 'recruitment_office', 'recruitment_office_id', 'type','date','value'));
+        return view('admin.crud.biographies.index', compact(
+            'natinalities',
+            'nationality_id',
+            'social_type',
+            'social_type_id',
+            'booking_status',
+            'recruitment_office',
+            'recruitment_office_id',
+            'type',
+            'date',
+            'value'
+        ));
     }
 
     /**
@@ -188,15 +225,15 @@ class AdminBiographiesController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request , $value = null)
+    public function store(Request $request, $value = null)
     {
         $this->validate($request, [
-          
+
             'recruitment_office_id' => 'nullable',
             'recruitment_price' => 'nullable',
             'nationalitie_id' => 'nullable',
             'language_title_id' => 'nullable',
-            'display' => 'nullable' ,
+            'display' => 'nullable',
             'religion_id' => 'nullable',
             'job_id' => 'nullable',
             'social_type_id' => 'nullable',
@@ -209,57 +246,63 @@ class AdminBiographiesController extends Controller
             'type' => 'nullable',
             'reasonservices' => 'nullable',
             'periodservices' => 'nullable',
-            'transfer_price' => 'nullable',
             'type_of_experience' => 'nullable',
-            'transfer_price' => 'nullable' ,
+            'transfer_price' => 'nullable',
             'name' => 'nullable',
-            'contract_period' => 'nullable' ,
-            'education' => 'nullable' ,
-            'passport_start' => 'nullable' ,
-            'passport_end' => 'nullable' ,
-            'passport_city' => 'nullable' ,
-            'height' => 'nullable' ,
-            'weight' => 'nullable' ,
-            'no_of_childrens' => 'nullable' ,
-            'birthdate' => 'nullable' ,
-            'birth_country' => 'nullable' ,
-            'phone_no' => 'nullable' ,
+            'contract_period' => 'nullable',
+            'education' => 'nullable',
+            'passport_start' => 'nullable',
+            'passport_end' => 'nullable',
+            'passport_city' => 'nullable',
+            'height' => 'nullable',
+            'weight' => 'nullable',
+            'no_of_childrens' => 'nullable',
+            'birthdate' => 'nullable',
+            'birth_country' => 'nullable',
+            'phone_no' => 'nullable',
             'cv_file' => 'nullable|image|mimes:jpeg,png,jpg',
-            'display_or_hide' => 'nullable' ,
+            'display_or_hide' => 'nullable',
             'pdf' => 'nullable|mimes:pdf|max:2048',
             'vedio' => 'nullable|mimes:mp4,avi,mov|max:20480',
-            
-          
+            'video_url' => 'nullable|url',
+
+
         ]);
 
-        $data = $request->except(['skills', 'images','exp_job_id' ,'exp_city_id' ,'exp_period' ,'pdf','vedio']);
+        $data = $request->except(['skills', 'images', 'exp_job_id', 'exp_city_id', 'exp_period', 'pdf', 'vedio']);
 
 
-      
-        // $data["cv_file"] = $this->uploadFiles('biographies', $request->file('cv_file'), null);
-        $image = $request->file('cv_file');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->storeAs('frontend/images/users/', $imageName);
+
+        if ($request->hasFile('cv_file')) {
+            $image = $request->file('cv_file');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('frontend/images/users/', $imageName);
+            $data['cv_file'] = $imageName;
+        }
 
         $pdfPath = null;
         $videoPath = null;
 
         if ($request->hasFile('pdf')) {
             $pdfPath = $request->file('pdf')->store('pdfs', 'public');
-        } 
+        }
 
         if ($request->hasFile('vedio')) {
             $videoPath = $request->file('vedio')->store('vedio', 'public');
-        } 
+        }
 
         $data['pdf'] = $pdfPath;
         $data['vedio'] = $videoPath;
+        $data['video_url'] = $request->input('video_url');
+
+        if ($value === 'serviceMove') {
+            $data['type'] = 'serviceMove';
+        }
 
         $biography = Biography::create($data);
 
-        $biography->cv_file = $imageName;
-        if($value == "rental") {
-            $biography->is_rental =1 ;
+        if ($value == "rental") {
+            $biography->is_rental = 1;
         }
         $biography->save();
         //skills
@@ -280,8 +323,8 @@ class AdminBiographiesController extends Controller
             $exp->exp_period = $request->exp_period;
             $exp->biography_id = $biography->id;
             $exp->save();
-            
-       }
+
+        }
 
         //biography galary
         if (isset($request->images)) {
@@ -293,7 +336,7 @@ class AdminBiographiesController extends Controller
             }
         }
 
-       
+
 
 
         return response()->json([], 200);
@@ -304,7 +347,7 @@ class AdminBiographiesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request , $value = null)
+    public function create(Request $request, $value = null)
     {
         $data = [
             'languages' => Language::where('is_active', 'active')->get(),
@@ -317,7 +360,8 @@ class AdminBiographiesController extends Controller
             'language_title' => LanguageTitle::get(),
             'cities' => City::get(),
             'users' => User::get(),
-            'value' => $value
+            'value' => $value,
+            'selected_type' => $value === 'serviceMove' ? 'serviceMove' : 'admission',
         ];
         return view('admin.crud.biographies.create', $data);
     }//end fun
@@ -362,10 +406,11 @@ class AdminBiographiesController extends Controller
             'skills' => Skill::get(),
             'language_title' => LanguageTitle::get(),
             'cities' => City::get(),
-//            'skill_ids' => $skill_ids,
+            //            'skill_ids' => $skill_ids,
             'images' => $images,
             'biography' => $biography,
             'value' => $value,
+            'selected_type' => $biography->type,
         ];
         return view('admin.crud.biographies.edit', $data);
     }
@@ -409,55 +454,61 @@ class AdminBiographiesController extends Controller
             'birthdate' => 'nullable',
             'birth_country' => 'nullable',
             'phone_no' => 'nullable',
-        //    'cv_file' => 'required|image|mimes:jpeg,png,jpg',
+            //    'cv_file' => 'required|image|mimes:jpeg,png,jpg',
             'display' => 'nullable',
-            'display_or_hide' => 'nullable' ,
+            'display_or_hide' => 'nullable',
             'pdf' => 'nullable|mimes:pdf|max:2048',
             'vedio' => 'nullable|mimes:mp4,avi,mov',
+            'video_url' => 'nullable|url',
         ]);
-    
+
         try {
             DB::beginTransaction();
-    
-            $biography = Biography::findOrFail($id);
-            $data = $request->except(['skills', 'images', 'cv_file', '_token', '_method', 'old','exp_job_id' ,'exp_city_id' ,'exp_period' ,'pdf','vedio']);
-    
-            if ($request->hasFile('cv_file')) {
-               
-               $image = $request->file('cv_file');
-               $imageName = time() . '.' . $image->getClientOriginalExtension();
-               $image->storeAs('frontend/images/users/', $imageName);
 
-               $data['cv_file'] = $imageName;
+            $biography = Biography::findOrFail($id);
+            $data = $request->except(['skills', 'images', 'cv_file', '_token', '_method', 'old', 'exp_job_id', 'exp_city_id', 'exp_period', 'pdf', 'vedio']);
+
+            if ($request->hasFile('cv_file')) {
+
+                $image = $request->file('cv_file');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('frontend/images/users/', $imageName);
+
+                $data['cv_file'] = $imageName;
             }
-            
-            $pdfPath = null;
-            $videoPath = null;
+
+            $pdfPath = $biography->pdf;
+            $videoPath = $biography->vedio;
 
             if ($request->hasFile('pdf')) {
                 $pdfPath = $request->file('pdf')->store('pdfs', 'public');
-            } 
+            }
 
             if ($request->hasFile('vedio')) {
                 $videoPath = $request->file('vedio')->store('vedio', 'public');
-            } 
+            }
 
             $data['pdf'] = $pdfPath;
             $data['vedio'] = $videoPath;
-    
+            $data['video_url'] = $request->input('video_url');
+
+            if ($value === 'serviceMove') {
+                $data['type'] = 'serviceMove';
+            }
+
             $biography->fill($data);
             $biography->save();
-    
+
             // Update skills
             $skills = $request->input('skills', []);
             $biography->skills()->sync($skills);
-    
+
             // Update images
             $oldImages = $request->input('old', []);
             BiographyImage::where('biography_id', $id)
                 ->whereNotIn('id', $oldImages)
                 ->delete();
-    
+
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $single_image) {
                     $imagePath = $this->uploadFiles('biographies', $single_image, null);
@@ -467,7 +518,7 @@ class AdminBiographiesController extends Controller
                     ]);
                 }
             }
-    
+
             //Update experience
             if ($request->filled('exp_job_id')) {
                 $exp = new biograpies_exp();
@@ -477,14 +528,14 @@ class AdminBiographiesController extends Controller
                 $exp->biography_id = $biography->id;
                 $exp->save();
             }
-    
+
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
             // Log the exception or return an error response
             return response()->json(['error' => $exception->getMessage()], 500);
         }
-    
+
         return response()->json([], 200);
     }//end fun
 
@@ -499,7 +550,7 @@ class AdminBiographiesController extends Controller
             'id' => 'required|array',
             'id.*' => 'integer|exists:biographies,id',
         ]);
-    
+
         $ids = $request->input('id');
         Biography::destroy($ids);
         return response()->json(1, 200);
@@ -513,7 +564,7 @@ class AdminBiographiesController extends Controller
      */
     public function destroy($id)
     {
-       
+
         return response()->json(Biography::destroy($id), 200);
     }
 
@@ -523,9 +574,9 @@ class AdminBiographiesController extends Controller
     public function bulkVisibility(Request $request)
     {
         $data = $request->validate([
-            'ids'      => 'required|array|min:1',
-            'ids.*'    => 'integer|exists:biographies,id',
-            'status'   => 'required|in:0,1', // 0 = inactive, 1 = active
+            'ids' => 'required|array|min:1',
+            'ids.*' => 'integer|exists:biographies,id',
+            'status' => 'required|in:0,1', // 0 = inactive, 1 = active
         ]);
 
         // Optional: authorize (if you use policies)
@@ -535,7 +586,7 @@ class AdminBiographiesController extends Controller
             ->update(['display_or_hide' => (int) $data['status']]);
 
         return response()->json(['ok' => true], 200);
-}
+    }
 
 
 

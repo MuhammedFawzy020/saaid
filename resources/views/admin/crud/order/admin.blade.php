@@ -29,7 +29,7 @@
 @endsection
 
 @section('page-title')
-    {{ $value == 'rental' ? 'طلبات الايجار' : ' طلبات الاستقدام' }}
+    {{ $value == 'rental' ? 'طلبات الايجار' : ($value === 'serviceMove' ? 'طلبات نقل الخدمات' : ' طلبات الاستقدام') }}
 @endsection
 
 
@@ -123,9 +123,11 @@
                         <div class="col-lg-2 ml-auto">
                             <select class="form-control " name="type" id="type">
                                 <option value=" " selected>نوع السيرة</option>
-                                <option value="admission" @if ($delivery_to == 'admission') selected @endif>استقدام
+                                <option value="admission" @if ($type == 'admission') selected @endif>استقدام
                                 </option>
-                                <option value="transport" @if ($type == 'transport') selected @endif>نقل خدمات
+                                <option value="transport" @if ($type == 'transport') selected @endif>نقل داخلي
+                                </option>
+                                <option value="serviceMove" @if ($type == 'serviceMove') selected @endif>نقل خدمات
                                 </option>
 
                             </select>
