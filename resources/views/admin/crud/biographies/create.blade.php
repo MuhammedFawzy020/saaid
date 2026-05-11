@@ -44,6 +44,15 @@
             right: 50%;
             transform: translateY(-50%) translateX(50%);
         }
+
+        .existing-cv-details {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px;
+            line-height: 1.9;
+            font-size: 14px;
+        }
     </style>
 @endsection
 
@@ -240,6 +249,32 @@
         </div>
         <!-- end col -->
     </div>
+
+    <div class="modal fade" id="existingCvModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تم العثور على سيرة بنفس رقم الجواز</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="existing_cv_details" class="existing-cv-details mb-3"></div>
+                    <div class="form-group mb-0">
+                        <label for="transfer_target_type">نقل السيرة إلى نوع</label>
+                        <select id="transfer_target_type" class="form-control">
+                            <option value="normal">عادي</option>
+                            <option value="rent">إيجار</option>
+                            <option value="serviceMove">نقل خدمات</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" id="confirm_transfer_btn" class="btn btn-primary">موافق</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('js')
@@ -252,6 +287,198 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('dashboard/backEndFiles/uploadMultiImages/image-uploader.min.js') }}"></script>
     <script>
+        const passportLookupUrl = "{{ route('biographies.findByPassport') }}";
+        const transferTypeUrlTemplate = "{{ route('biographies.transferType', ['id' => '__BIO_ID__']) }}";
+        const normalIndexUrl = "{{ route('biographies.index') }}";
+        const rentIndexUrl = "{{ route('biographies.index', 'rental') }}";
+        const serviceMoveIndexUrl = "{{ route('biographies.index', 'serviceMove') }}";
+
+        let existingBiography = null;
+        let transferCompleted = false;
+
+        function getCategoryLabel(category) {
+            if (category === 'rent') {
+                return 'إيجار';
+            }
+            if (category === 'serviceMove') {
+                return 'نقل خدمات';
+            }
+            return 'عادي';
+        }
+
+        function getInnerTypeLabel(type) {
+            if (type === 'transport') {
+                return 'نقل داخلي';
+            }
+            if (type === 'serviceMove') {
+                return 'نقل خدمات';
+            }
+            return 'استقدام';
+        }
+
+        function getRedirectUrlByCategory(category) {
+            if (category === 'rent') {
+                return rentIndexUrl;
+            }
+            if (category === 'serviceMove') {
+                return serviceMoveIndexUrl;
+            }
+            return normalIndexUrl;
+        }
+
+        function currentCreateCategory() {
+            @if ($value === 'rental')
+                return 'rent';
+            @elseif ($value === 'serviceMove')
+                return 'serviceMove';
+            @else
+                return 'normal';
+            @endif
+        }
+
+        function renderExistingBiographyDetails(biography) {
+            const detailsHtml = `
+                <div><strong>الاسم:</strong> ${biography.name || '-'}</div>
+                <div><strong>رقم الجواز:</strong> ${biography.passport_number || '-'}</div>
+                <div><strong>النوع الحالي:</strong> ${getCategoryLabel(biography.cv_category)}</div>
+                <div><strong>نوع السيرة:</strong> ${getInnerTypeLabel(biography.type)}</div>
+                <div><strong>الحالة:</strong> ${biography.status || '-'}</div>
+                <div><strong>الجنسية:</strong> ${biography.nationality || '-'}</div>
+            `;
+            $('#existing_cv_details').html(detailsHtml);
+        }
+
+        function checkPassportAndPrompt() {
+            const passportNumber = ($('#passport_number').val() || '').trim();
+
+            if (!passportNumber) {
+                existingBiography = null;
+                transferCompleted = false;
+                return;
+            }
+
+            $.ajax({
+                url: passportLookupUrl,
+                type: 'GET',
+                data: {
+                    passport_number: passportNumber
+                },
+                success: function(response) {
+                    if (!response.exists) {
+                        existingBiography = null;
+                        transferCompleted = false;
+                        return;
+                    }
+
+                    existingBiography = response.biography;
+                    transferCompleted = false;
+
+                    renderExistingBiographyDetails(existingBiography);
+                    $('#transfer_target_type').val(currentCreateCategory());
+                    $('#existingCvModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    $('#existingCvModal').modal('show');
+                },
+                error: function() {
+                    existingBiography = null;
+                    transferCompleted = false;
+                }
+            });
+        }
+
+        function lookupPassport(passportNumber, onSuccess, onFailure) {
+            $.ajax({
+                url: passportLookupUrl,
+                type: 'GET',
+                data: {
+                    passport_number: passportNumber
+                },
+                success: function(response) {
+                    if (typeof onSuccess === 'function') {
+                        onSuccess(response);
+                    }
+                },
+                error: function() {
+                    if (typeof onFailure === 'function') {
+                        onFailure();
+                    }
+                }
+            });
+        }
+
+        function submitCreateFormRequest() {
+            var myForm = $("#Form")[0]
+            var formData = new FormData(myForm)
+            var url = $('#Form').attr('action');
+            $('.loader-ajax').show()
+
+            console.log(formData)
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                beforeSend: function() {
+                    $('#submit_button').attr('disabled', true)
+
+                },
+                complete: function() {
+
+                },
+                success: function(data) {
+
+                    console.log(data)
+                    window.setTimeout(function() {
+
+                        cuteToast({
+                            type: "success", // or 'info', 'error', 'warning'
+                            message: "تمت العملية بنجاح",
+                            timer: 3000
+                        })
+                        window.location.href = '{{ route('biographies.index', $value) }}';
+                        $('.loader-ajax').hide()
+                    }, 20);
+                },
+                error: function(data) {
+                    $('.loader-ajax').hide()
+                    $('#submit_button').html(`حفظ`)
+                    $('#submit_button').attr('disabled', false)
+                    if (data.status === 500) {
+                        cuteToast({
+                            type: "error", // or 'info', 'error', 'warning'
+                            message: "أنت لا تملك الصلاحية لفعل هذا",
+                            timer: 3000
+                        });
+                    }
+                    if (data.status === 422) {
+                        var errors = $.parseJSON(data.responseText);
+
+                        $.each(errors, function(key, value) {
+                            if ($.isPlainObject(value)) {
+                                $.each(value, function(key, value) {
+                                    cuteToast({
+                                        type: "error", // or 'info', 'error', 'warning'
+                                        message: value,
+                                        timer: 3000
+                                    });
+
+                                });
+
+                            } else {
+
+                            }
+                        });
+                    }
+                }, //end error method
+
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        }
+
         $(document).ready(function() {
             $("div.transferReason").hide();
 
@@ -264,6 +491,60 @@
             });
 
 
+        });
+
+        $(document).on('blur', '#passport_number', function() {
+            checkPassportAndPrompt();
+        });
+
+        $(document).on('input', '#passport_number', function() {
+            existingBiography = null;
+            transferCompleted = false;
+        });
+
+        $(document).on('click', '#confirm_transfer_btn', function() {
+            if (!existingBiography || !existingBiography.id) {
+                return;
+            }
+
+            const targetType = $('#transfer_target_type').val();
+
+            $.ajax({
+                url: transferTypeUrlTemplate.replace('__BIO_ID__', existingBiography.id),
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    target_type: targetType
+                },
+                beforeSend: function() {
+                    $('#confirm_transfer_btn').attr('disabled', true);
+                },
+                complete: function() {
+                    $('#confirm_transfer_btn').attr('disabled', false);
+                },
+                success: function() {
+                    transferCompleted = true;
+                    $('#existingCvModal').modal('hide');
+                    cuteToast({
+                        type: "success",
+                        message: "تم نقل نوع السيرة بنجاح",
+                        timer: 3000
+                    });
+                    window.location.href = getRedirectUrlByCategory(targetType);
+                },
+                error: function(xhr) {
+                    let message = "حدث خطأ أثناء نقل نوع السيرة";
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        message = xhr.responseJSON.message;
+                    }
+                    cuteToast({
+                        type: "error",
+                        message: message,
+                        timer: 3000
+                    });
+                }
+            });
         });
     </script>
     <script>
@@ -366,74 +647,41 @@
         $(document).on('submit', 'form#Form', function(e) {
             e.preventDefault();
 
+            const passportNumber = ($('#passport_number').val() || '').trim();
+            if (!passportNumber || transferCompleted) {
+                submitCreateFormRequest();
+                return;
+            }
 
-            var myForm = $("#Form")[0]
-            var formData = new FormData(myForm)
-            var url = $('#Form').attr('action');
-            $('.loader-ajax').show()
+            lookupPassport(passportNumber, function(response) {
+                if (response.exists) {
+                    existingBiography = response.biography;
+                    transferCompleted = false;
+                    renderExistingBiographyDetails(existingBiography);
+                    $('#transfer_target_type').val(currentCreateCategory());
+                    $('#existingCvModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    $('#existingCvModal').modal('show');
 
-            console.log(formData)
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                beforeSend: function() {
-                    $('#submit_button').attr('disabled', true)
+                    cuteToast({
+                        type: "warning",
+                        message: "رقم الجواز مستخدم بالفعل. قم بنقل السيرة الحالية أو غيّر رقم الجواز",
+                        timer: 4000
+                    });
+                    return;
+                }
 
-                },
-                complete: function() {
-
-                },
-                success: function(data) {
-
-                    console.log(data)
-                    window.setTimeout(function() {
-
-                        cuteToast({
-                            type: "success", // or 'info', 'error', 'warning'
-                            message: "تمت العملية بنجاح",
-                            timer: 3000
-                        })
-                        window.location.href = '{{ route('biographies.index', $value) }}';
-                        $('.loader-ajax').hide()
-                    }, 20);
-                },
-                error: function(data) {
-                    $('.loader-ajax').hide()
-                    $('#submit_button').html(`حفظ`)
-                    $('#submit_button').attr('disabled', false)
-                    if (data.status === 500) {
-                        cuteToast({
-                            type: "error", // or 'info', 'error', 'warning'
-                            message: "أنت لا تملك الصلاحية لفعل هذا",
-                            timer: 3000
-                        });
-                    }
-                    if (data.status === 422) {
-                        var errors = $.parseJSON(data.responseText);
-
-                        $.each(errors, function(key, value) {
-                            if ($.isPlainObject(value)) {
-                                $.each(value, function(key, value) {
-                                    cuteToast({
-                                        type: "error", // or 'info', 'error', 'warning'
-                                        message: value,
-                                        timer: 3000
-                                    });
-
-                                });
-
-                            } else {
-
-                            }
-                        });
-                    }
-                }, //end error method
-
-                cache: false,
-                contentType: false,
-                processData: false
+                existingBiography = null;
+                transferCompleted = false;
+                submitCreateFormRequest();
+            }, function() {
+                cuteToast({
+                    type: "error",
+                    message: "تعذر التحقق من رقم الجواز حالياً، حاول مرة أخرى",
+                    timer: 3000
+                });
             });
 
         });

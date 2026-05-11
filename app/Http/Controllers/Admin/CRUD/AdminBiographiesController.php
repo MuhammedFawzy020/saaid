@@ -35,6 +35,100 @@ class AdminBiographiesController extends Controller
         /* $this->middleware([('permission:siteTexts index,admin')])->only(['index']);*/
     }
 
+    private function resolveCvCategory(Biography $biography): string
+    {
+        if ($biography->is_rental == 1) {
+            return 'rent';
+        }
+
+        if ($biography->type === 'serviceMove') {
+            return 'serviceMove';
+        }
+
+        return 'normal';
+    }
+
+    private function applyCvCategory(Biography $biography, string $targetType): void
+    {
+        if ($targetType === 'rent') {
+            $biography->is_rental = 1;
+            if ($biography->type === 'serviceMove') {
+                $biography->type = 'admission';
+            }
+            return;
+        }
+
+        if ($targetType === 'serviceMove') {
+            $biography->is_rental = 0;
+            $biography->type = 'serviceMove';
+            return;
+        }
+
+        $biography->is_rental = 0;
+        if ($biography->type === 'serviceMove') {
+            $biography->type = 'admission';
+        }
+    }
+
+    public function findByPassport(Request $request)
+    {
+        $data = $request->validate([
+            'passport_number' => 'required|string|max:255',
+        ]);
+
+        $passportNumber = trim($data['passport_number']);
+
+        if ($passportNumber === '') {
+            return response()->json(['exists' => false], 200);
+        }
+
+        $biography = Biography::with(['nationalitie', 'recruitment_office'])
+            ->where('passport_number', $passportNumber)
+            ->first();
+
+        if (!$biography) {
+            return response()->json(['exists' => false], 200);
+        }
+
+        return response()->json([
+            'exists' => true,
+            'biography' => [
+                'id' => $biography->id,
+                'name' => $biography->name,
+                'passport_number' => $biography->passport_number,
+                'type' => $biography->type,
+                'cv_category' => $this->resolveCvCategory($biography),
+                'is_rental' => (int) $biography->is_rental,
+                'status' => $biography->status,
+                'nationality' => $biography->nationalitie?->title,
+                'recruitment_office' => $biography->recruitment_office?->title,
+                'salary' => $biography->salary,
+                'created_at' => optional($biography->created_at)->format('Y-m-d H:i'),
+            ],
+        ], 200);
+    }
+
+    public function transferType(Request $request, $id)
+    {
+        $data = $request->validate([
+            'target_type' => 'required|in:normal,rent,serviceMove',
+        ]);
+
+        $biography = Biography::findOrFail($id);
+        $this->applyCvCategory($biography, $data['target_type']);
+        $biography->save();
+
+        return response()->json([
+            'message' => 'CV type updated successfully',
+            'biography' => [
+                'id' => $biography->id,
+                'type' => $biography->type,
+                'is_rental' => (int) $biography->is_rental,
+                'cv_category' => $this->resolveCvCategory($biography),
+            ],
+        ], 200);
+    }
+
     /**
      * Display a listing of the resource.
      *

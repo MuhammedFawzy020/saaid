@@ -183,6 +183,8 @@ Route::group(['prefix' => 'admin'], function () {
             Route::put('/biographies/update/{id}/{value?}', 'AdminBiographiesController@update')->name('biographies.update');
             Route::post('/biographies/store/{value?}', 'AdminBiographiesController@store')->name('biographies.store');
             Route::delete('/biographies/delete/{id}/{value?}', 'AdminBiographiesController@destroy')->name('biographies.destroy');
+            Route::get('/biographies/find-by-passport', 'AdminBiographiesController@findByPassport')->name('biographies.findByPassport');
+            Route::post('/biographies/transfer-type/{id}', 'AdminBiographiesController@transferType')->name('biographies.transferType');
 
             Route::post('biographies/bulk-visibility', 'AdminBiographiesController@bulkVisibility')->name('biographies.bulk.visibility');
 
