@@ -339,11 +339,7 @@ class WorkerFrontController extends Controller
 
         $user = User::where('phone', $request->phone)->first();
         if ($user != null) {
-            $hasOrder = Order::where('user_id', $user->id)->whereNotIn('status', ['canceled', 'finished'])->exists();
-            $hasSpecial = Biography::where('user_id', $user->id)->where('order_type', 'special')->whereNotIn('status', ['canceled', 'finished'])->exists();
-            if ($hasOrder || $hasSpecial) {
-                return back()->with('error', 'عفوا لا يمكن اضافة اكثر من طلب');
-            }
+          
         } else {
             $user = new User();
             $user->type = "normal_user";
