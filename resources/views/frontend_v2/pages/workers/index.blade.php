@@ -155,10 +155,10 @@
                                             لا يوجد اسم
                                         @endif
                                     </h5>
-                                    @if ($value != 'rental')
-                                        <p class="card-text" style="padding-bottom:20px;"><small class="text-danger"
+                                    {{-- @if ($value != 'rental' || $value != 'serviceMove')
+                                         <p class="card-text" style="padding-bottom:20px;"><small class="text-danger"
                                                 style="font-size:10px">لا يتم دفع أي رسوم إلا من خلال مساند</small></p>
-                                    @endif
+                                    @endif --}}
                                     <div class="row">
                                         <div class="col-6">
                                             <p class="worker-address">{{ __('frontend.Nationality') }}
@@ -311,8 +311,8 @@
                             <div class="modal-body">
                                 <div class="card" style="padding:3px;">
                                     <!-- <div class="card-image">
-                                                                                                                                                                                                                                                                                                                                                                    <img src="{{ get_file($cv->cv_file) }}" alt="سيرة {{ $cv->name }}" />
-                                                                                                                                                                                                                                                                                                                                                                </div> -->
+                                                                                                                                                                                                                                                                                                                                                                        <img src="{{ get_file($cv->cv_file) }}" alt="سيرة {{ $cv->name }}" />
+                                                                                                                                                                                                                                                                                                                                                                    </div> -->
 
                                     <div class="card-header" style="padding:0px !important;border:none !important;">
                                         <div class="card col-lg-12" style="border:none;">
