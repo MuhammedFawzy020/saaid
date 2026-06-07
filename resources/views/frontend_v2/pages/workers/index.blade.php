@@ -177,12 +177,6 @@
                                             </p>
                                         </div>
                                         @if ($type == 'transport' || $type === 'serviceMove')
-                                            <div class="col-6">
-                                                <p class="worker-address">
-                                                    سعر نقل الخدمات:
-                                                    <b> {{ $cv->transfer_price ?? '' }} {{ __('frontend.SAR') }} </b>
-                                                </p>
-                                            </div>
                                         @else
                                             <div class="col-6">
                                                 <p class="worker-address">
@@ -239,18 +233,7 @@
                                         </div>
 
                                     </div>
-                                    @if ($type == 'transport' || $type === 'serviceMove')
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <p class="worker-address"> مدة العمل للكفيل السابق :
-                                                    {{ $cv->periodservices ?? '' }} </p>
-                                            </li>
 
-                                            <li>
-                                                <p class="worker-address"> سبب النقل : {{ $cv->reasonservices ?? '' }} </p>
-                                            </li>
-                                        </ul>
-                                    @endif
 
                                     <div>
                                         @if ($cv->notes)
@@ -280,8 +263,8 @@
                                             @endif
 
                                             @if ($cv->video_url || $cv->vedio)
-                                                <a href="{{ $cv->video_url ?: Storage::url($cv->vedio) }}"
-                                                    target="_blank" class="btn book">
+                                                <a href="{{ $cv->video_url ?: Storage::url($cv->vedio) }}" target="_blank"
+                                                    class="btn book">
                                                     عرض الفيديو
                                                 </a>
                                             @endif
@@ -311,8 +294,8 @@
                             <div class="modal-body">
                                 <div class="card" style="padding:3px;">
                                     <!-- <div class="card-image">
-                                                                                                                                                                                                                                                                                                                                                                        <img src="{{ get_file($cv->cv_file) }}" alt="سيرة {{ $cv->name }}" />
-                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                <img src="{{ get_file($cv->cv_file) }}" alt="سيرة {{ $cv->name }}" />
+                                                                                                                                                                                                                                                                                                                                                                            </div> -->
 
                                     <div class="card-header" style="padding:0px !important;border:none !important;">
                                         <div class="card col-lg-12" style="border:none;">
@@ -590,12 +573,6 @@
                                                         {{ $cv->religion ? $cv->religion->title : '' }} </p>
                                                 </li>
                                                 @if ($type == 'transport' || $type === 'serviceMove')
-                                                    <li>
-                                                        <p class="worker-address">
-                                                            سعر نقل الخدمات:
-                                                            {{ $cv->transfer_price ?? '' }} {{ __('frontend.SAR') }}
-                                                        </p>
-                                                    </li>
                                                 @else
                                                     <li>
                                                         <p class="worker-address">
@@ -629,19 +606,7 @@
                                                 </li>
 
                                             </ul>
-                                            @if ($type == 'transport' || $type === 'serviceMove')
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <p class="worker-address"> مدة العمل للكفيل السابق :
-                                                            {{ $cv->periodservices ?? '' }} </p>
-                                                    </li>
 
-                                                    <li>
-                                                        <p class="worker-address"> سبب النقل :
-                                                            {{ $cv->reasonservices ?? '' }} </p>
-                                                    </li>
-                                                </ul>
-                                            @endif
 
 
 
